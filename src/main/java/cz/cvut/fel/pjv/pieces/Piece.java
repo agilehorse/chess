@@ -2,16 +2,16 @@ package cz.cvut.fel.pjv.pieces;
 
 import cz.cvut.fel.pjv.Colour;
 import cz.cvut.fel.pjv.board.Board;
-import cz.cvut.fel.pjv.board.Move;
+import cz.cvut.fel.pjv.board.moves.Move;
 
 import java.util.Collection;
 
 public abstract class Piece {
 
-    protected final int pieceRow;
-    protected final int pieceColumn;
-    protected final Colour pieceColour;
-    protected final boolean isFirstMove;
+    final int pieceRow;
+    final int pieceColumn;
+    final Colour pieceColour;
+    private final boolean isFirstMove;
 
     public Piece(final int pieceRow, final int pieceColumn, final Colour pieceColour) {
         this.pieceRow = pieceRow;
