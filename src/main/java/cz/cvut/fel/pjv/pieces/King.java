@@ -3,7 +3,8 @@ package cz.cvut.fel.pjv.pieces;
 import com.google.common.collect.ImmutableList;
 import cz.cvut.fel.pjv.Colour;
 import cz.cvut.fel.pjv.board.Board;
-import cz.cvut.fel.pjv.board.Move;
+import cz.cvut.fel.pjv.board.moves.Move;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +12,10 @@ import java.util.List;
 public class King extends Piece {
 
 
-    public King(int pieceRow, int pieceColumn, Colour pieceColour) {
+    public King(int pieceRow,
+                int pieceColumn,
+                Colour pieceColour) {
+
         super(pieceRow, pieceColumn, pieceColour);
     }
 

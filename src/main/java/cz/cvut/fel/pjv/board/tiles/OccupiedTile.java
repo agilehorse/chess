@@ -6,7 +6,9 @@ public class OccupiedTile extends Tile {
 
     private final Piece pieceOnTile;
 
-    OccupiedTile(int tileRow, int tileColumn, final Piece pieceOnTile) {
+    OccupiedTile(int tileRow,
+                 int tileColumn,
+                 final Piece pieceOnTile) {
         super(tileRow, tileColumn);
         this.pieceOnTile = pieceOnTile;
     }
@@ -20,7 +22,8 @@ public class OccupiedTile extends Tile {
     public Piece getPiece() {
         return this.pieceOnTile;
     }
-//  if the piece is black returns string representation of it in lowercase, else returns default which is uppercase
+//  if the piece is black returns string representation
+//  of it in lowercase, else returns default which is uppercase
     @Override
     public String toString() {
         return getPiece().getPieceColour().isBlack()
