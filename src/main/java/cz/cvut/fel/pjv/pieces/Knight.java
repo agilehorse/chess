@@ -12,12 +12,16 @@ import java.util.List;
 public class Knight extends Piece{
 
 
-    public Knight(int pieceRow, int pieceColumn, Colour pieceColour) {
+    public Knight(int pieceRow,
+                  int pieceColumn,
+                  Colour pieceColour) {
+
         super(pieceRow, pieceColumn, pieceColour);
     }
 
     @Override
     public Collection<Move> calculateMoves(Board board) {
+
         final List<Move> legalMoves = new ArrayList<>();
 
         return ImmutableList.copyOf(legalMoves);

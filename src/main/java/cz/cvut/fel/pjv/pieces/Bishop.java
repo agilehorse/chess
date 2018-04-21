@@ -11,7 +11,10 @@ import java.util.List;
 public class Bishop extends Piece {
 
 
-    public Bishop(int pieceRow, int pieceColumn, Colour pieceColour) {
+    public Bishop(int pieceRow,
+                  int pieceColumn,
+                  Colour pieceColour) {
+
         super(pieceRow, pieceColumn, pieceColour);
     }
 
