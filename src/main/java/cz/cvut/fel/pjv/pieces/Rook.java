@@ -5,9 +5,7 @@ import cz.cvut.fel.pjv.Colour;
 import cz.cvut.fel.pjv.board.Board;
 import cz.cvut.fel.pjv.board.moves.Move;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class Rook extends Piece{
 
@@ -21,9 +19,7 @@ public class Rook extends Piece{
     @Override
     public Collection<Move> calculateMoves(Board board) {
 
-        final List<Move> legalMoves = new ArrayList<>();
-
-        return ImmutableList.copyOf(legalMoves);
+        return ImmutableList.copyOf(sliderMovesCalculator.calculateStraightSliderMoves(board, this, 7));
     }
 
     @Override

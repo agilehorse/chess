@@ -16,11 +16,11 @@ public class Board {
     private final Collection<Piece> whitePieces;
     private final Collection<Piece> blackPieces;
 
-//  constructor calls a builder to build a board and also calls methods
+//  constructor calls a boardBuilder to build a board and also calls methods
 // for getting active pieces of white team and black team
-Board(final Builder builder) {
+Board(final BoardBuilder boardBuilder) {
 
-        this.chessBoard = createChessBoard(builder);
+        this.chessBoard = createChessBoard(boardBuilder);
         this.whitePieces = getActivePieces(this.chessBoard, Colour.WHITE);
         this.blackPieces = getActivePieces(this.chessBoard, Colour.BLACK);
 //      creates a collection of white legal moves and black legal moves
@@ -80,13 +80,13 @@ Board(final Builder builder) {
     }
 
     //  creates a standard chess board, 8x8 (one set=8), return a list of 64 tiles
-    private static List<Tile> createChessBoard(final Builder builder){
+    private static List<Tile> createChessBoard(final BoardBuilder boardBuilder){
 
         final Tile[] tiles = new Tile[ALL_TILES];
 
         for (int i = 0; i < SET_OF_TILES; i++) {
             for (int j = 0; j < SET_OF_TILES; j++) {
-                tiles[(i*8)+j] = Tile.createTile(i, j, builder.boardConfiguration.get(i,j));
+                tiles[(i*8)+j] = Tile.createTile(i, j, boardBuilder.boardConfiguration.get(i,j));
             }
         }
         return ImmutableList.copyOf(tiles);
@@ -94,44 +94,44 @@ Board(final Builder builder) {
 
     //  creates a board with the help of a builder, and puts standard chess pieces on their standard positions
     public static Board createStandardBoard(){
-        final Builder builder = new Builder();
+        final BoardBuilder boardBuilder = new BoardBuilder();
         //        BLACK
-        builder.putPiece(new Rook(  0,0, Colour.BLACK));
-        builder.putPiece(new Knight(0,1, Colour.BLACK));
-        builder.putPiece(new Bishop(0,2, Colour.BLACK));
-        builder.putPiece(new Queen( 0,3, Colour.BLACK));
-        builder.putPiece(new King(  0,4, Colour.BLACK));
-        builder.putPiece(new Bishop(0,5, Colour.BLACK));
-        builder.putPiece(new Knight(0,6, Colour.BLACK));
-        builder.putPiece(new Rook(  0,7, Colour.BLACK));
-        builder.putPiece(new Pawn(  1,0, Colour.BLACK));
-        builder.putPiece(new Pawn(  1,1, Colour.BLACK));
-        builder.putPiece(new Pawn(  1,2, Colour.BLACK));
-        builder.putPiece(new Pawn(  1,3, Colour.BLACK));
-        builder.putPiece(new Pawn(  1,4, Colour.BLACK));
-        builder.putPiece(new Pawn(  1,5, Colour.BLACK));
-        builder.putPiece(new Pawn(  1,6, Colour.BLACK));
-        builder.putPiece(new Pawn(  1,7, Colour.BLACK));
+        boardBuilder.putPiece(new Rook(  0,0, Colour.BLACK));
+        boardBuilder.putPiece(new Knight(0,1, Colour.BLACK));
+        boardBuilder.putPiece(new Bishop(0,2, Colour.BLACK));
+        boardBuilder.putPiece(new Queen( 0,3, Colour.BLACK));
+        boardBuilder.putPiece(new King(  0,4, Colour.BLACK));
+        boardBuilder.putPiece(new Bishop(0,5, Colour.BLACK));
+        boardBuilder.putPiece(new Knight(0,6, Colour.BLACK));
+        boardBuilder.putPiece(new Rook(  0,7, Colour.BLACK));
+        boardBuilder.putPiece(new Pawn(  1,0, Colour.BLACK));
+        boardBuilder.putPiece(new Pawn(  1,1, Colour.BLACK));
+        boardBuilder.putPiece(new Pawn(  1,2, Colour.BLACK));
+        boardBuilder.putPiece(new Pawn(  1,3, Colour.BLACK));
+        boardBuilder.putPiece(new Pawn(  1,4, Colour.BLACK));
+        boardBuilder.putPiece(new Pawn(  1,5, Colour.BLACK));
+        boardBuilder.putPiece(new Pawn(  1,6, Colour.BLACK));
+        boardBuilder.putPiece(new Pawn(  1,7, Colour.BLACK));
         //        WHITE
-        builder.putPiece(new Pawn(  6,0, Colour.WHITE));
-        builder.putPiece(new Pawn(  6,1, Colour.WHITE));
-        builder.putPiece(new Pawn(  6,2, Colour.WHITE));
-        builder.putPiece(new Pawn(  6,3, Colour.WHITE));
-        builder.putPiece(new Pawn(  6,4, Colour.WHITE));
-        builder.putPiece(new Pawn(  6,5, Colour.WHITE));
-        builder.putPiece(new Pawn(  6,6, Colour.WHITE));
-        builder.putPiece(new Pawn(  6,7, Colour.WHITE));
-        builder.putPiece(new Rook(  7,0, Colour.WHITE));
-        builder.putPiece(new Knight(7,1, Colour.WHITE));
-        builder.putPiece(new Bishop(7,2, Colour.WHITE));
-        builder.putPiece(new Queen( 7,3, Colour.WHITE));
-        builder.putPiece(new King(  7,4, Colour.WHITE));
-        builder.putPiece(new Bishop(7,5, Colour.WHITE));
-        builder.putPiece(new Knight(7,6, Colour.WHITE));
-        builder.putPiece(new Rook(  7,7, Colour.WHITE));
+        boardBuilder.putPiece(new Pawn(  6,0, Colour.WHITE));
+        boardBuilder.putPiece(new Pawn(  6,1, Colour.WHITE));
+        boardBuilder.putPiece(new Pawn(  6,2, Colour.WHITE));
+        boardBuilder.putPiece(new Pawn(  6,3, Colour.WHITE));
+        boardBuilder.putPiece(new Pawn(  6,4, Colour.WHITE));
+        boardBuilder.putPiece(new Pawn(  6,5, Colour.WHITE));
+        boardBuilder.putPiece(new Pawn(  6,6, Colour.WHITE));
+        boardBuilder.putPiece(new Pawn(  6,7, Colour.WHITE));
+        boardBuilder.putPiece(new Rook(  7,0, Colour.WHITE));
+        boardBuilder.putPiece(new Knight(7,1, Colour.WHITE));
+        boardBuilder.putPiece(new Bishop(7,2, Colour.WHITE));
+        boardBuilder.putPiece(new Queen( 7,3, Colour.WHITE));
+        boardBuilder.putPiece(new King(  7,4, Colour.WHITE));
+        boardBuilder.putPiece(new Bishop(7,5, Colour.WHITE));
+        boardBuilder.putPiece(new Knight(7,6, Colour.WHITE));
+        boardBuilder.putPiece(new Rook(  7,7, Colour.WHITE));
 
-        builder.setMove(Colour.WHITE);
-        return builder.build();
+        boardBuilder.setMove(Colour.WHITE);
+        return boardBuilder.build();
     }
 
 }

@@ -4,9 +4,8 @@ import com.google.common.collect.ImmutableList;
 import cz.cvut.fel.pjv.Colour;
 import cz.cvut.fel.pjv.board.Board;
 import cz.cvut.fel.pjv.board.moves.Move;
-import java.util.ArrayList;
+
 import java.util.Collection;
-import java.util.List;
 
 public class Bishop extends Piece {
 
@@ -20,9 +19,8 @@ public class Bishop extends Piece {
 
     @Override
     public Collection<Move> calculateMoves(final Board board) {
-        final List<Move> legalMoves = new ArrayList<>();
 
-        return ImmutableList.copyOf(legalMoves);
+        return ImmutableList.copyOf(sliderMovesCalculator.calculateDiagonalSliderMoves(board, this, 7));
     }
 
     @Override
