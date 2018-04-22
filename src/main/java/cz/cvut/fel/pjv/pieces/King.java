@@ -21,7 +21,9 @@ public class King extends Piece {
 
     @Override
     public Collection<Move> calculateMoves(Board board) {
-        final List<Move> legalMoves = new ArrayList<>();
+        final List<Move> legalMoves
+                = new ArrayList<>(sliderMovesCalculator.calculateStraightSliderMoves(board, this, 1));
+        legalMoves.addAll(sliderMovesCalculator.calculateDiagonalSliderMoves(board, this, 1));
 
         return ImmutableList.copyOf(legalMoves);
     }

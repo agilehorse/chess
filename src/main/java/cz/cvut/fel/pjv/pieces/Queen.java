@@ -20,8 +20,9 @@ public class Queen extends Piece {
 
     @Override
     public Collection<Move> calculateMoves(Board board) {
-
-        final List<Move> legalMoves = new ArrayList<>();
+        final List<Move> legalMoves
+                = new ArrayList<>(sliderMovesCalculator.calculateStraightSliderMoves(board, this, 7));
+        legalMoves.addAll(sliderMovesCalculator.calculateDiagonalSliderMoves(board, this, 7));
 
         return ImmutableList.copyOf(legalMoves);
     }

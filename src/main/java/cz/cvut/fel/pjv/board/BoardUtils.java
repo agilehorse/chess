@@ -5,6 +5,7 @@ public class BoardUtils {
 //  basic important numbers
     static final int ALL_TILES = 64;
     public static final int SET_OF_TILES = 8;
+    public static int[] OFFSETS = {1, -1};
 
     public BoardUtils() {
         throw new RuntimeException("You cannot run me!");
