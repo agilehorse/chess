@@ -18,6 +18,11 @@ import static cz.cvut.fel.pjv.board.BoardUtils.SET_OF_TILES;
 
 public class Knight extends Piece {
 
+    private boolean isCastled;
+    private boolean isInCheck;
+    private boolean isInStaleMate;
+    private boolean isInCheckMate;
+    private boolean canEscape;
     private static int[] KING_OFFSETS = {2, 1, -1, -2};
 
     public Knight(int pieceRow,
