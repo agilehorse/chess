@@ -19,7 +19,6 @@ class sliderMovesCalculator {
 
     static List<Move> calculateDiagonalSliderMoves(Board board, Piece piece, int maxReach) {
         final List<Move> legalMoves = new ArrayList<>();
-
         for (int rowOffset : OFFSETS) {
             for (int columnOffset : OFFSETS) {
                 for (int i = 1; i < maxReach; i++) {
@@ -55,17 +54,13 @@ class sliderMovesCalculator {
     }
 
     static List<Move> calculateStraightSliderMoves(Board board, Piece piece, int maxReach) {
-
         final List<Move> legalMoves = new ArrayList<>();
-
         for (int columnOffset : OFFSETS) {
             for (int i = 1; i < maxReach; i++) {
                 if (BoardUtils.isValidTileCoordinate(piece.pieceRow,
                         piece.pieceColumn + i * columnOffset)) {
-
                     final Tile targetTile = board.getTile(piece.pieceRow,
                             piece.pieceColumn + i * columnOffset);
-
                     if (!targetTile.isOccupied()) {
                         legalMoves.add(new NormalMove(board,
                                 piece,

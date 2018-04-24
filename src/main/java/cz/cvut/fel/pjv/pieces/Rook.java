@@ -9,17 +9,21 @@ import java.util.Collection;
 
 public class Rook extends Piece{
 
-    public Rook(int pieceRow,
+    public Rook(
+                int pieceRow,
                 int pieceColumn,
                 Colour pieceColour) {
-
-        super(pieceRow, pieceColumn, pieceColour);
+        super(PieceType.ROOK, pieceRow, pieceColumn, pieceColour);
     }
 
     @Override
     public Collection<Move> calculateMoves(Board board) {
-
         return ImmutableList.copyOf(sliderMovesCalculator.calculateStraightSliderMoves(board, this, 7));
+    }
+
+    @Override
+    public Piece moveIt(Move move) {
+        return new Rook(move.getNewRow(), move.getNewColumn(), move.getMovedPiece().getPieceColour());
     }
 
     @Override

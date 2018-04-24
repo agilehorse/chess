@@ -22,11 +22,12 @@ public class OccupiedTile extends Tile {
     public Piece getPiece() {
         return this.pieceOnTile;
     }
+
 //  if the piece is black returns string representation
 //  of it in lowercase, else returns default which is uppercase
     @Override
     public String toString() {
-        return getPiece().getPieceColour().isBlack()
-                ? getPiece().toString().toLowerCase() : getPiece().toString();
+        return getPiece().getPieceColour().isWhite()
+                ? getPiece().toString().toUpperCase() : getPiece().toString();
     }
 }

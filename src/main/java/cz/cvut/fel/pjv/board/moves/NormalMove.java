@@ -10,7 +10,6 @@ public final class NormalMove extends Move {
                       final Piece movedPiece,
                       final int newRow,
                       final int newColumn) {
-
-        super(board, movedPiece, newRow, newColumn);
+        super(MoveType.NORMAL, board, movedPiece, newRow, newColumn);
     }
 }
