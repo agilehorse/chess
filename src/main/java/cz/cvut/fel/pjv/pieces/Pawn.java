@@ -19,29 +19,26 @@ public class Pawn extends Piece {
 
     private int DESTINATION_ROW = this.pieceRow + this.pieceColour.getDirection();
 
-    public Pawn(int pieceRow,
+    public Pawn(
+                int pieceRow,
                 int pieceColumn,
                 Colour pieceColour) {
 
-        super(pieceRow, pieceColumn, pieceColour);
+        super(PieceType.PAWN, pieceRow, pieceColumn, pieceColour);
     }
 
     @Override
     public Collection<Move> calculateMoves(Board board) {
-
         final List<Move> legalMoves = new ArrayList<>();
 //      calculating attack moves, pawn attacks diagonally, therefore there is column offset
         for (final int columnOffset : OFFSETS) {
 //            if destination tile isn't out of board it is stored in tileInFront
             if (BoardUtils.isValidTileCoordinate(DESTINATION_ROW,
                     columnOffset + this.pieceColumn)) {
-
                 final Tile targetTile = board.getTile(DESTINATION_ROW, columnOffset + this.pieceColumn);
-
 //              attack move is added into the list of legal moves if the destination is a valid tile, which is occupied by a piece of different colour
                 if (targetTile.isOccupied()
                         && targetTile.getPiece().getPieceColour() != this.pieceColour) {
-
                     legalMoves.add(new AttackMove(board,
                             this,
                             DESTINATION_ROW,
@@ -53,25 +50,18 @@ public class Pawn extends Piece {
 //      normal move is added to the list of moves if the target tile isn't out of board and isn't occupied
         if (BoardUtils.isValidTileCoordinate(DESTINATION_ROW,
                                              this.pieceColumn)) {
-
             final Tile tileInFront = board.getTile(DESTINATION_ROW, this.pieceColumn);
-
             if (!tileInFront.isOccupied()) {
-
                 legalMoves.add(new NormalMove(board, this,
                         DESTINATION_ROW, this.pieceColumn));
-
                 if (this.isFirstMove) {
-                    if (BoardUtils.isValidTileCoordinate(DESTINATION_ROW + 1,
+                    if (BoardUtils.isValidTileCoordinate(DESTINATION_ROW + this.pieceColour.getDirection(),
                                                               this.pieceColumn)) {
-
-                        final Tile jumpTile = board.getTile(DESTINATION_ROW + 1, this.pieceColumn);
-
+                        final Tile jumpTile = board.getTile(DESTINATION_ROW + this.pieceColour.getDirection(), this.pieceColumn);
                         if (!jumpTile.isOccupied()) {
-
                             legalMoves.add(new NormalMove(board,
                                                 this,
-                                                   DESTINATION_ROW + 1,
+                                                   DESTINATION_ROW + this.pieceColour.getDirection(),
                                                            this.pieceColumn));
                         }
                     }
@@ -80,14 +70,18 @@ public class Pawn extends Piece {
             }
         }
 //      pawn can move two squares only once in a game, if it hasn't done it, both square aren't occupied it can use this ability
-
         return ImmutableList.copyOf(legalMoves);
+    }
+
+    @Override
+    public Piece moveIt(Move move) {
+        return new Pawn(move.getNewRow(), move.getNewColumn(), move.getMovedPiece().getPieceColour());
+
     }
 
     private Tile validateTile(Board board,
                               final int row,
                               final int column) {
-
         if (BoardUtils.isValidTileCoordinate(row, column)) {
             return board.getTile(row, column);
         } else {

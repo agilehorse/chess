@@ -9,18 +9,21 @@ import java.util.Collection;
 
 public class Bishop extends Piece {
 
-
-    public Bishop(int pieceRow,
+    public Bishop(
+                  int pieceRow,
                   int pieceColumn,
                   Colour pieceColour) {
-
-        super(pieceRow, pieceColumn, pieceColour);
+        super(PieceType.BISHOP, pieceRow, pieceColumn, pieceColour);
     }
 
     @Override
     public Collection<Move> calculateMoves(final Board board) {
-
         return ImmutableList.copyOf(sliderMovesCalculator.calculateDiagonalSliderMoves(board, this, 7));
+    }
+
+    @Override
+    public Piece moveIt(Move move) {
+        return new Bishop(move.getNewRow(), move.getNewColumn(), move.getMovedPiece().getPieceColour());
     }
 
     @Override

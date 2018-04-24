@@ -11,12 +11,11 @@ import java.util.List;
 
 public class King extends Piece {
 
-
-    public King(int pieceRow,
+    public King(
+                int pieceRow,
                 int pieceColumn,
                 Colour pieceColour) {
-
-        super(pieceRow, pieceColumn, pieceColour);
+        super(PieceType.KING, pieceRow, pieceColumn, pieceColour);
     }
 
     @Override
@@ -24,8 +23,12 @@ public class King extends Piece {
         final List<Move> legalMoves
                 = new ArrayList<>(sliderMovesCalculator.calculateStraightSliderMoves(board, this, 1));
         legalMoves.addAll(sliderMovesCalculator.calculateDiagonalSliderMoves(board, this, 1));
-
         return ImmutableList.copyOf(legalMoves);
+    }
+
+    @Override
+    public Piece moveIt(Move move) {
+        return new King(move.getNewRow(), move.getNewColumn(), move.getMovedPiece().getPieceColour());
     }
 
     @Override

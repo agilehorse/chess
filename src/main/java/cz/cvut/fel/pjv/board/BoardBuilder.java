@@ -8,13 +8,13 @@ import cz.cvut.fel.pjv.pieces.Piece;
 public class BoardBuilder {
 
     Table<Integer, Integer, Piece> boardConfiguration;
-    private Colour nextMove;
+    Colour nextMove;
 
-    BoardBuilder(){
+    public BoardBuilder(){
         this.boardConfiguration = HashBasedTable.create();
     }
 
-    BoardBuilder putPiece(final Piece piece){
+    public BoardBuilder putPiece(final Piece piece){
         this.boardConfiguration.put(piece.getPieceRow(),
                                     piece.getPieceColumn(),
                                     piece);
@@ -27,7 +27,7 @@ public class BoardBuilder {
     }
 //      builds a new board
 
-    Board build() {
+    public Board build() {
         return new Board(this);
     }
 }
