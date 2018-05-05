@@ -3,22 +3,22 @@ package cz.cvut.fel.pjv.engine.player;
 public enum MoveState {
     VALID{
         @Override
-        boolean done() {
+        public boolean done() {
             return true;
         }
     },
     LEAVES_PLAYER_IN_CHECK{
         @Override
-        boolean done() {
+        public boolean done() {
             return true;
         }
     },
     INVALID{
         @Override
-        boolean done() {
+        public boolean done() {
             return false;
         }
     };
 
-    abstract boolean done();
+    public abstract boolean done();
 }

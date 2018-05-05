@@ -2,6 +2,7 @@ package cz.cvut.fel.pjv.engine.pieces;
 
 import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.Board;
+import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
 
 import java.util.Collection;
@@ -9,10 +10,11 @@ import java.util.Objects;
 
 public abstract class Piece {
     private PieceType pieceType;
-    final int pieceRow;
-    final int pieceColumn;
+    int pieceRow;
+    int pieceColumn;
     private final Colour pieceColour;
     private boolean isFirstMove;
+    private boolean active;
 
     public Piece(final PieceType pieceType,
                  final int pieceRow,
@@ -23,7 +25,17 @@ public abstract class Piece {
         this.pieceColumn = pieceColumn;
         this.pieceColour = pieceColour;
         this.isFirstMove = true;
+        this.active = true;
     }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public PieceType getPieceType(){
         return this.pieceType;
     }
@@ -50,6 +62,14 @@ public abstract class Piece {
 
     public abstract Collection<Move> calculateMoves(final Board board);
 
+    public void setPieceRow(int pieceRow) {
+        this.pieceRow = pieceRow;
+    }
+
+    public void setPieceColumn(int pieceColumn) {
+        this.pieceColumn = pieceColumn;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,10 +82,17 @@ public abstract class Piece {
                 getPieceColour() == piece.getPieceColour();
     }
 
-    public abstract Piece moveIt(Move move);
+    public void move(Move move) {
+        this.setPieceRow(move.getNewRow());
+        this.setPieceColumn(move.getNewColumn());
+    }
 
     @Override
     public int hashCode() {
         return Objects.hash(getPieceType(), getPieceRow(), getPieceColumn(), getPieceColour(), isFirstMove());
+    }
+
+    public int getPieceValue() {
+        return this.pieceType.getPieceValue();
     }
 }

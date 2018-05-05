@@ -1,7 +1,7 @@
 package cz.cvut.fel.pjv.engine.board.moves;
 
 import cz.cvut.fel.pjv.engine.board.Board;
-import cz.cvut.fel.pjv.engine.board.BoardBuilder;
+import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.pieces.Pawn;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 import cz.cvut.fel.pjv.engine.pieces.PieceType;
@@ -10,23 +10,43 @@ import java.util.Objects;
 
 public abstract class Move {
 
-    private MoveType moveType;
     final Board board;
     final Piece movedPiece;
     private final int newRow;
     private final int newColumn;
+    private Tile destinationTile;
+    private Tile sourceTile;
 
-    public Move(
-            final MoveType moveType,
-            final Board board,
+    public Move(final Board board,
             final Piece movedPiece,
             final int newRow,
             final int newColumn) {
-        this.moveType = moveType;
         this.board = board;
         this.movedPiece = movedPiece;
         this.newRow = newRow;
         this.newColumn = newColumn;
+        setDestinationTile();
+        setSourceTile();
+    }
+
+    private void setDestinationTile() {
+        this.destinationTile = board.getTile(newRow, newColumn);
+    }
+
+    private void setSourceTile() {
+        this.sourceTile = board.getTile(movedPiece.getPieceRow(), movedPiece.getPieceColumn());
+    }
+
+    public void execute() {
+        this.movedPiece.move(this);
+        movedPiece.setFirstMove(false);
+        if (movedPiece.getPieceType() == PieceType.PAWN && movedPiece.getPieceRow() + 2 == newRow) {
+            board.setEnPassantPawn((Pawn)movedPiece);
+        }
+        this.getSourceTile().setPieceOnTile(null);
+        this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
+        Board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
+        board.recalculate();
     }
 
     @Override
@@ -41,8 +61,11 @@ public abstract class Move {
     }
 
     @Override
-    public int hashCode() {        return Objects.hash(board, getMovedPiece(), getNewRow(), getNewColumn());
+    public int hashCode() {
+        return Objects.hash(board, getMovedPiece(), getNewRow(), getNewColumn());
     }
+
+    public abstract MoveType getMoveType();
 
     public Piece getMovedPiece() {
         return movedPiece;
@@ -60,26 +83,6 @@ public abstract class Move {
         return board;
     }
 
-    public Board execute() {
-        final BoardBuilder builder = new BoardBuilder();
-        for (final Piece piece : this.board.getCurrentPlayer().getActivePieces()) {
-            if (!this.movedPiece.equals(piece)) {
-                builder.putPiece(piece);
-            }
-        }
-        for (final Piece piece : this.board.getCurrentPlayer().getOpponent().getActivePieces()) {
-            builder.putPiece(piece);
-        }
-        Piece piece = this.movedPiece.moveIt(this);
-        if (movedPiece.getPieceType() == PieceType.PAWN && movedPiece.getPieceRow() + 2 == newRow) {
-            builder.setEnPassant((Pawn)piece);
-        }
-        piece.setFirstMove(false);
-        builder.putPiece(piece);
-        builder.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        return builder.build();
-    }
-
     public int getCurrentRow() {
         return this.movedPiece.getPieceRow();
     }
@@ -87,4 +90,21 @@ public abstract class Move {
     public int getCurrentColumn() {
         return this.movedPiece.getPieceColumn();
     }
+
+    public Tile getDestinationTile() {
+        return destinationTile;
+    }
+
+    public Tile getSourceTile() {
+        return sourceTile;
+    }
+
+    public void setSourceTile(Tile sourceTile) {
+        this.sourceTile = sourceTile;
+    }
+
+    public Piece getAttackedPiece() {
+        return null;
+    }
+
 }

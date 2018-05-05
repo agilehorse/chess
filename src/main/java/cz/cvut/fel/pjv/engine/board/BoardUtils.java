@@ -10,10 +10,11 @@ import java.util.List;
 public class BoardUtils {
 //  columns which might cause exceptions when calculating news
 //  basic important numbers
+
     static final int ALL_TILES = 64;
     public static final int SET_OF_TILES = 8;
     public static int[] OFFSETS = {1, -1};
-    public static final List<String> TILE_NOTATION = initTileNotation();
+    static final List<String> TILE_NOTATION = initTileNotation();
     public static final Table<Integer, Integer, String> POSITION_TO_COORDINATES = translateToCoords();
 
     private static List<String> initTileNotation() {

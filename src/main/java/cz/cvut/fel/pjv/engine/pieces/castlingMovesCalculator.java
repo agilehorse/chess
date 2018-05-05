@@ -5,7 +5,7 @@ import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.moves.KingSideCastle;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
 import cz.cvut.fel.pjv.engine.board.moves.QueenSideCastle;
-import cz.cvut.fel.pjv.engine.board.tiles.Tile;
+import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.player.Player;
 
 import java.util.ArrayList;
@@ -15,8 +15,9 @@ import java.util.List;
 public class castlingMovesCalculator {
 
     public static Collection<Move> execute(Board board, Player player, int row, Collection<Move> playersMoves, Collection<Move> opponentMoves) {
+
         final List<Move> castleMoves = new ArrayList<>();
-        if (player.getPlayersKing().isFirstMove() && !player.isInCheck()) {
+        if (player.getPlayersKing().isFirstMove() && !player.isInCheck() && !player.isCastled()) {
             if (!board.getTile(row, 5).isOccupied()
                     && !board.getTile(row, 6).isOccupied()) {
                 final Tile rookTile = board.getTile(row, 7);
