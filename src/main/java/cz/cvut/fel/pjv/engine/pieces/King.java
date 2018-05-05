@@ -11,11 +11,14 @@ import java.util.List;
 
 public class King extends Piece {
 
+    private boolean isCastled;
+
     public King(
                 int pieceRow,
                 int pieceColumn,
                 Colour pieceColour) {
         super(PieceType.KING, pieceRow, pieceColumn, pieceColour);
+        this.isCastled = false;
     }
 
     @Override
@@ -27,12 +30,15 @@ public class King extends Piece {
     }
 
     @Override
-    public Piece moveIt(Move move) {
-        return new King(move.getNewRow(), move.getNewColumn(), move.getMovedPiece().getPieceColour());
-    }
-
-    @Override
     public String toString() {
         return PieceType.KING.toString();
+    }
+
+    public boolean isCastled() {
+        return this.isCastled;
+    }
+
+    public void setCastled(boolean castled) {
+        isCastled = true;
     }
 }

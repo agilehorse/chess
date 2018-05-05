@@ -22,11 +22,6 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public Piece moveIt(Move move) {
-        return new Bishop(move.getNewRow(), move.getNewColumn(), move.getMovedPiece().getPieceColour());
-    }
-
-    @Override
     public String toString() {
         return PieceType.BISHOP.toString();
     }

@@ -32,16 +32,6 @@ public class WhitePlayer extends Player {
         return this.board.getWhitePieces();
     }
 
-    @Override
-    Collection<Piece> getInactivePieces() {
-        return null;
-    }
-
-    @Override
-    public MoveMaker makeMove(Move move) {
-        return null;
-    }
-
     protected Collection<Move> calculateCastling(final Collection<Move> playerMoves,
                                                  final Collection<Move> opponentMoves) {
         return ImmutableList.copyOf(castlingMovesCalculator.execute(this.board, this, 7, playerMoves, opponentMoves));

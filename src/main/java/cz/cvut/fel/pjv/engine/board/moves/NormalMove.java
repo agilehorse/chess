@@ -6,10 +6,18 @@ import cz.cvut.fel.pjv.engine.pieces.Piece;
 //  defines new basic new, on empty tile
 public class NormalMove extends Move {
 
+    private MoveType moveType;
+
     public NormalMove(final Board board,
                       final Piece movedPiece,
                       final int newRow,
                       final int newColumn) {
-        super(MoveType.NORMAL, board, movedPiece, newRow, newColumn);
+        super(board, movedPiece, newRow, newColumn);
+        this.moveType = MoveType.NORMAL;
+    }
+
+    @Override
+    public MoveType getMoveType() {
+        return this.moveType;
     }
 }

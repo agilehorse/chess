@@ -5,7 +5,7 @@ import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.BoardUtils;
 import cz.cvut.fel.pjv.engine.board.moves.*;
-import cz.cvut.fel.pjv.engine.board.tiles.Tile;
+import cz.cvut.fel.pjv.engine.board.Tile;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,9 +42,9 @@ public class Pawn extends Piece {
                             DESTINATION_ROW,
                             this.pieceColumn + columnOffset,
                             targetTile.getPiece()));
-                } else if (board.getEnPassant() != null) {
-                    if (board.getEnPassant().getPieceColumn() == (this.pieceColumn + columnOffset)) {
-                        final Piece passingPawn = board.getEnPassant();
+                } else if (board.getEnPassantPawn() != null) {
+                    if (board.getEnPassantPawn().getPieceColumn() == (this.pieceColumn + columnOffset)) {
+                        final Piece passingPawn = board.getEnPassantPawn();
                         if (this.getPieceColour() != passingPawn.getPieceColour()) {
                             legalMoves.add(new EnPassantAttack(board, this,
                                     DESTINATION_ROW, this.pieceColumn + 1, passingPawn));
@@ -96,12 +96,6 @@ public class Pawn extends Piece {
         }
 //      pawn can move two squares only once in a game, if it hasn't done it, both square aren't occupied it can use this ability
         return ImmutableList.copyOf(legalMoves);
-    }
-
-    @Override
-    public Piece moveIt(Move move) {
-        return new Pawn(move.getNewRow(), move.getNewColumn(), move.getMovedPiece().getPieceColour());
-
     }
 
     @Override

@@ -6,7 +6,7 @@ import cz.cvut.fel.pjv.engine.board.BoardUtils;
 import cz.cvut.fel.pjv.engine.board.moves.AttackMove;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
 import cz.cvut.fel.pjv.engine.board.moves.NormalMove;
-import cz.cvut.fel.pjv.engine.board.tiles.Tile;
+import cz.cvut.fel.pjv.engine.board.Tile;
 import java.util.ArrayList;
 import java.util.List;
 import static cz.cvut.fel.pjv.engine.board.BoardUtils.OFFSETS;

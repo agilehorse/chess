@@ -24,12 +24,6 @@ public class Queen extends Piece {
     }
 
     @Override
-    public Piece moveIt(Move move) {
-        return new Queen(move.getNewRow(), move.getNewColumn(), move.getMovedPiece().getPieceColour());
-
-    }
-
-    @Override
     public String toString() {
         return PieceType.QUEEN.toString();
     }

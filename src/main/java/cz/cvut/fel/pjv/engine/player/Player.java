@@ -4,7 +4,9 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.Board;
+import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
+import cz.cvut.fel.pjv.engine.board.moves.MoveType;
 import cz.cvut.fel.pjv.engine.pieces.King;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 import java.util.ArrayList;
@@ -14,10 +16,11 @@ import java.util.List;
 import static cz.cvut.fel.pjv.engine.pieces.PieceType.KING;
 
 public abstract class Player {
-    protected final Board board;
+
+    protected Board board;
     King playersKing;
-    private final Collection<Move> legalMoves;
-    private final boolean isInCheck;
+    private Collection<Move> legalMoves;
+    private boolean isInCheck;
 
     Player(Board board, Collection<Move> legalMoves, Collection<Move> opponentMoves) {
         this.board = board;
@@ -48,29 +51,55 @@ public abstract class Player {
         throw new RuntimeException("Invalid Board! King is missing.");
     }
 
-    public MoveMaker initiateMove(Move move) {
-        if (!isMoveLegal(move)) {
-            return new MoveMaker(this.board, move, MoveState.INVALID);
+    public boolean initiateMove(Move move) {
+        if (move == null || !isMoveLegal(move) || leadsToCheck(move)) {
+            return false;
+        } else {
+            move.execute();
+            this.getOpponent();
+            if (!calculateCheck(move.getNewRow(),
+                    move.getNewColumn(), this.legalMoves).isEmpty()) {
+                this.getOpponent().isInCheck = true;
+            }
+            if (move.getMoveType() == MoveType.CASTLE) {
+                this.playersKing.setCastled(true);
+            }
+            return true;
         }
-        final Board newBoard = move.execute();
-        final Collection<Move> kingAttacks
-                = Player.calculateCheck(board.getCurrentPlayer().getOpponent().getPlayersKing().getPieceRow(),
-                board.getCurrentPlayer().getOpponent().getPlayersKing().getPieceRow(),
-                newBoard.getCurrentPlayer().getLegalMoves());
-        if (!kingAttacks.isEmpty()) {
-            return new MoveMaker(this.board, move, MoveState.LEAVES_PLAYER_IN_CHECK);
-        }
-        return new MoveMaker(newBoard, move, MoveState.VALID);
+    }
+
+    private boolean leadsToCheck(Move move) {
+        final Collection<Move> kingAttacks = calculateCheck(move.getNewRow(), move.getNewColumn(), board.getCurrentPlayer().getOpponent().getLegalMoves());
+        return !kingAttacks.isEmpty();
     }
 
     private boolean canEscapeCheck() {
-        for (final Move move: this.legalMoves) {
-            final MoveMaker transition = makeMove(move);
-            if (transition.getMoveState().done()) {
-                return true;
+        Collection<Move> kingsMoves = new ArrayList<>(this.playersKing.calculateMoves(board));
+
+        Collection<Move> opponentMoves = this.getOpponent().getLegalMoves();
+        for (final Move kingMove: kingsMoves) {
+            for (final Move opponentMove: opponentMoves) {
+                if (opponentMove.getMoveType() == MoveType.ATTACK
+                        && opponentMove.getDestinationTile() == kingMove.getDestinationTile()) {
+                    kingsMoves.remove(kingMove);
+                }
             }
         }
-        return false;
+        return kingsMoves.isEmpty();
+    }
+
+    public void setLegalMoves(Collection<Move> legalMoves, Collection<Move> opponentMoves) {
+        this.legalMoves = ImmutableList.copyOf(Iterables.concat(legalMoves,
+                calculateCastling(legalMoves, opponentMoves)));
+    }
+
+    public Move findMove(final Tile sourceTile, final Tile destinationTile) {
+        for (final Move move: this.legalMoves) {
+            if (move.getSourceTile() == sourceTile && move.getDestinationTile() == destinationTile) {
+                return move;
+            }
+        }
+        return null;
     }
 
     public King getPlayersKing() {
@@ -87,10 +116,6 @@ public abstract class Player {
 
     public abstract Collection<Piece> getActivePieces();
 
-    abstract Collection<Piece> getInactivePieces();
-
-    public abstract MoveMaker makeMove(final Move move);
-
     public boolean isInCheck() {
         return this.isInCheck;
     }
@@ -100,11 +125,11 @@ public abstract class Player {
     }
 
     public boolean isInStaleMate(){
-        return !this.isInCheck && !canEscapeCheck();
+        return !this.isInCheck && canEscapeCheck();
     }
 
     public boolean isCastled() {
-        return false;
+        return this.playersKing.isCastled();
     }
 
     private boolean isMoveLegal(Move move) {

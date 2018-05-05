@@ -1,18 +1,16 @@
 package cz.cvut.fel.pjv.engine.board;
 
+import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Table;
 import cz.cvut.fel.pjv.engine.Colour;
-import cz.cvut.fel.pjv.engine.board.moves.IllegalMove;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
-import cz.cvut.fel.pjv.engine.board.tiles.Tile;
 import cz.cvut.fel.pjv.engine.pieces.*;
 import cz.cvut.fel.pjv.engine.player.BlackPlayer;
 import cz.cvut.fel.pjv.engine.player.Player;
 import cz.cvut.fel.pjv.engine.player.WhitePlayer;
-
 import java.util.*;
-
 import static cz.cvut.fel.pjv.engine.board.BoardUtils.ALL_TILES;
 import static cz.cvut.fel.pjv.engine.board.BoardUtils.SET_OF_TILES;
 
@@ -20,76 +18,88 @@ import static cz.cvut.fel.pjv.engine.board.BoardUtils.SET_OF_TILES;
 public class Board {
     //  Board is represented by list of tiles and white and black pieces
     private final List<Tile> chessBoard;
-    private final Collection<Piece> whitePieces;
-    private final Collection<Piece> blackPieces;
-    private static Collection<Piece> inactiveWhitePieces;
-    private static Collection<Piece> inactiveBlackPieces;
+    private static Table<Integer, Integer, Piece> boardConfiguration;
+    private Collection<Piece> whitePieces;
+    private Collection<Piece> blackPieces;
+    private Collection<Piece> inactiveWhitePieces;
+    private Collection<Piece> inactiveBlackPieces;
     private final WhitePlayer whitePlayer;
     private final BlackPlayer blackPlayer;
     private Player currentPlayer;
-    private final Move transitionMove;
-    private final Pawn enPassant;
+    private Pawn enPassantPawn;
+    private static Colour nextMove;
 
 
     //  constructor calls a boardBuilder to build a board and also calls methods
 // for getting active pieces of white team and black team
-    Board(final BoardBuilder boardBuilder) {
-        this.chessBoard = createChessBoard(boardBuilder);
+    public Board() {
+        boardConfiguration = HashBasedTable.create();
+        setUpStandardBoard();
+        this.chessBoard = createChessBoard();
         this.whitePieces = getActivePieces(this.chessBoard, Colour.WHITE);
         this.blackPieces = getActivePieces(this.chessBoard, Colour.BLACK);
 //      creates a collection of white legal moves and black legal moves
-        final Collection<Move> whiteBasicLegalMoves
+        Collection<Move> whiteBasicLegalMoves
                 = calculateMoves(this.whitePieces);
-        final Collection<Move> blackBasicLegalMoves
+        Collection<Move> blackBasicLegalMoves
                 = calculateMoves(this.blackPieces);
         this.whitePlayer = new WhitePlayer(this, whiteBasicLegalMoves, blackBasicLegalMoves);
         this.blackPlayer = new BlackPlayer(this, blackBasicLegalMoves, whiteBasicLegalMoves);
-        this.currentPlayer = boardBuilder.nextMove.getCurrentPlayer(whitePlayer, blackPlayer);
-        inactiveWhitePieces = null;
-        inactiveBlackPieces = null;
-        this.transitionMove = boardBuilder.transitionMove != null ? boardBuilder.transitionMove : new IllegalMove();
-        this.enPassant = boardBuilder.enPassant;
+        this.currentPlayer = nextMove.getCurrentPlayer(whitePlayer, blackPlayer);
+        inactiveWhitePieces = new ArrayList<>();
+        inactiveBlackPieces = new ArrayList<>();
+        this.enPassantPawn = null;
     }
 
-    public static Board createStandardBoard() {
-        final BoardBuilder boardBuilder = new BoardBuilder();
-        //        BLACK
-        boardBuilder.putPiece(new Rook(0, 0, Colour.BLACK));
-        boardBuilder.putPiece(new Knight(0, 1, Colour.BLACK));
-        boardBuilder.putPiece(new Bishop(0, 2, Colour.BLACK));
-        boardBuilder.putPiece(new Queen(0, 3, Colour.BLACK));
-        boardBuilder.putPiece(new King(0, 4, Colour.BLACK));
-        boardBuilder.putPiece(new Bishop(0, 5, Colour.BLACK));
-        boardBuilder.putPiece(new Knight(0, 6, Colour.BLACK));
-        boardBuilder.putPiece(new Rook(0, 7, Colour.BLACK));
-        boardBuilder.putPiece(new Pawn(1, 0, Colour.BLACK));
-        boardBuilder.putPiece(new Pawn(1, 1, Colour.BLACK));
-        boardBuilder.putPiece(new Pawn(1, 2, Colour.BLACK));
-        boardBuilder.putPiece(new Pawn(1, 3, Colour.BLACK));
-        boardBuilder.putPiece(new Pawn(1, 4, Colour.BLACK));
-        boardBuilder.putPiece(new Pawn(1, 5, Colour.BLACK));
-        boardBuilder.putPiece(new Pawn(1, 6, Colour.BLACK));
-        boardBuilder.putPiece(new Pawn(1, 7, Colour.BLACK));
-        //        WHITE
-        boardBuilder.putPiece(new Pawn(6, 0, Colour.WHITE));
-        boardBuilder.putPiece(new Pawn(6, 1, Colour.WHITE));
-        boardBuilder.putPiece(new Pawn(6, 2, Colour.WHITE));
-        boardBuilder.putPiece(new Pawn(6, 3, Colour.WHITE));
-        boardBuilder.putPiece(new Pawn(6, 4, Colour.WHITE));
-        boardBuilder.putPiece(new Pawn(6, 5, Colour.WHITE));
-        boardBuilder.putPiece(new Pawn(6, 6, Colour.WHITE));
-        boardBuilder.putPiece(new Pawn(6, 7, Colour.WHITE));
-        boardBuilder.putPiece(new Rook(7, 0, Colour.WHITE));
-        boardBuilder.putPiece(new Knight(7, 1, Colour.WHITE));
-        boardBuilder.putPiece(new Bishop(7, 2, Colour.WHITE));
-        boardBuilder.putPiece(new Queen(7, 3, Colour.WHITE));
-        boardBuilder.putPiece(new King(7, 4, Colour.WHITE));
-        boardBuilder.putPiece(new Bishop(7, 5, Colour.WHITE));
-        boardBuilder.putPiece(new Knight(7, 6, Colour.WHITE));
-        boardBuilder.putPiece(new Rook(7, 7, Colour.WHITE));
+    public void recalculate() {
+        this.whitePieces = getActivePieces(this.chessBoard, Colour.WHITE);
+        this.blackPieces = getActivePieces(this.chessBoard, Colour.BLACK);
+//      creates a collection of white legal moves and black legal moves
+        Collection<Move> whiteBasicLegalMoves
+                = calculateMoves(this.whitePieces);
+        Collection<Move> blackBasicLegalMoves
+                = calculateMoves(this.blackPieces);
+        this.whitePlayer.setLegalMoves(whiteBasicLegalMoves, blackBasicLegalMoves);
+        this.blackPlayer.setLegalMoves(blackBasicLegalMoves, whiteBasicLegalMoves);
+        this.currentPlayer = nextMove.getCurrentPlayer(whitePlayer, blackPlayer);
+    }
 
-        boardBuilder.setMove(Colour.WHITE);
-        return boardBuilder.build();
+    private static void setUpStandardBoard() {
+        //        BLACK
+        putPiece(new Rook(0, 0, Colour.BLACK));
+        putPiece(new Knight(0, 1, Colour.BLACK));
+        putPiece(new Bishop(0, 2, Colour.BLACK));
+        putPiece(new Queen(0, 3, Colour.BLACK));
+        putPiece(new King(0, 4, Colour.BLACK));
+        putPiece(new Bishop(0, 5, Colour.BLACK));
+        putPiece(new Knight(0, 6, Colour.BLACK));
+        putPiece(new Pawn(1, 0, Colour.BLACK));
+        putPiece(new Rook(0, 7, Colour.BLACK));
+        putPiece(new Pawn(1, 1, Colour.BLACK));
+        putPiece(new Pawn(1, 2, Colour.BLACK));
+        putPiece(new Pawn(1, 3, Colour.BLACK));
+        putPiece(new Pawn(1, 4, Colour.BLACK));
+        putPiece(new Pawn(1, 5, Colour.BLACK));
+        putPiece(new Pawn(1, 6, Colour.BLACK));
+        putPiece(new Pawn(1, 7, Colour.BLACK));
+        //        WHITE
+        putPiece(new Pawn(6, 0, Colour.WHITE));
+        putPiece(new Pawn(6, 1, Colour.WHITE));
+        putPiece(new Pawn(6, 2, Colour.WHITE));
+        putPiece(new Pawn(6, 3, Colour.WHITE));
+        putPiece(new Pawn(6, 4, Colour.WHITE));
+        putPiece(new Pawn(6, 5, Colour.WHITE));
+        putPiece(new Pawn(6, 6, Colour.WHITE));
+        putPiece(new Pawn(6, 7, Colour.WHITE));
+        putPiece(new Rook(7, 0, Colour.WHITE));
+        putPiece(new Knight(7, 1, Colour.WHITE));
+        putPiece(new Bishop(7, 2, Colour.WHITE));
+        putPiece(new Queen(7, 3, Colour.WHITE));
+        putPiece(new King(7, 4, Colour.WHITE));
+        putPiece(new Bishop(7, 5, Colour.WHITE));
+        putPiece(new Knight(7, 6, Colour.WHITE));
+        putPiece(new Rook(7, 7, Colour.WHITE));
+        setMove(Colour.WHITE);
     }
 
     //  builds a giant string from string values which represent a given tile
@@ -117,9 +127,6 @@ public class Board {
     }
 
     //  return a concrete tile object by given parameters
-    public Tile getTile(final int tileRow, final int tileColumn) {
-        return chessBoard.get((tileRow * 8) + tileColumn);
-    }
 
     private static Collection<Piece> getActivePieces(final List<Tile> chessBoard,
                                                      final Colour colour) {
@@ -136,14 +143,24 @@ public class Board {
     }
 
     //  creates a standard chess board, 8x8 (one set=8), return a list of 64 tiles
-    private static List<Tile> createChessBoard(final BoardBuilder boardBuilder) {
+    private static List<Tile> createChessBoard() {
         final Tile[] tiles = new Tile[ALL_TILES];
         for (int i = 0; i < SET_OF_TILES; i++) {
             for (int j = 0; j < SET_OF_TILES; j++) {
-                tiles[(i * 8) + j] = Tile.createTile(i, j, boardBuilder.boardConfiguration.get(i, j));
+                tiles[(i * 8) + j] = Tile.createTile(i, j, boardConfiguration.get(i, j));
             }
         }
         return ImmutableList.copyOf(tiles);
+    }
+
+    private static void putPiece(final Piece piece){
+        boardConfiguration.put(piece.getPieceRow(),
+                piece.getPieceColumn(),
+                piece);
+    }
+
+    public Tile getTile(final int tileRow, final int tileColumn) {
+        return chessBoard.get((tileRow * 8) + tileColumn);
     }
 
     public Iterable<Move> getAllLegalMoves() {
@@ -151,8 +168,16 @@ public class Board {
                 this.blackPlayer.getLegalMoves()));
     }
 
-    public Pawn getEnPassant() {
-        return enPassant;
+    public static void setMove(final Colour colour) {
+        nextMove = colour;
+    }
+
+    public void setEnPassantPawn(Pawn enPassantPawn) {
+        this.enPassantPawn = enPassantPawn;
+    }
+
+    public Pawn getEnPassantPawn() {
+        return enPassantPawn;
     }
 
     public WhitePlayer getWhitePlayer() {
@@ -175,13 +200,11 @@ public class Board {
         return currentPlayer;
     }
 
-    public static Collection<Piece> getInactiveWhitePieces() {
+    public Collection<Piece> getInactiveWhitePieces() {
         return inactiveWhitePieces;
     }
 
-    public static Collection<Piece> getInactiveBlackPieces() {
+    public Collection<Piece> getInactiveBlackPieces() {
         return inactiveBlackPieces;
     }
-
-    //  creates a board with the help of a builder, and puts standard chess pieces on their standard positions
 }

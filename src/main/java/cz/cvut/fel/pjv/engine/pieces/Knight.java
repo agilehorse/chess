@@ -7,7 +7,7 @@ import cz.cvut.fel.pjv.engine.board.BoardUtils;
 import cz.cvut.fel.pjv.engine.board.moves.AttackMove;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
 import cz.cvut.fel.pjv.engine.board.moves.NormalMove;
-import cz.cvut.fel.pjv.engine.board.tiles.Tile;
+import cz.cvut.fel.pjv.engine.board.Tile;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -55,12 +55,6 @@ public class Knight extends Piece {
             }
         }
         return ImmutableList.copyOf(legalMoves);
-    }
-
-    @Override
-    public Piece moveIt(Move move) {
-        return new Knight(move.getNewRow(), move.getNewColumn(), move.getMovedPiece().getPieceColour());
-
     }
 
     @Override
