@@ -3,12 +3,12 @@ package cz.cvut.fel.pjv.engine.pieces;
 //    string feedback for printing pieces on board
 public enum PieceType {
 
-    PAWN("p", 100),
-    KNIGHT("n", 300),
-    BISHOP("b", 300),
-    ROOK("r", 500),
-    QUEEN("q", 900),
-    KING("k", 10000);
+    PAWN("p", 1),
+    KNIGHT("n", 3),
+    BISHOP("b", 3),
+    ROOK("r", 5),
+    QUEEN("q", 9),
+    KING("k", 100);
 
     private String pieceName;
     private int pieceValue;

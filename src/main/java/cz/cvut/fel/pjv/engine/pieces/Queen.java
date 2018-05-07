@@ -18,8 +18,8 @@ public class Queen extends Piece {
 
     @Override
     public Collection<Move> calculateMoves(Board board) {
-       return ImmutableList.copyOf(Iterables.concat(sliderMovesCalculator.calculateStraightSliderMoves(board, this, 7),
-                sliderMovesCalculator.calculateDiagonalSliderMoves(board, this, 7)));
+       return ImmutableList.copyOf(Iterables.concat(sliderMovesCalculator.calculateStraightSliderMoves(board, this, 8),
+                sliderMovesCalculator.calculateDiagonalSliderMoves(board, this, 8)));
 
     }
 

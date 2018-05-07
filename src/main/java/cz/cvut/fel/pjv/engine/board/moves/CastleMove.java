@@ -36,18 +36,18 @@ public class CastleMove extends Move {
     // Creates a new board
     @Override
     public void execute() {
-        this.movedPiece.move(this);
-        movedPiece.setFirstMove(false);
+        this.movedPiece.move(this.getNewRow(), this.getNewColumn());
+        this.movedPiece.setFirstMove(false);
+        this.castlingRook.setFirstMove(false);
         this.getSourceTile().setPieceOnTile(null);
         this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
-        Tile oldRookTile = board.getTile(castlingRook.getPieceRow(), castlingRook.getPieceColumn());
+        Tile oldRookTile = this.board.getTile(castlingRook.getPieceRow(), castlingRook.getPieceColumn());
         oldRookTile.setPieceOnTile(null);
-        Tile newRookTile = board.getTile(castlingRookNewRow, castlingRookNewColumn);
+        Tile newRookTile = this.board.getTile(castlingRookNewRow, castlingRookNewColumn);
         newRookTile.setPieceOnTile(castlingRook);
-        this.castlingRook.setPieceRow(castlingRookNewRow);
-        this.castlingRook.setPieceColumn(castlingRookNewColumn);
-        Board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        board.recalculate();
+        this.castlingRook.move(castlingRookNewRow, castlingRookNewColumn);
+        this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
+        this.board.recalculate();
     }
 
     private Rook getCastlingRook() {

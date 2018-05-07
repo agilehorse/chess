@@ -62,11 +62,11 @@ public abstract class Piece {
 
     public abstract Collection<Move> calculateMoves(final Board board);
 
-    public void setPieceRow(int pieceRow) {
+    private void setPieceRow(int pieceRow) {
         this.pieceRow = pieceRow;
     }
 
-    public void setPieceColumn(int pieceColumn) {
+    private void setPieceColumn(int pieceColumn) {
         this.pieceColumn = pieceColumn;
     }
 
@@ -82,9 +82,9 @@ public abstract class Piece {
                 getPieceColour() == piece.getPieceColour();
     }
 
-    public void move(Move move) {
-        this.setPieceRow(move.getNewRow());
-        this.setPieceColumn(move.getNewColumn());
+    public void move(final int newRow, final int newColumn) {
+        this.setPieceRow(newRow);
+        this.setPieceColumn(newColumn);
     }
 
     @Override

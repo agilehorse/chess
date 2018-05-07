@@ -15,7 +15,6 @@ import static cz.cvut.fel.pjv.engine.board.BoardUtils.OFFSETS;
 
 public class Pawn extends Piece {
 
-    private int DESTINATION_ROW = this.pieceRow + this.getPieceColour().getDirection();
 
     public Pawn(
             int pieceRow,
@@ -27,6 +26,7 @@ public class Pawn extends Piece {
 
     @Override
     public Collection<Move> calculateMoves(Board board) {
+        int DESTINATION_ROW = this.pieceRow + this.getPieceColour().getDirection();
         final List<Move> legalMoves = new ArrayList<>();
 //      calculating attack moves, pawn attacks diagonally, therefore there is column offset
         for (final int columnOffset : OFFSETS) {
@@ -47,7 +47,7 @@ public class Pawn extends Piece {
                         final Piece passingPawn = board.getEnPassantPawn();
                         if (this.getPieceColour() != passingPawn.getPieceColour()) {
                             legalMoves.add(new EnPassantAttack(board, this,
-                                    DESTINATION_ROW, this.pieceColumn + 1, passingPawn));
+                                    DESTINATION_ROW, this.pieceColumn + columnOffset, passingPawn));
                         }
                     }
                 }

@@ -16,15 +16,15 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-public class TakenPiecesPanel extends JPanel {
+class TakenPiecesPanel extends JPanel {
 
     private static final Color PANEL_COLOUR = Color.decode("0xFDF5E6");
-    private static final Dimension TAKEN_PIECES_DIMENSION = new Dimension(40,80);
+    private static final Dimension TAKEN_PIECES_DIMENSION = new Dimension(50,80);
     private final JPanel northPanel;
     private final JPanel southPanel;
     private static final EtchedBorder PANEL_BORDER = new EtchedBorder(EtchedBorder.RAISED);
 
-    public TakenPiecesPanel() {
+    TakenPiecesPanel() {
         super(new BorderLayout());
         this.setBackground(PANEL_COLOUR);
         this.setBorder(PANEL_BORDER);
@@ -37,7 +37,7 @@ public class TakenPiecesPanel extends JPanel {
         this.setPreferredSize(TAKEN_PIECES_DIMENSION);
     }
 
-    public void redo(final MoveLog moveLog) {
+    void redo(final MoveLog moveLog) {
         this.northPanel.removeAll();
         this.southPanel.removeAll();
         final List<Piece> whiteTakenPieces = new ArrayList<>();
@@ -67,7 +67,8 @@ public class TakenPiecesPanel extends JPanel {
             try {
                 final BufferedImage image = ImageIO.read(new File("images/pieces/"
                         + takenPiece.getPieceColour().toString().substring(0,1)
-                        + takenPiece.getPieceType().toString()));
+                        + takenPiece.getPieceType().toString()
+                        + ".png"));
                 this.southPanel.add(new JLabel(new ImageIcon(image)));
             } catch (final IOException e) {
                 e.printStackTrace();
