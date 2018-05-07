@@ -28,6 +28,7 @@ public class Board {
     private Player currentPlayer;
     private Pawn enPassantPawn;
     private static Colour nextMove;
+    private static boolean checkTriggered;
 
 
     //  constructor calls a boardBuilder to build a board and also calls methods
@@ -117,6 +118,19 @@ public class Board {
         return builder.toString();
     }
 
+    public String toAlgebraicString() {
+        final StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < ALL_TILES; i++) {
+            final String tileText = this.chessBoard.get(i).algebraicToString();
+            builder.append(String.format("%3s", tileText));
+//            after each row new line is added so it can look as a board
+            if ((i + 1) % BoardUtils.SET_OF_TILES == 0) {
+                builder.append("\n");
+            }
+        }
+        return builder.toString();
+    }
+
     private Collection<Move> calculateMoves(Collection<Piece> pieces) {
         final List<Move> legalMoves = new ArrayList<>();
         for (final Piece piece : pieces) {
@@ -166,6 +180,14 @@ public class Board {
     public Iterable<Move> getAllLegalMoves() {
         return Iterables.unmodifiableIterable(Iterables.concat(this.whitePlayer.getLegalMoves(),
                 this.blackPlayer.getLegalMoves()));
+    }
+
+    public static boolean wasCheckTriggered() {
+        return checkTriggered;
+    }
+
+    public static void setCheckTriggered(boolean checkTriggered) {
+        Board.checkTriggered = checkTriggered;
     }
 
     public static void setMove(final Colour colour) {

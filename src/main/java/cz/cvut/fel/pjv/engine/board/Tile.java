@@ -61,6 +61,10 @@ public class Tile {
         }
     }
 
+    String algebraicToString() {
+        return this.getTileNotation();
+    }
+
     public int getTileRow() {
         return tileRow;
     }
@@ -69,7 +73,7 @@ public class Tile {
         return tileColumn;
     }
 
-    public String getTileNotation() {
+    private String getTileNotation() {
         return tileNotation;
     }
 

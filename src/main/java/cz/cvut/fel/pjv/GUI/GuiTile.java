@@ -52,20 +52,22 @@ class GuiTile extends JPanel {
                             MainPanel.setSourceTile(null);
                         }
                     } else {
-                        MainPanel.setDestinationTile(getAsTileObject());
                         final Tile sourceTile = MainPanel.getSourceTile();
-                        final Tile destinationTile = MainPanel.getDestinationTile();
+                        final Tile destinationTile = getAsTileObject();
                         final Piece movedPiece = MainPanel.getMovedPiece();
-                        MainPanel.setDestinationTile(getAsTileObject());
                         final Move move = board.getCurrentPlayer().findMove(sourceTile, destinationTile);
                         final boolean done = board.getCurrentPlayer().initiateMove(move);
                         if (done) {
-                            board.recalculate();
-                            MainPanel.setBoard(board);
+                            MainPanel.getMoveLog().addMove(move);
                         }
                         clearState();
-                        SwingUtilities.invokeLater(() -> guiBoard.drawBoard(MainPanel.getBoard()));
+
                     }
+                    SwingUtilities.invokeLater(() -> {
+                        MainPanel.getGameHistoryPanel().redo(board, MainPanel.getMoveLog());
+                        MainPanel.getTakenPiecesPanel().redo(MainPanel.getMoveLog());
+                        guiBoard.drawBoard(MainPanel.getBoard());
+                    });
                 }
             }
 
@@ -98,7 +100,6 @@ class GuiTile extends JPanel {
 
     private void clearState() {
         MainPanel.setSourceTile(null);
-        MainPanel.setDestinationTile(null);
         MainPanel.setMovedPiece(null);
     }
 

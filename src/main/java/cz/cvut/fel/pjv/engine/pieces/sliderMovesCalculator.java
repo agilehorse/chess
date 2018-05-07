@@ -18,13 +18,11 @@ class sliderMovesCalculator {
         final List<Move> legalMoves = new ArrayList<>();
         for (int rowOffset : OFFSETS) {
             for (int columnOffset : OFFSETS) {
-                for (int i = 1; i < maxReach; i++) {
+                for (int i = 1; i <= maxReach; i++) {
                     if (BoardUtils.isValidTileCoordinate(piece.pieceRow + i * rowOffset,
                             piece.pieceColumn + i * columnOffset)) {
-
                         final Tile targetTile = board.getTile(piece.pieceRow + i * rowOffset,
                                 piece.pieceColumn + i * columnOffset);
-
                         if (!targetTile.isOccupied()) {
                             legalMoves.add(new NormalMove(board,
                                                           piece,
@@ -32,7 +30,6 @@ class sliderMovesCalculator {
                                                 piece.pieceColumn + i * columnOffset));
                         } else {
                             Piece pieceAtDestinationTile = targetTile.getPiece();
-
                             if (pieceAtDestinationTile.getPieceColour() != piece.getPieceColour()) {
                                 legalMoves.add(new AttackMove(board, piece,
                                                                 piece.pieceRow + i * rowOffset,
@@ -53,7 +50,7 @@ class sliderMovesCalculator {
     static List<Move> calculateStraightSliderMoves(Board board, Piece piece, int maxReach) {
         final List<Move> legalMoves = new ArrayList<>();
         for (int columnOffset : OFFSETS) {
-            for (int i = 1; i < maxReach; i++) {
+            for (int i = 1; i <= maxReach; i++) {
                 if (BoardUtils.isValidTileCoordinate(piece.pieceRow,
                         piece.pieceColumn + i * columnOffset)) {
                     final Tile targetTile = board.getTile(piece.pieceRow,
@@ -81,7 +78,7 @@ class sliderMovesCalculator {
         }
 
         for (int rowOffset : OFFSETS) {
-            for (int i = 1; i < SET_OF_TILES - 1; i++) {
+            for (int i = 1; i <= maxReach; i++) {
                 if (BoardUtils.isValidTileCoordinate(piece.pieceRow + i * rowOffset,
                         piece.pieceColumn)) {
 

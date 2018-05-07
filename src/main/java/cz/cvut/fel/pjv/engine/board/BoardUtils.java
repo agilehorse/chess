@@ -4,7 +4,10 @@ import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Table;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class BoardUtils {
@@ -14,10 +17,10 @@ public class BoardUtils {
     static final int ALL_TILES = 64;
     public static final int SET_OF_TILES = 8;
     public static int[] OFFSETS = {1, -1};
-    static final List<String> TILE_NOTATION = initTileNotation();
-    public static final Table<Integer, Integer, String> POSITION_TO_COORDINATES = translateToCoords();
+    static final List<String> TILE_NOTATION = initAlgebraicNotation();
+    private static final Map<String,  List<Integer>> POSITION_TO_COORDINATES = translateNotationToCoords();
 
-    private static List<String> initTileNotation() {
+    private static List<String> initAlgebraicNotation() {
         return ImmutableList.copyOf(new String[]{
                 "a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8",
                 "a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7",
@@ -30,10 +33,13 @@ public class BoardUtils {
         });
     }
 
-    private static Table<Integer,Integer, String> translateToCoords() {
-        final Table<Integer, Integer, String> positionToCoordinate = HashBasedTable.create();
+    private static Map<String,  List<Integer>> translateNotationToCoords() {
+        final Map<String,  List<Integer>> positionToCoordinate = new HashMap<>();
         for (int i = 0; i < ALL_TILES; i++) {
-            positionToCoordinate.put(i/8, i%8, TILE_NOTATION.get(i));
+            List<Integer> coordinates = new ArrayList<Integer>();
+            coordinates.add(i/8);
+            coordinates.add(i%8);
+            positionToCoordinate.put(TILE_NOTATION.get(i), coordinates);
         }
         return positionToCoordinate;
     }
@@ -50,4 +56,16 @@ public class BoardUtils {
                 && (column >= 0
                 && column < SET_OF_TILES);
     }
+
+    public static List<Integer> getCoordinateAtPosition(final String position) {
+        return POSITION_TO_COORDINATES.get(position);
+    }
+
+    public static String getPositionAtCoordinate(final int row,
+                                          final int column) {
+        return TILE_NOTATION.get((row * 8) + column);
+    }
+
+
+
 }
