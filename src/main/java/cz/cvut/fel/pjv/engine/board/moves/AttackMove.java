@@ -3,13 +3,12 @@ package cz.cvut.fel.pjv.engine.board.moves;
 
 import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.Board;
+import cz.cvut.fel.pjv.engine.board.BoardUtils;
 import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.pieces.King;
-import cz.cvut.fel.pjv.engine.pieces.Pawn;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 import cz.cvut.fel.pjv.engine.pieces.PieceType;
 
-import java.util.Collection;
 import java.util.Objects;
 
 //  defines new attack move, on an occupied tile
@@ -49,42 +48,61 @@ public class AttackMove extends Move {
 
     @Override
     public void execute() {
-        Collection<Piece> opponentsInactivePieces;
-        if (attackedPiece.getPieceColour() == Colour.WHITE) {
-            opponentsInactivePieces = this.board.getInactiveWhitePieces();
-        } else {
-            opponentsInactivePieces = this.board.getInactiveBlackPieces();
+
+        if (validateForCheck()) {
+            this.attackedPiece.setActive(false);
+            this.attackedPiece.move(-1, -1);
+            this.movedPiece.move(this.getNewRow(), this.getNewColumn());
+            this.getSourceTile().setPieceOnTile(null);
+            this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
+            setExecuted(true);
+            movedPiece.setFirstMove(false);
+            this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
+            this.board.recalculate(true);
         }
-        opponentsInactivePieces.add(attackedPiece);
+    }
+
+    @Override
+    public boolean validateForCheck() {
+        boolean invalid = false;
+        final King king = this.board.getCurrentPlayer().getPlayersKing();
+        final Tile kingTile = this.board.getTile(king.getPieceRow(), king.getPieceColumn());
         this.attackedPiece.setActive(false);
         this.attackedPiece.move(-1, -1);
         this.movedPiece.move(this.getNewRow(), this.getNewColumn());
         this.getSourceTile().setPieceOnTile(null);
         this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
-        setExecuted(true);
-        final King king = this.board.getCurrentPlayer().getPlayersKing();
-        final Tile kingTile = this.board.getTile(king.getPieceRow(), king.getPieceColumn());
-        this.board.recalculate();
+        this.board.recalculate(false);
         for (final Move move : this.board.getCurrentPlayer().getOpponent().getLegalMoves()) {
             if (move.getDestinationTile() == kingTile) {
-                this.movedPiece.move(this.getSourceTile().getTileRow(), this.getSourceTile().getTileColumn());
-                this.getSourceTile().setPieceOnTile(movedPiece);
-                this.getDestinationTile().setPieceOnTile(attackedPiece);
-                opponentsInactivePieces.remove(attackedPiece);
-                this.attackedPiece.setActive(true);
-                this.attackedPiece.move(getDestinationTile().getTileRow(), getDestinationTile().getTileColumn());
-                setExecuted(false);
+                invalid = true;
+                break;
             }
         }
-        if (isExecuted()) {
-            movedPiece.setFirstMove(false);
-            this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        }
-        this.board.recalculate();
+        this.movedPiece.move(this.getSourceTile().getTileRow(), this.getSourceTile().getTileColumn());
+        this.getSourceTile().setPieceOnTile(movedPiece);
+        this.getDestinationTile().setPieceOnTile(this.attackedPiece);
+        this.attackedPiece.setActive(true);
+        this.attackedPiece.move(getDestinationTile().getTileRow(), getDestinationTile().getTileColumn());
+        this.board.recalculate(false);
+        return !invalid;
     }
 
     @Override
     public Piece getAttackedPiece() {
-        return attackedPiece;
+        return this.attackedPiece;
+    }
+
+    @Override
+    public String toString() {
+        String pieceString = "";
+        if (movedPiece.getPieceType() != PieceType.PAWN && movedPiece.getPieceColour() == Colour.WHITE) {
+            pieceString = movedPiece.getPieceType().toString().toUpperCase() + sourceTileString();
+        } else if (movedPiece.getPieceType() != PieceType.PAWN && movedPiece.getPieceColour() == Colour.BLACK) {
+            pieceString = movedPiece.getPieceType() + sourceTileString();
+        }
+        return pieceString + "x"
+                + BoardUtils.getPositionAtCoordinate(this.getNewRow(),
+                this.getNewColumn());
     }
 }

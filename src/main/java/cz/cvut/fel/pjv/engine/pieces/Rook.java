@@ -18,7 +18,12 @@ public class Rook extends Piece{
 
     @Override
     public Collection<Move> calculateMoves(Board board) {
-        return ImmutableList.copyOf(sliderMovesCalculator.calculateStraightSliderMoves(board, this, 8));
+        return ImmutableList.copyOf(PieceMoveCalculator.calculateStraightSliderMoves(board, this, 8));
+    }
+
+    @Override
+    public Piece returnImposter(int row, int column) {
+        return new Rook(row, column, this.getPieceColour());
     }
 
     @Override

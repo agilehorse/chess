@@ -10,7 +10,9 @@ import cz.cvut.fel.pjv.engine.pieces.*;
 import cz.cvut.fel.pjv.engine.player.BlackPlayer;
 import cz.cvut.fel.pjv.engine.player.Player;
 import cz.cvut.fel.pjv.engine.player.WhitePlayer;
+
 import java.util.*;
+
 import static cz.cvut.fel.pjv.engine.board.BoardUtils.ALL_TILES;
 import static cz.cvut.fel.pjv.engine.board.BoardUtils.SET_OF_TILES;
 
@@ -21,8 +23,6 @@ public class Board {
     private static Table<Integer, Integer, Piece> boardConfiguration;
     private Collection<Piece> whitePieces;
     private Collection<Piece> blackPieces;
-    private Collection<Piece> inactiveWhitePieces;
-    private Collection<Piece> inactiveBlackPieces;
     private final WhitePlayer whitePlayer;
     private final BlackPlayer blackPlayer;
     private Player currentPlayer;
@@ -47,12 +47,10 @@ public class Board {
         this.whitePlayer = new WhitePlayer(this, whiteBasicLegalMoves, blackBasicLegalMoves);
         this.blackPlayer = new BlackPlayer(this, blackBasicLegalMoves, whiteBasicLegalMoves);
         this.currentPlayer = nextMove.getCurrentPlayer(whitePlayer, blackPlayer);
-        inactiveWhitePieces = new ArrayList<>();
-        inactiveBlackPieces = new ArrayList<>();
         this.enPassantPawn = null;
     }
 
-    public void recalculate() {
+    public void recalculate(boolean setAlso) {
         this.whitePieces = getActivePieces(this.chessBoard, Colour.WHITE);
         this.blackPieces = getActivePieces(this.chessBoard, Colour.BLACK);
 //      creates a collection of white legal moves and black legal moves
@@ -60,9 +58,13 @@ public class Board {
                 = calculateMoves(this.whitePieces);
         Collection<Move> blackBasicLegalMoves
                 = calculateMoves(this.blackPieces);
-        this.whitePlayer.setLegalMoves(whiteBasicLegalMoves, blackBasicLegalMoves);
-        this.blackPlayer.setLegalMoves(blackBasicLegalMoves, whiteBasicLegalMoves);
-        this.currentPlayer = nextMove.getCurrentPlayer(whitePlayer, blackPlayer);
+        if (setAlso) {
+            this.whitePlayer.setLegalMoves(whiteBasicLegalMoves, blackBasicLegalMoves);
+            this.whitePlayer.setIsInCheck(blackBasicLegalMoves);
+            this.blackPlayer.setLegalMoves(blackBasicLegalMoves, whiteBasicLegalMoves);
+            this.blackPlayer.setIsInCheck(whiteBasicLegalMoves);
+            this.currentPlayer = nextMove.getCurrentPlayer(whitePlayer, blackPlayer);
+        }
     }
 
     private static void setUpStandardBoard() {
@@ -167,7 +169,7 @@ public class Board {
         return ImmutableList.copyOf(tiles);
     }
 
-    private static void putPiece(final Piece piece){
+    private static void putPiece(final Piece piece) {
         boardConfiguration.put(piece.getPieceRow(),
                 piece.getPieceColumn(),
                 piece);
@@ -220,13 +222,5 @@ public class Board {
 
     public Player getCurrentPlayer() {
         return currentPlayer;
-    }
-
-    public Collection<Piece> getInactiveWhitePieces() {
-        return inactiveWhitePieces;
-    }
-
-    public Collection<Piece> getInactiveBlackPieces() {
-        return inactiveBlackPieces;
     }
 }

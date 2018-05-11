@@ -2,6 +2,7 @@ package cz.cvut.fel.pjv.engine.player;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import cz.cvut.fel.pjv.GUI.MainPanel;
 import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.Tile;
@@ -13,6 +14,7 @@ import cz.cvut.fel.pjv.engine.pieces.PieceType;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static cz.cvut.fel.pjv.engine.pieces.PieceType.KING;
@@ -32,6 +34,18 @@ public abstract class Player {
         this.isInCheck = !Player.calculateCheck(this.playersKing.getPieceRow(),
                 this.playersKing.getPieceColumn(),
                 opponentMoves).isEmpty();
+    }
+
+    private Collection<Move> validateForCheck(final Collection<Move> allMoves) {
+        List<Move> legalMoves = new ArrayList<>(allMoves);
+        List<Move> moves = new ArrayList<>();
+        for (final Move move : legalMoves) {
+            if (!move.validateForCheck()) {
+                moves.add(move);
+            }
+        }
+        legalMoves.removeAll(moves);
+        return ImmutableList.copyOf(legalMoves);
     }
 
     public static Collection<Move> calculateCheck(int kingsRow, int kingsColumn, Collection<Move> opponentMoves) {
@@ -64,7 +78,7 @@ public abstract class Player {
                     this.getOpponent().isInCheck = true;
                 }
                 if (move.getMoveType() == MoveType.CASTLE) {
-                    this.playersKing.setCastled(true);
+                    this.playersKing.setCastled();
                 }
                 return true;
             }
@@ -74,7 +88,6 @@ public abstract class Player {
 
     private boolean canEscapeCheck() {
         Collection<Move> kingsMoves = new ArrayList<>(this.playersKing.calculateMoves(board));
-
         Collection<Move> opponentMoves = this.getOpponent().getLegalMoves();
         for (final Move kingMove : kingsMoves) {
             for (final Move opponentMove : opponentMoves) {
@@ -84,12 +97,13 @@ public abstract class Player {
                 }
             }
         }
-        return kingsMoves.isEmpty();
+        return !kingsMoves.isEmpty();
     }
 
     public void setLegalMoves(Collection<Move> legalMoves, Collection<Move> opponentMoves) {
-        this.legalMoves = ImmutableList.copyOf(Iterables.concat(legalMoves,
-                calculateCastling(legalMoves, opponentMoves)));
+        final Collection<Move> moves = validateForCheck(legalMoves);
+        this.legalMoves = ImmutableList.copyOf(Iterables.concat(moves,
+                calculateCastling(moves, opponentMoves)));
     }
 
     public Move findMove(final Tile sourceTile, final Tile destinationTile) {
@@ -119,12 +133,18 @@ public abstract class Player {
         return this.isInCheck;
     }
 
+    public void setIsInCheck(Collection<Move> opponentMoves) {
+        this.isInCheck = !Player.calculateCheck(this.playersKing.getPieceRow(),
+                this.playersKing.getPieceColumn(),
+                opponentMoves).isEmpty();
+    }
+
     public boolean isInCheckMate() {
         return this.isInCheck && canEscapeCheck();
     }
 
     public boolean isInStaleMate() {
-        return !this.isInCheck && canEscapeCheck();
+        return !this.isInCheck && legalMoves.isEmpty();
     }
 
     public boolean isCastled() {
@@ -137,4 +157,7 @@ public abstract class Player {
 
     protected abstract Collection<Move> calculateCastling(final Collection<Move> playerMoves,
                                                           final Collection<Move> opponentMoves);
+
+    @Override
+    public abstract String toString();
 }

@@ -34,6 +34,11 @@ public class Knight extends Piece {
                 calculateKnightMoves(board, KING_OFFSETS_ODD, KING_OFFSETS_EVEN))));
     }
 
+    @Override
+    public Piece returnImposter(int row, int column) {
+        return new Knight(row, column, this.getPieceColour());
+    }
+
     private Collection<Move> calculateKnightMoves(final Board board,
                                                   final int[] rowOffsets,
                                                   final int[] columnOffsets) {

@@ -35,6 +35,7 @@ public class Pawn extends Piece {
                     columnOffset + this.pieceColumn)) {
                 final Tile targetTile = board.getTile(DESTINATION_ROW, columnOffset + this.pieceColumn);
 //              attack move is added into the list of legal moves if the destination is a valid tile, which is occupied by a piece of different colour
+                final Piece passingPawn = board.getEnPassantPawn();
                 if (targetTile.isOccupied()
                         && targetTile.getPiece().getPieceColour() != this.getPieceColour()) {
                     legalMoves.add(new AttackMove(board,
@@ -42,14 +43,12 @@ public class Pawn extends Piece {
                             DESTINATION_ROW,
                             this.pieceColumn + columnOffset,
                             targetTile.getPiece()));
-                } else if (board.getEnPassantPawn() != null) {
-                    if (board.getEnPassantPawn().getPieceColumn() == (this.pieceColumn + columnOffset)) {
-                        final Piece passingPawn = board.getEnPassantPawn();
-                        if (this.getPieceColour() != passingPawn.getPieceColour()) {
-                            legalMoves.add(new EnPassantAttack(board, this,
-                                    DESTINATION_ROW, this.pieceColumn + columnOffset, passingPawn));
-                        }
-                    }
+                } else if (passingPawn != null
+                        && passingPawn.getPieceColumn() == (this.pieceColumn + columnOffset)
+                        && passingPawn.getPieceRow() == this.pieceRow
+                        && this.getPieceColour() != passingPawn.getPieceColour()) {
+                    legalMoves.add(new EnPassantAttack(board, this,
+                            DESTINATION_ROW, this.pieceColumn + columnOffset, passingPawn));
                 }
             }
         }
@@ -67,7 +66,7 @@ public class Pawn extends Piece {
                             new Rook(DESTINATION_ROW, this.pieceColumn, Colour.WHITE)));
                     legalMoves.add(new PawnPromotionMove(board, this, DESTINATION_ROW, this.pieceColumn,
                             new Queen(DESTINATION_ROW, this.pieceColumn, Colour.WHITE)));
-                } else if (this.getPieceColour() == Colour.BLACK && DESTINATION_ROW == 8) {
+                } else if (this.getPieceColour() == Colour.BLACK && DESTINATION_ROW == 7) {
                     legalMoves.add(new PawnPromotionMove(board, this, DESTINATION_ROW, this.pieceColumn,
                             new Bishop(DESTINATION_ROW, this.pieceColumn, Colour.BLACK)));
                     legalMoves.add(new PawnPromotionMove(board, this, DESTINATION_ROW, this.pieceColumn,
@@ -96,6 +95,11 @@ public class Pawn extends Piece {
         }
 //      pawn can move two squares only once in a game, if it hasn't done it, both square aren't occupied it can use this ability
         return ImmutableList.copyOf(legalMoves);
+    }
+
+    @Override
+    public Piece returnImposter(int row, int column) {
+        return new Pawn(row, column, this.getPieceColour());
     }
 
     @Override
