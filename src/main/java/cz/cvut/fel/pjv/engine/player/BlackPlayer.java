@@ -33,6 +33,11 @@ public class BlackPlayer extends Player {
 
     protected Collection<Move> calculateCastling(final Collection<Move> playerMoves,
                                                  final Collection<Move> opponentMoves) {
-        return ImmutableList.copyOf(castlingMovesCalculator.execute(this.board, this, 0, playerMoves, opponentMoves));
+        return ImmutableList.copyOf(PieceMoveCalculator.calculateCastlingMoves(this.board, this, 0, playerMoves, opponentMoves));
+    }
+
+    @Override
+    public String toString() {
+        return "Black Player";
     }
 }

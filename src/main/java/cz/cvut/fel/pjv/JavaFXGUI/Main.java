@@ -26,7 +26,7 @@ public class Main extends Application {
 
     static void redrawBoard(Board engineBoard) {
         GUIBoard.clearBoard();
-        engineBoard.recalculate();
+        engineBoard.recalculate(false);
         GUIBoard.setBoard(engineBoard);
     }
 

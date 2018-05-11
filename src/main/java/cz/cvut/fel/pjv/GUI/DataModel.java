@@ -8,7 +8,7 @@ import java.util.List;
 
 public class DataModel extends DefaultTableModel {
     private final List<Row> values;
-    private final static String[] NAMES = {"white", "black"};
+    private final static String[] NAMES = {"White", "Black"};
 
     DataModel() {
         this.values = new ArrayList<>();
@@ -21,6 +21,9 @@ public class DataModel extends DefaultTableModel {
 
     @Override
     public int getRowCount() {
+        if (this.values == null) {
+            return 0;
+        }
         return this.values.size();
     }
 
@@ -47,6 +50,7 @@ public class DataModel extends DefaultTableModel {
         final Row currentRow;
         if (this.values.size() <= row){
             currentRow = new Row();
+            this.values.add(currentRow);
         } else {
             currentRow = this.values.get(row);
         }

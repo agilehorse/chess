@@ -95,4 +95,6 @@ public abstract class Piece {
     public int getPieceValue() {
         return this.pieceType.getPieceValue();
     }
+
+    public abstract Piece returnImposter(final int row, final int column);
 }

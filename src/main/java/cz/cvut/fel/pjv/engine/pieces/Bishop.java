@@ -18,7 +18,12 @@ public class Bishop extends Piece {
 
     @Override
     public Collection<Move> calculateMoves(final Board board) {
-        return ImmutableList.copyOf(sliderMovesCalculator.calculateDiagonalSliderMoves(board, this, 8));
+        return ImmutableList.copyOf(PieceMoveCalculator.calculateDiagonalSliderMoves(board, this, 8));
+    }
+
+    @Override
+    public Piece returnImposter(final int row, final int column) {
+        return new Bishop(row, column, this.getPieceColour());
     }
 
     @Override

@@ -47,7 +47,7 @@ public class CastleMove extends Move {
         newRookTile.setPieceOnTile(castlingRook);
         this.castlingRook.move(castlingRookNewRow, castlingRookNewColumn);
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        this.board.recalculate();
+        this.board.recalculate(true);
     }
 
     private Rook getCastlingRook() {
@@ -75,5 +75,10 @@ public class CastleMove extends Move {
     @Override
     public MoveType getMoveType() {
         return this.moveType;
+    }
+
+    @Override
+    public boolean validateForCheck() {
+        return true;
     }
 }

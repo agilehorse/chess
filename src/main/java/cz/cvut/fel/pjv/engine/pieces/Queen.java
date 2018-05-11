@@ -18,9 +18,14 @@ public class Queen extends Piece {
 
     @Override
     public Collection<Move> calculateMoves(Board board) {
-       return ImmutableList.copyOf(Iterables.concat(sliderMovesCalculator.calculateStraightSliderMoves(board, this, 8),
-                sliderMovesCalculator.calculateDiagonalSliderMoves(board, this, 8)));
+       return ImmutableList.copyOf(Iterables.concat(PieceMoveCalculator.calculateStraightSliderMoves(board, this, 8),
+                PieceMoveCalculator.calculateDiagonalSliderMoves(board, this, 8)));
 
+    }
+
+    @Override
+    public Piece returnImposter(int row, int column) {
+        return new Queen(row, column, this.getPieceColour());
     }
 
     @Override

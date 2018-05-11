@@ -4,12 +4,18 @@ import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.Observable;
 
-public class MainPanel {
+import static cz.cvut.fel.pjv.engine.board.BoardUtils.SET_OF_TILES;
+
+public class MainPanel extends Observable {
 
     private final JFrame gameFrame;
     private static GameHistoryPanel gameHistoryPanel;
@@ -20,6 +26,7 @@ public class MainPanel {
     private static Board board;
     private static Tile sourceTile;
     private static Piece movedPiece;
+    private final GameSetup gameSetup;
 
 
     public MainPanel() {
@@ -33,15 +40,21 @@ public class MainPanel {
         takenPiecesPanel = new TakenPiecesPanel();
         guiBoard = new GuiBoard();
         moveLog = new MoveLog();
+        this.gameSetup = new GameSetup(this.gameFrame, true);
         this.gameFrame.add(takenPiecesPanel, BorderLayout.EAST);
         this.gameFrame.add(gameHistoryPanel, BorderLayout.WEST);
         this.gameFrame.add(guiBoard, BorderLayout.CENTER);
+        this.gameFrame.setResizable(false);
         this.gameFrame.setVisible(true);
-
+        this.gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     static MoveLog getMoveLog() {
         return moveLog;
+    }
+
+    static GuiBoard getGuiBoard() {
+        return guiBoard;
     }
 
     private JMenuBar createMenuBar() {
@@ -52,23 +65,83 @@ public class MainPanel {
 
     private JMenu createFileMenu() {
         final JMenu fileMenu = new JMenu("File");
+        final JMenuItem setupGameMenuItem = new JMenuItem("Setup Game", KeyEvent.VK_S);
+        setupGameMenuItem.addActionListener(e -> {
+            getGameSetup().promptUser();
+            setupUpdate(getGameSetup());
+        });
+        fileMenu.add(setupGameMenuItem);
 
+        final JMenuItem saveToPGN = new JMenuItem("Save Game", KeyEvent.VK_S);
+        saveToPGN.addActionListener(e -> {
+            final JFileChooser chooser = new JFileChooser();
+            chooser.setFileFilter(new FileFilter() {
+                @Override
+                public String getDescription() {
+                    return ".pgn";
+                }
+                @Override
+                public boolean accept(final File file) {
+                    return file.isDirectory() || file.getName().toLowerCase().endsWith("pgn");
+                }
+            });
+            final int option = chooser.showSaveDialog(getGameFrame());
+            if (option == JFileChooser.APPROVE_OPTION) {
+                savePGNFile(chooser.getSelectedFile());
+            }
+        });
+        fileMenu.add(saveToPGN);
         final JMenuItem openPGN = new JMenuItem("Load PGN File");
         openPGN.addActionListener(actionEvent -> System.out.println("open pgn file"));
         fileMenu.add(openPGN);
-        final JMenuItem resetMenuItem = new JMenuItem("New Game", KeyEvent.VK_P);
-        resetMenuItem.addActionListener(e -> {
-            MainPanel.board = null;
-                    MainPanel.board = new Board();
-            MainPanel.guiBoard = null;
-            MainPanel.guiBoard = new GuiBoard();
-            MainPanel.guiBoard.drawBoard(board);
-        });
+        final JMenuItem resetMenuItem = new JMenuItem("Reset board", KeyEvent.VK_P);
+        resetMenuItem.addActionListener(e -> resetBoard());
         fileMenu.add(resetMenuItem);
         final JMenuItem exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.addActionListener(actionEvent -> System.exit(0));
         fileMenu.add(exitMenuItem);
         return fileMenu;
+    }
+
+    private void resetBoard() {
+        for (int i = 0; i < SET_OF_TILES; i++) {
+            for (int j = 0; j < SET_OF_TILES; j++) {
+                board.getTile(i, j).setPieceOnTile(null);
+            }
+        }
+        MainPanel.board = null;
+        MainPanel.board = new Board();
+        MainPanel.guiBoard = null;
+        MainPanel.guiBoard = new GuiBoard();
+        MainPanel.guiBoard.drawBoard(board);
+        MainPanel.getMoveLog().clear();
+        MainPanel.getGameHistoryPanel().redo(board, MainPanel.getMoveLog());
+        MainPanel.getTakenPiecesPanel().redo(MainPanel.getMoveLog());
+        Clock.resetTimer();
+    }
+
+    private void savePGNFile(File selectedFile) {
+        System.out.println("Not implemented yet!");
+//        try {
+//            writeGameToPGNFile(selectedFile, getMoveLog());
+//        }
+//        catch (final IOException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    private void setupUpdate(GameSetup gameSetup) {
+        setChanged();
+        notifyObservers(gameSetup);
+    }
+
+    private GameSetup getGameSetup() {
+        return this.gameSetup;
+    }
+
+    enum PlayerType{
+        HUMAN,
+        COMPUTER
     }
 
     static GameHistoryPanel getGameHistoryPanel() {
@@ -78,7 +151,6 @@ public class MainPanel {
     static TakenPiecesPanel getTakenPiecesPanel() {
         return takenPiecesPanel;
     }
-
 
     public static Board getBoard() {
         return board;
@@ -97,4 +169,9 @@ public class MainPanel {
     static void setMovedPiece(Piece movedPiece) {
         MainPanel.movedPiece = movedPiece;
     }
+
+    private JFrame getGameFrame() {
+        return gameFrame;
+    }
 }
+

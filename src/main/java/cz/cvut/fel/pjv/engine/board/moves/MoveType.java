@@ -28,6 +28,15 @@ public enum MoveType {
             return false;
         }
     },
+    PROMOTION {
+        boolean isAttacking() {
+            return false;
+        }
+
+        boolean isCastling() {
+            return false;
+        }
+    },
     NORMAL {
         boolean isAttacking() {
             return false;

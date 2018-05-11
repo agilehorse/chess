@@ -10,16 +10,19 @@ class GameHistoryPanel extends JPanel {
     private static final Dimension HISTORY_PANEL_DIMENSION = new Dimension(100,400);
     private final DataModel model;
     private final JScrollPane jScrollPane;
+    private final Clock clock;
 
     GameHistoryPanel() {
         this.setLayout(new BorderLayout());
         this.model = new DataModel();
+        this.clock = new Clock();
         final JTable table = new JTable(this.model);
         table.setRowHeight(15);
         this.jScrollPane = new JScrollPane(table);
         jScrollPane.setColumnHeaderView(table.getTableHeader());
         jScrollPane.setPreferredSize(HISTORY_PANEL_DIMENSION);
         this.add(jScrollPane, BorderLayout.CENTER);
+        this.add(clock, BorderLayout.SOUTH);
         this.setVisible(true);
     }
 
@@ -57,5 +60,9 @@ class GameHistoryPanel extends JPanel {
             return "+";
         }
         return "";
+    }
+
+    public Clock getClock() {
+        return clock;
     }
 }

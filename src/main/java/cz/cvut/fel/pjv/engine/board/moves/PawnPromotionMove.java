@@ -1,6 +1,7 @@
 package cz.cvut.fel.pjv.engine.board.moves;
 
 import cz.cvut.fel.pjv.engine.board.Board;
+import cz.cvut.fel.pjv.engine.board.BoardUtils;
 import cz.cvut.fel.pjv.engine.pieces.Pawn;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 
@@ -10,7 +11,8 @@ public class PawnPromotionMove extends NormalMove{
     private final Pawn promotedPawn;
     private final int newRow;
     private final int newColumn;
-    private final Piece newPiece;
+    private Piece newPiece;
+    private MoveType moveType;
 
     public PawnPromotionMove( final Board board,
                               final Pawn promotedPawn,
@@ -22,11 +24,25 @@ public class PawnPromotionMove extends NormalMove{
         this.promotedPawn = promotedPawn;
         this.newRow = newRow;
         this.newColumn = newColumn;
+        this.moveType = MoveType.PROMOTION;
         this.newPiece = newPiece;
     }
 
     @Override
     public Piece getMovedPiece() {
         return this.newPiece;
+    }
+
+    @Override
+    public MoveType getMoveType() {
+        return this.moveType;
+    }
+
+    @Override
+    public String toString() {
+        return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPieceRow(),
+                this.movedPiece.getPieceColumn()) + "-" +
+                BoardUtils.getPositionAtCoordinate(this.newRow, this.newColumn)
+                + "=" + this.newPiece.getPieceType();
     }
 }

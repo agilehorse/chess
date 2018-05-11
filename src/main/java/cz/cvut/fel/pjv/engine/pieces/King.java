@@ -25,8 +25,8 @@ public class King extends Piece {
     @Override
     public Collection<Move> calculateMoves(Board board) {
         final List<Move> legalMoves
-                = new ArrayList<>(sliderMovesCalculator.calculateStraightSliderMoves(board, this, 1));
-        legalMoves.addAll(sliderMovesCalculator.calculateDiagonalSliderMoves(board, this, 1));
+                = new ArrayList<>(PieceMoveCalculator.calculateStraightSliderMoves(board, this, 1));
+        legalMoves.addAll(PieceMoveCalculator.calculateDiagonalSliderMoves(board, this, 1));
         if (board.getCurrentPlayer() != null) {
             for (final Move move : board.getCurrentPlayer().getLegalMoves()) {
                 if (move.getMoveType() == MoveType.CASTLE && move.getMovedPiece().equals(this)) {
@@ -38,6 +38,11 @@ public class King extends Piece {
     }
 
     @Override
+    public Piece returnImposter(int row, int column) {
+        return new King(row, column, this.getPieceColour());
+    }
+
+    @Override
     public String toString() {
         return PieceType.KING.toString();
     }
@@ -46,7 +51,7 @@ public class King extends Piece {
         return this.isCastled;
     }
 
-    public void setCastled(boolean castled) {
+    public void setCastled() {
         isCastled = true;
     }
 }

@@ -45,32 +45,7 @@ public abstract class Move {
         this.sourceTile = board.getTile(movedPiece.getPieceRow(), movedPiece.getPieceColumn());
     }
 
-    public void execute() {
-        final Tile oldTile = this.board.getTile(movedPiece.getPieceRow(), movedPiece.getPieceColumn());
-        this.movedPiece.move(this.newRow, this.newColumn);
-        this.getSourceTile().setPieceOnTile(null);
-        this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
-        setExecuted(true);
-        final King king = this.board.getCurrentPlayer().getPlayersKing();
-        final Tile kingTile = this.board.getTile(king.getPieceRow(), king.getPieceColumn());
-        this.board.recalculate();
-        for (final Move move : this.board.getCurrentPlayer().getOpponent().getLegalMoves()) {
-            if (move.getDestinationTile() == kingTile) {
-                this.movedPiece.move(oldTile.getTileRow(), oldTile.getTileColumn());
-                this.sourceTile.setPieceOnTile(movedPiece);
-                this.destinationTile.setPieceOnTile(null);
-                setExecuted(false);
-            }
-        }
-        if (isExecuted()) {
-            if (movedPiece.getPieceType() == PieceType.PAWN && oldTile.getTileRow() + 2 == newRow) {
-                this.board.setEnPassantPawn((Pawn) movedPiece);
-            }
-            this.movedPiece.setFirstMove(false);
-            this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        }
-        this.board.recalculate();
-    }
+    public abstract void execute();
 
     public static boolean isExecuted() {
         return executed;
@@ -89,11 +64,6 @@ public abstract class Move {
                 getNewColumn() == move.getNewColumn() &&
                 Objects.equals(board, move.board) &&
                 Objects.equals(getMovedPiece(), move.getMovedPiece());
-    }
-
-    @Override
-    public String toString() {
-        return BoardUtils.getPositionAtCoordinate(this.newRow, this.newColumn);
     }
 
     @Override
@@ -139,4 +109,16 @@ public abstract class Move {
         return null;
     }
 
+    public abstract boolean validateForCheck();
+
+    String sourceTileString() {
+        for (final Move move : this.board.getCurrentPlayer().getLegalMoves()) {
+            if (move.getDestinationTile() == this.getDestinationTile() && !this.equals(move) &&
+                    this.movedPiece.getPieceType().equals(move.getMovedPiece().getPieceType())) {
+                return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPieceRow(),
+                        this.movedPiece.getPieceColumn()).substring(0, 1);
+            }
+        }
+        return "";
+    }
 }

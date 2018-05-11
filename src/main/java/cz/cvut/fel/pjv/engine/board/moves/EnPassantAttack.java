@@ -19,40 +19,48 @@ public class EnPassantAttack extends AttackMove {
 
     @Override
     public void execute() {
-        final Tile attackedTile = this.board.getTile(this.getAttackedPiece().getPieceRow(), this.getAttackedPiece().getPieceColumn());
-        Collection<Piece> opponentsInactivePieces;
-        if (this.getAttackedPiece().getPieceColour() == Colour.WHITE) {
-            opponentsInactivePieces = this.board.getInactiveWhitePieces();
-        } else {
-            opponentsInactivePieces = this.board.getInactiveBlackPieces();
+        if (validateForCheck()) {
+            final Tile attackedTile = this.board.getTile(this.getAttackedPiece().getPieceRow(), this.getAttackedPiece().getPieceColumn());
+            this.getAttackedPiece().move(-1, -1);
+            this.getAttackedPiece().setActive(false);
+            attackedTile.setPieceOnTile(null);
+            this.movedPiece.move(getNewRow(), getNewColumn());
+            this.getDestinationTile().setPieceOnTile(movedPiece);
+            this.getSourceTile().setPieceOnTile(null);
+            setExecuted(true);
+            movedPiece.setFirstMove(false);
+            this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
+            this.board.setEnPassantPawn(null);
+            this.board.recalculate(true);
         }
-        opponentsInactivePieces.add(this.getAttackedPiece());
+    }
+
+    @Override
+    public boolean validateForCheck() {
+        boolean invalid = false;
+        final Tile attackedTile = this.board.getTile(this.getAttackedPiece().getPieceRow(), this.getAttackedPiece().getPieceColumn());
         this.getAttackedPiece().move(-1, -1);
         this.getAttackedPiece().setActive(false);
         attackedTile.setPieceOnTile(null);
         this.movedPiece.move(getNewRow(), getNewColumn());
         this.getDestinationTile().setPieceOnTile(movedPiece);
         this.getSourceTile().setPieceOnTile(null);
-        setExecuted(true);
         final King king = this.board.getCurrentPlayer().getPlayersKing();
         final Tile kingTile = this.board.getTile(king.getPieceRow(), king.getPieceColumn());
-        this.board.recalculate();
+        this.board.recalculate(false);
         for (final Move move : this.board.getCurrentPlayer().getOpponent().getLegalMoves()) {
             if (move.getDestinationTile() == kingTile) {
-                opponentsInactivePieces.remove(getAttackedPiece());
-                getAttackedPiece().move(attackedTile.getTileRow(), attackedTile.getTileColumn());
-                getAttackedPiece().setActive(true);
-                attackedTile.setPieceOnTile(getMovedPiece());
-                getDestinationTile().setPieceOnTile(null);
-                movedPiece.move(this.getSourceTile().getTileRow(), this.getSourceTile().getTileColumn());
-                this.getSourceTile().setPieceOnTile(movedPiece);
-                setExecuted(false);
+                invalid = true;
+                break;
             }
         }
-        if (isExecuted()) {
-            movedPiece.setFirstMove(false);
-            this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        }
-        this.board.recalculate();
+        getAttackedPiece().move(attackedTile.getTileRow(), attackedTile.getTileColumn());
+        getAttackedPiece().setActive(true);
+        attackedTile.setPieceOnTile(getMovedPiece());
+        getDestinationTile().setPieceOnTile(null);
+        movedPiece.move(this.getSourceTile().getTileRow(), this.getSourceTile().getTileColumn());
+        this.getSourceTile().setPieceOnTile(movedPiece);
+        this.board.recalculate(false);
+        return !invalid;
     }
 }
