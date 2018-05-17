@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-class TakenPiecesPanel extends JPanel {
+public class TakenPiecesPanel extends JPanel {
 
     private static final Color PANEL_COLOUR = Color.decode("0xFDF5E6");
     private static final Dimension TAKEN_PIECES_DIMENSION = new Dimension(50,80);
@@ -37,7 +37,7 @@ class TakenPiecesPanel extends JPanel {
         this.setPreferredSize(TAKEN_PIECES_DIMENSION);
     }
 
-    void redo(final MoveLog moveLog) {
+    public void redo(final MoveLog moveLog) {
         this.northPanel.removeAll();
         this.southPanel.removeAll();
         final List<Piece> whiteTakenPieces = new ArrayList<>();

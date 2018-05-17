@@ -1,7 +1,6 @@
 package cz.cvut.fel.pjv.engine.board.moves;
 
 
-import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.BoardUtils;
 import cz.cvut.fel.pjv.engine.board.Tile;
@@ -48,22 +47,17 @@ public class AttackMove extends Move {
 
     @Override
     public void execute() {
-
-        if (validateForCheck()) {
-            this.attackedPiece.setActive(false);
-            this.attackedPiece.move(-1, -1);
-            this.movedPiece.move(this.getNewRow(), this.getNewColumn());
-            this.getSourceTile().setPieceOnTile(null);
-            this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
-            setExecuted(true);
-            movedPiece.setFirstMove(false);
-            this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-            this.board.recalculate(true);
-        }
+        this.attackedPiece.setActive(false);
+        this.movedPiece.move(this.getNewRow(), this.getNewColumn());
+        this.getSourceTile().setPieceOnTile(null);
+        this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
+        movedPiece.setFirstMove(false);
+        this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
+        this.board.recalculate(true);
     }
 
     @Override
-    public boolean validateForCheck() {
+    public boolean freeFromCheck() {
         boolean invalid = false;
         final King king = this.board.getCurrentPlayer().getPlayersKing();
         final Tile kingTile = this.board.getTile(king.getPieceRow(), king.getPieceColumn());
@@ -73,7 +67,7 @@ public class AttackMove extends Move {
         this.getSourceTile().setPieceOnTile(null);
         this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
         this.board.recalculate(false);
-        for (final Move move : this.board.getCurrentPlayer().getOpponent().getLegalMoves()) {
+        for (final Move move : this.board.getMoves(this.board.getCurrentPlayer().getOpponent().getColour())) {
             if (move.getDestinationTile() == kingTile) {
                 invalid = true;
                 break;
@@ -95,14 +89,15 @@ public class AttackMove extends Move {
 
     @Override
     public String toString() {
-        String pieceString = "";
-        if (movedPiece.getPieceType() != PieceType.PAWN && movedPiece.getPieceColour() == Colour.WHITE) {
-            pieceString = movedPiece.getPieceType().toString().toUpperCase() + sourceTileString();
-        } else if (movedPiece.getPieceType() != PieceType.PAWN && movedPiece.getPieceColour() == Colour.BLACK) {
-            pieceString = movedPiece.getPieceType() + sourceTileString();
+        if (this.movedPiece.getPieceType() == PieceType.PAWN) {
+            return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPieceRow(),
+                    this.movedPiece.getPieceColumn()).substring(0, 1)
+                    + "x" + BoardUtils.getPositionAtCoordinate(this.getNewRow(),
+                    this.getNewColumn());
+        } else {
+            return movedPiece.getPieceType() + disambiguationTile() + "x"
+                    + BoardUtils.getPositionAtCoordinate(this.getNewRow(),
+                    this.getNewColumn());
         }
-        return pieceString + "x"
-                + BoardUtils.getPositionAtCoordinate(this.getNewRow(),
-                this.getNewColumn());
     }
 }

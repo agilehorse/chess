@@ -65,7 +65,4 @@ public class BoardUtils {
                                           final int column) {
         return TILE_NOTATION.get((row * 8) + column);
     }
-
-
-
 }

@@ -2,7 +2,7 @@ package cz.cvut.fel.pjv.engine.player;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
-import cz.cvut.fel.pjv.GUI.MainPanel;
+import cz.cvut.fel.pjv.GUI.GameSetup;
 import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.Tile;
@@ -10,11 +10,9 @@ import cz.cvut.fel.pjv.engine.board.moves.Move;
 import cz.cvut.fel.pjv.engine.board.moves.MoveType;
 import cz.cvut.fel.pjv.engine.pieces.King;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
-import cz.cvut.fel.pjv.engine.pieces.PieceType;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import static cz.cvut.fel.pjv.engine.pieces.PieceType.KING;
@@ -40,7 +38,7 @@ public abstract class Player {
         List<Move> legalMoves = new ArrayList<>(allMoves);
         List<Move> moves = new ArrayList<>();
         for (final Move move : legalMoves) {
-            if (!move.validateForCheck()) {
+            if (!move.freeFromCheck()) {
                 moves.add(move);
             }
         }
@@ -72,32 +70,30 @@ public abstract class Player {
             return false;
         } else {
             move.execute();
-            if (Move.isExecuted()) {
-                if (!calculateCheck(move.getNewRow(),
-                        move.getNewColumn(), this.legalMoves).isEmpty()) {
-                    this.getOpponent().isInCheck = true;
-                }
-                if (move.getMoveType() == MoveType.CASTLE) {
-                    this.playersKing.setCastled();
-                }
-                return true;
+            if (!calculateCheck(move.getNewRow(),
+                    move.getNewColumn(), this.legalMoves).isEmpty()) {
+                this.getOpponent().isInCheck = true;
             }
-            return false;
+            if (move.getMoveType() == MoveType.CASTLE) {
+                this.playersKing.setCastled();
+            }
+            return true;
         }
     }
 
-    private boolean canEscapeCheck() {
+    private boolean hasNoEscapeMoves() {
         Collection<Move> kingsMoves = new ArrayList<>(this.playersKing.calculateMoves(board));
-        Collection<Move> opponentMoves = this.getOpponent().getLegalMoves();
+        Collection<Move> movesToRemove = new ArrayList<>();
+        Collection<Move> opponentMoves = this.board.getMoves(this.board.getCurrentPlayer().getOpponent().getColour());
         for (final Move kingMove : kingsMoves) {
             for (final Move opponentMove : opponentMoves) {
-                if (opponentMove.getMoveType() == MoveType.ATTACK
-                        && opponentMove.getDestinationTile() == kingMove.getDestinationTile()) {
-                    kingsMoves.remove(kingMove);
+                if (opponentMove.getDestinationTile() == kingMove.getDestinationTile()) {
+                    movesToRemove.add(kingMove);
                 }
             }
         }
-        return !kingsMoves.isEmpty();
+        kingsMoves.removeAll(movesToRemove);
+        return kingsMoves.isEmpty();
     }
 
     public void setLegalMoves(Collection<Move> legalMoves, Collection<Move> opponentMoves) {
@@ -140,7 +136,7 @@ public abstract class Player {
     }
 
     public boolean isInCheckMate() {
-        return this.isInCheck && canEscapeCheck();
+        return this.isInCheck && hasNoEscapeMoves();
     }
 
     public boolean isInStaleMate() {

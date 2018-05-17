@@ -18,6 +18,7 @@ import static cz.cvut.fel.pjv.engine.board.BoardUtils.SET_OF_TILES;
 
 
 public class Board {
+
     //  Board is represented by list of tiles and white and black pieces
     private final List<Tile> chessBoard;
     private static Table<Integer, Integer, Piece> boardConfiguration;
@@ -183,6 +184,11 @@ public class Board {
         return Iterables.unmodifiableIterable(Iterables.concat(this.whitePlayer.getLegalMoves(),
                 this.blackPlayer.getLegalMoves()));
     }
+    public Collection<Move> getMoves(Colour colour) {
+        Collection<Piece> pieces = getActivePieces(this.getChessBoard(), colour);
+        Collection<Move> moves = calculateMoves(pieces);
+        return moves;
+    }
 
     public static boolean wasCheckTriggered() {
         return checkTriggered;
@@ -222,5 +228,9 @@ public class Board {
 
     public Player getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public List<Tile> getChessBoard() {
+        return chessBoard;
     }
 }

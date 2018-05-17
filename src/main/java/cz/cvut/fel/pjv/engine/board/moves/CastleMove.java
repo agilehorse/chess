@@ -33,7 +33,6 @@ public class CastleMove extends Move {
         this.moveType = MoveType.CASTLE;
     }
 
-    // Creates a new board
     @Override
     public void execute() {
         this.movedPiece.move(this.getNewRow(), this.getNewColumn());
@@ -64,12 +63,13 @@ public class CastleMove extends Move {
                 castlingRookOldColumn == that.castlingRookOldColumn &&
                 castlingRookNewRow == that.castlingRookNewRow &&
                 castlingRookNewColumn == that.castlingRookNewColumn &&
+                getMoveType() == that.getMoveType() &&
                 Objects.equals(getCastlingRook(), that.getCastlingRook());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getCastlingRook(), castlingRookOldRow, castlingRookOldColumn, castlingRookNewRow, castlingRookNewColumn);
+        return Objects.hash(super.hashCode(), getMoveType(), getCastlingRook(), castlingRookOldRow, castlingRookOldColumn, castlingRookNewRow, castlingRookNewColumn);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class CastleMove extends Move {
     }
 
     @Override
-    public boolean validateForCheck() {
+    public boolean freeFromCheck() {
         return true;
     }
 }
