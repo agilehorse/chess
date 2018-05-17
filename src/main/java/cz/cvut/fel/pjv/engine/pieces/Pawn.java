@@ -66,7 +66,7 @@ public class Pawn extends Piece {
                             new Rook(DESTINATION_ROW, this.pieceColumn, Colour.WHITE)));
                     legalMoves.add(new PawnPromotionMove(board, this, DESTINATION_ROW, this.pieceColumn,
                             new Queen(DESTINATION_ROW, this.pieceColumn, Colour.WHITE)));
-                } else if (this.getPieceColour() == Colour.BLACK && DESTINATION_ROW == 7) {
+                } else if (this.getPieceColour() == Colour.BLACK && DESTINATION_ROW == 8) {
                     legalMoves.add(new PawnPromotionMove(board, this, DESTINATION_ROW, this.pieceColumn,
                             new Bishop(DESTINATION_ROW, this.pieceColumn, Colour.BLACK)));
                     legalMoves.add(new PawnPromotionMove(board, this, DESTINATION_ROW, this.pieceColumn,

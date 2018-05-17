@@ -8,7 +8,7 @@ import java.util.List;
 
 import static cz.cvut.fel.pjv.engine.board.BoardUtils.SET_OF_TILES;
 
-class GuiBoard extends JPanel {
+public class GuiBoard extends JPanel {
 
     private static final Dimension BOARD_DIMENSION = new Dimension(400,350);
     private List<GuiTile> boardTiles;
@@ -27,7 +27,7 @@ class GuiBoard extends JPanel {
         validate();
     }
 
-    void drawBoard(final Board engineBoard) {
+    public void drawBoard(final Board engineBoard) {
         removeAll();
         for (final GuiTile guiTile : boardTiles) {
             guiTile.drawTile(engineBoard);

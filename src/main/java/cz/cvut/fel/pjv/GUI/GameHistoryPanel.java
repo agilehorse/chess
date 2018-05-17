@@ -5,7 +5,7 @@ import cz.cvut.fel.pjv.engine.board.moves.Move;
 import javax.swing.*;
 import java.awt.*;
 
-class GameHistoryPanel extends JPanel {
+public class GameHistoryPanel extends JPanel {
 
     private static final Dimension HISTORY_PANEL_DIMENSION = new Dimension(100,400);
     private final DataModel model;
@@ -26,7 +26,7 @@ class GameHistoryPanel extends JPanel {
         this.setVisible(true);
     }
 
-    void redo(final Board board,
+    public void redo(final Board board,
               final MoveLog moveHistory) {
         int currentRow = 0;
         this.model.clear();

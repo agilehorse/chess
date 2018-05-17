@@ -1,16 +1,15 @@
 package cz.cvut.fel.pjv.GUI;
 
+import cz.cvut.fel.pjv.GUI.AI.AIObserver;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.Tile;
+import cz.cvut.fel.pjv.engine.board.moves.Move;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.IOException;
 import java.util.Observable;
 
 import static cz.cvut.fel.pjv.engine.board.BoardUtils.SET_OF_TILES;
@@ -22,11 +21,12 @@ public class MainPanel extends Observable {
     private static TakenPiecesPanel takenPiecesPanel;
     private static MoveLog moveLog;
     private static GuiBoard guiBoard;
-    private final static Dimension OUTER_FRAME_SIZE = new Dimension(700, 600);
+    private static final Dimension OUTER_FRAME_SIZE = new Dimension(700, 600);
     private static Board board;
     private static Tile sourceTile;
     private static Piece movedPiece;
-    private final GameSetup gameSetup;
+    private static GameSetup gameSetup;
+    private static final MainPanel SINGLETON = new MainPanel();
 
 
     public MainPanel() {
@@ -40,6 +40,7 @@ public class MainPanel extends Observable {
         takenPiecesPanel = new TakenPiecesPanel();
         guiBoard = new GuiBoard();
         moveLog = new MoveLog();
+        this.addObserver(new AIObserver());
         this.gameSetup = new GameSetup(this.gameFrame, true);
         this.gameFrame.add(takenPiecesPanel, BorderLayout.EAST);
         this.gameFrame.add(gameHistoryPanel, BorderLayout.WEST);
@@ -49,12 +50,23 @@ public class MainPanel extends Observable {
         this.gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
-    static MoveLog getMoveLog() {
+    public static MainPanel get() {return SINGLETON;}
+
+    public static MoveLog getMoveLog() {
         return moveLog;
     }
 
-    static GuiBoard getGuiBoard() {
+    public static GuiBoard getGuiBoard() {
         return guiBoard;
+    }
+
+    public static void exit() {
+        System.exit(0);
+    }
+
+    public void moveMadeUpdate(GameSetup.PlayerType computer) {
+        setChanged();
+        notifyObservers(computer);
     }
 
     private JMenuBar createMenuBar() {
@@ -68,7 +80,7 @@ public class MainPanel extends Observable {
         final JMenuItem setupGameMenuItem = new JMenuItem("Setup Game", KeyEvent.VK_S);
         setupGameMenuItem.addActionListener(e -> {
             getGameSetup().promptUser();
-            setupUpdate(getGameSetup());
+            setUpUpdate(getGameSetup());
         });
         fileMenu.add(setupGameMenuItem);
 
@@ -130,25 +142,20 @@ public class MainPanel extends Observable {
 //        }
     }
 
-    private void setupUpdate(GameSetup gameSetup) {
+    private void setUpUpdate(GameSetup gameSetup) {
         setChanged();
         notifyObservers(gameSetup);
     }
 
-    private GameSetup getGameSetup() {
-        return this.gameSetup;
+    public static GameSetup getGameSetup() {
+        return gameSetup;
     }
 
-    enum PlayerType{
-        HUMAN,
-        COMPUTER
-    }
-
-    static GameHistoryPanel getGameHistoryPanel() {
+    public static GameHistoryPanel getGameHistoryPanel() {
         return gameHistoryPanel;
     }
 
-    static TakenPiecesPanel getTakenPiecesPanel() {
+    public static TakenPiecesPanel getTakenPiecesPanel() {
         return takenPiecesPanel;
     }
 

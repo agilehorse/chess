@@ -3,6 +3,8 @@ package cz.cvut.fel.pjv.engine.board.moves;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.pieces.King;
 
+import java.util.Objects;
+
 public class NullMove extends Move {
 
     private final MoveType moveType;
@@ -14,7 +16,7 @@ public class NullMove extends Move {
 
     @Override
     public void execute() {
-        throw new RuntimeException("Cannot execute null move!");
+        throw new RuntimeException("Cannot get null move!");
     }
 
     @Override
@@ -23,12 +25,27 @@ public class NullMove extends Move {
     }
 
     @Override
-    public boolean validateForCheck() {
+    public boolean freeFromCheck() {
         return false;
     }
 
     @Override
     public String toString() {
         return "Null Move";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof NullMove)) return false;
+        if (!super.equals(o)) return false;
+        NullMove nullMove = (NullMove) o;
+        return getMoveType() == nullMove.getMoveType();
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(super.hashCode(), getMoveType());
     }
 }

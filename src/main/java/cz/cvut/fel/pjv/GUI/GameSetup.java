@@ -5,12 +5,10 @@ import cz.cvut.fel.pjv.engine.player.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-class GameSetup extends JDialog{
-    private MainPanel.PlayerType whitePlayer;
-    private MainPanel.PlayerType blackPlayer;
+public class GameSetup extends JDialog{
+    private PlayerType whitePlayerType;
+    private PlayerType blackPlayerType;
 
     private static final String HUMAN = "Human";
     private static final String COMPUTER = "Computer";
@@ -48,8 +46,8 @@ class GameSetup extends JDialog{
         final JButton okButton = new JButton("OK");
 
         okButton.addActionListener(e -> {
-            whitePlayer = whiteComputerButton.isSelected() ? MainPanel.PlayerType.COMPUTER : MainPanel.PlayerType.HUMAN;
-            blackPlayer = blackComputerButton.isSelected() ? MainPanel.PlayerType.COMPUTER : MainPanel.PlayerType.HUMAN;
+            whitePlayerType = whiteComputerButton.isSelected() ? PlayerType.COMPUTER : PlayerType.HUMAN;
+            blackPlayerType = blackComputerButton.isSelected() ? PlayerType.COMPUTER : PlayerType.HUMAN;
             GameSetup.this.setVisible(false);
         });
 
@@ -71,22 +69,25 @@ class GameSetup extends JDialog{
         repaint();
     }
 
-    boolean isAIPlayer(final Player player) {
+    public boolean isAIPlayer(final Player player) {
         if(player.getColour() == Colour.WHITE) {
-            return getWhitePlayerType() == MainPanel.PlayerType.COMPUTER;
+            return getWhitePlayerType() == PlayerType.COMPUTER;
         }
-        return getBlackPlayerType() == MainPanel.PlayerType.COMPUTER;
+        return getBlackPlayerType() == PlayerType.COMPUTER;
     }
 
-    MainPanel.PlayerType getWhitePlayerType() {
-        return this.whitePlayer;
+    public PlayerType getWhitePlayerType() {
+        return this.whitePlayerType;
     }
 
-    MainPanel.PlayerType getBlackPlayerType() {
-        return this.blackPlayer;
+    public PlayerType getBlackPlayerType() {
+        return this.blackPlayerType;
     }
 
 
-
+    public enum PlayerType {
+            HUMAN,
+            COMPUTER
+    }
 }
 

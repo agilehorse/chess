@@ -23,7 +23,6 @@ public abstract class Move {
     private final int newColumn;
     private Tile destinationTile;
     private Tile sourceTile;
-    private static boolean executed;
 
     public Move(final Board board,
                 final Piece movedPiece,
@@ -45,14 +44,17 @@ public abstract class Move {
         this.sourceTile = board.getTile(movedPiece.getPieceRow(), movedPiece.getPieceColumn());
     }
 
-    public abstract void execute();
-
-    public static boolean isExecuted() {
-        return executed;
-    }
-
-    static void setExecuted(boolean executed) {
-        Move.executed = executed;
+    public void execute() {
+        final Tile sourceTile = this.getSourceTile();
+        this.movedPiece.move(this.getNewRow(), this.getNewColumn());
+        sourceTile.setPieceOnTile(null);
+        this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
+        if (movedPiece.getPieceType() == PieceType.PAWN && sourceTile.getTileRow() + 2 == getNewRow()) {
+            this.board.setEnPassantPawn((Pawn) movedPiece);
+        }
+        this.movedPiece.setFirstMove(false);
+        this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
+        this.board.recalculate(true);
     }
 
     @Override
@@ -62,13 +64,16 @@ public abstract class Move {
         Move move = (Move) o;
         return getNewRow() == move.getNewRow() &&
                 getNewColumn() == move.getNewColumn() &&
-                Objects.equals(board, move.board) &&
-                Objects.equals(getMovedPiece(), move.getMovedPiece());
+                Objects.equals(getBoard(), move.getBoard()) &&
+                Objects.equals(getMovedPiece(), move.getMovedPiece()) &&
+                Objects.equals(getDestinationTile(), move.getDestinationTile()) &&
+                Objects.equals(getSourceTile(), move.getSourceTile());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(board, getMovedPiece(), getNewRow(), getNewColumn());
+
+        return Objects.hash(getBoard(), getMovedPiece(), getNewRow(), getNewColumn(), getDestinationTile(), getSourceTile());
     }
 
     public abstract MoveType getMoveType();
@@ -109,9 +114,9 @@ public abstract class Move {
         return null;
     }
 
-    public abstract boolean validateForCheck();
+    public abstract boolean freeFromCheck();
 
-    String sourceTileString() {
+    String disambiguationTile() {
         for (final Move move : this.board.getCurrentPlayer().getLegalMoves()) {
             if (move.getDestinationTile() == this.getDestinationTile() && !this.equals(move) &&
                     this.movedPiece.getPieceType().equals(move.getMovedPiece().getPieceType())) {

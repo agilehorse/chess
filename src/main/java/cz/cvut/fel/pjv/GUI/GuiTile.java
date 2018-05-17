@@ -1,5 +1,6 @@
 package cz.cvut.fel.pjv.GUI;
 
+import cz.cvut.fel.pjv.JavaFXGUI.Main;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
@@ -58,11 +59,10 @@ class GuiTile extends JPanel {
                     } else {
                         final Tile sourceTile = MainPanel.getSourceTile();
                         final Tile destinationTile = getAsTileObject();
-                        final Piece movedPiece = MainPanel.getMovedPiece();
                         Move move = board.getCurrentPlayer().findMove(sourceTile, destinationTile);
                         if (move != null && move.getMoveType() == MoveType.PROMOTION) {
                             Clock.stop();
-                            move = handlePawnMove(destinationTile, sourceTile);
+                            move = handlePawnPromotionMove(destinationTile, sourceTile);
                         }
                         final boolean done = board.getCurrentPlayer().initiateMove(move);
                         if (done) {
@@ -72,11 +72,15 @@ class GuiTile extends JPanel {
                         clearState();
                     }
                     SwingUtilities.invokeLater(() -> {
-                        board.recalculate(true);
+
                         MainPanel.getGameHistoryPanel().redo(board, MainPanel.getMoveLog());
                         MainPanel.getTakenPiecesPanel().redo(MainPanel.getMoveLog());
+                        if (MainPanel.getGameSetup().isAIPlayer(board.getCurrentPlayer())) {
+                            MainPanel.get().moveMadeUpdate(GameSetup.PlayerType.HUMAN);
+                        }
                         guiBoard.drawBoard(MainPanel.getBoard());
                     });
+                    board.recalculate(true);
                     if (board.getCurrentPlayer().isInCheckMate()) {
                         Clock.terminate();
                         JOptionPane.showMessageDialog(guiBoard,
@@ -107,8 +111,8 @@ class GuiTile extends JPanel {
         validate();
     }
 
-    private Move handlePawnMove(final Tile destinationTile,
-                                final Tile sourceTile) {
+    private Move handlePawnPromotionMove(final Tile destinationTile,
+                                         final Tile sourceTile) {
         Move promotionMove = null;
         PieceType pieceType;
         String[] options = {"Queen" , "Rook", "Bishop", "Knight"};
@@ -190,20 +194,6 @@ class GuiTile extends JPanel {
     }
 
     private Collection<Move> pieceLegalMoves(final Board board) {
-//        Piece movedPiece = MainPanel.getMovedPiece();
-//        if (movedPiece != null
-//                && movedPiece.getPieceColour()
-//                == board.getCurrentPlayer().getColour()) {
-//            Collection<Move> moves = movedPiece.calculateMoves(board);
-//            for (final Move move : moves) {
-//                if(!move.validateForCheck()) {
-//                    moves.remove(move);
-//                }
-//            }
-//            return moves;
-//        }
-//        return Collections.emptyList();
-
         final Piece movedPiece = MainPanel.getMovedPiece();
         if (movedPiece != null &&
                 movedPiece.getPieceColour() == board.getCurrentPlayer().getColour()) {

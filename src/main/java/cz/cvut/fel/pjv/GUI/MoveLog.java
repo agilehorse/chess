@@ -1,11 +1,13 @@
 package cz.cvut.fel.pjv.GUI;
 
+import com.google.common.collect.ImmutableList;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MoveLog {
+
     private final List<Move> moves;
 
     public MoveLog() {
@@ -13,7 +15,7 @@ public class MoveLog {
     }
 
     public List<Move> getMoves() {
-        return this.moves;
+        return ImmutableList.copyOf(this.moves);
     }
 
     public void addMove(final Move move) {
