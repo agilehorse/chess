@@ -2,33 +2,106 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3596f27-33a7-4074-92df-e85559f39092" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/AI/AIObserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/AI/AIPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/AI/RandomMover.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/Clock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/Clock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameHistoryPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameHistoryPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameSetup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameSetup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiTile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MoveLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MoveLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/TakenPiecesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/TakenPiecesPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/JChess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/JChess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/BoardUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/BoardUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/AttackMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/AttackMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/CastleMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/CastleMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/EnPassantAttack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/EnPassantAttack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/KingSideCastle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/KingSideCastle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NormalMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NormalMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NullMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NullMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/QueenSideCastle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/QueenSideCastle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/PieceType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/PieceType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/AI/AIObserver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/AI/AIPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/AI/RandomMover.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/Clock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/DataModel$Row.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/DataModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/GameHistoryPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/GameSetup$PlayerType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/GameSetup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/GuiBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/GuiTile$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/GuiTile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/MainPanel$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/MainPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/MoveLog.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/GUI/TakenPiecesPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/JavaFXGUI/GUIBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/JavaFXGUI/GUITile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/JavaFXGUI/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/board/BoardBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/board/moves/CastleMove.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/board/moves/IllegalMove.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/board/moves/KingSideCastle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/board/moves/MoveType$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/board/moves/MoveType$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/board/moves/MoveType$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/board/moves/MoveType$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/board/moves/MoveType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/board/moves/QueenSideCastle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/Colour$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/Colour$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/Colour$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/Colour.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/JChess.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/Board.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/BoardUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/Tile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/AttackMove.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/CastleMove.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/EnPassantAttack.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/KingSideCastle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/Move.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/MoveType$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/MoveType$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/MoveType$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/MoveType$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/MoveType$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/MoveType$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/MoveType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/NormalMove.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/NullMove.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionMove.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/board/moves/QueenSideCastle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/pieces/Bishop.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/pieces/King.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/pieces/Knight.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/pieces/Pawn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/pieces/Piece.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/pieces/PieceMoveCalculator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/pieces/PieceType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/pieces/Queen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/pieces/Rook.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/player/BlackPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/player/MoveState$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/player/MoveState$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/player/MoveState$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/player/MoveState$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/player/MoveState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/player/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/engine/player/WhitePlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/pieces/PieceType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/pieces/castlingMovesCalculator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/pieces/sliderMovesCalculator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/player/BlackPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/player/MoveMaker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/player/MoveState$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/player/MoveState$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/player/MoveState$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/player/MoveState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/player/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/cz/cvut/fel/pjv/player/WhitePlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/other/darkTile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/other/green_dot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/other/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/other/lighTile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/BB.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/BK.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/BN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/BP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/BQ.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/BR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/WB.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/WK.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/WN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/WP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/WQ.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/images/pieces/WR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../github/chess/target/classes/stylesheet.css" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -381,7 +454,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE" value="right" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../DBS_semestral_project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../github/chess" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -491,7 +564,7 @@
       <workItem from="1525628903035" duration="88497000" />
       <workItem from="1526111985775" duration="6710000" />
       <workItem from="1526400060558" duration="27880000" />
-      <workItem from="1526592467469" duration="6219000" />
+      <workItem from="1526592467469" duration="7259000" />
     </task>
     <task id="LOCAL-00001" summary="move on board should be fully functional, pawn promotion to do">
       <created>1525731011739</created>
@@ -511,11 +584,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129306000" />
+    <option name="totallyTimeSpent" value="130346000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-10" y="6" width="914" height="831" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" x="705" y="119" width="166" height="586" id="Palette" order="4" type="FLOATING" />
       <window_info anchor="bottom" id="TODO" order="11" />
