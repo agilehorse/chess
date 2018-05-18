@@ -1,0 +1,1731 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(date 1523639292000)
++++ .idea/misc.xml	(date 1524348912000)
+@@ -7,5 +7,5 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_9" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+ </project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(date 1523639292000)
++++ .idea/workspace.xml	(date 1524348912000)
+@@ -1,7 +1,45 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="29c0b32e-be93-4704-a850-c1bc11f9a423" name="Default" comment="" />
++    <list default="true" id="5b981da7-170f-4e13-be11-a1b03b0a0abc" name="Default" comment="kj,n">
++      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/Builder.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/moves/AttackMove.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/moves/NormalMove.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/PieceType.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/chess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chess.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/Board.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/BoardUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/BoardUtils.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/moves/Move.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/tiles/OccupiedTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/tiles/OccupiedTile.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/tiles/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/tiles/Tile.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Bishop.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/King.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Knight.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Pawn.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Piece.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Queen.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Rook.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/JChess.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/Board$1.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/Board$Builder.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/Board.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/BoardUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/BoardUtils.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/Move$AttackMove.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/Move$NormalMove.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/Move.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/tiles/OccupiedTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/tiles/OccupiedTile.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/tiles/Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/board/tiles/Tile.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/Bishop.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/Bishop.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/King.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/King.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/Knight.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/Knight.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/Pawn.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/Piece$PieceType.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/Piece.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/Piece.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/Queen.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/Rook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cz/cvut/fel/pjv/pieces/Rook.class" afterDir="false" />
++    </list>
+     <ignored path="$PROJECT_DIR$/target/" />
+     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+     <option name="TRACKING_ENABLED" value="true" />
+@@ -11,26 +49,145 @@
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+   <component name="FileEditorManager">
+-    <leaf>
+-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
+-        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/Board.java">
++    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
++      <file leaf-file-name="Pawn.java" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Pawn.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="153">
++              <caret line="20" selection-start-line="20" selection-end-line="20" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="Bishop.java" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Bishop.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="152">
++              <caret line="16" selection-start-line="16" selection-end-line="16" />
++              <folding>
++                <element signature="imports" expanded="true" />
++                <element signature="e#428#429#0" expanded="true" />
++              </folding>
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="King.java" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/King.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="90">
++              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="Knight.java" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Knight.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="170">
++              <caret line="17" selection-start-line="17" selection-end-line="17" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="PieceType.java" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/PieceType.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="68">
++              <caret line="4" selection-start-line="4" selection-end-line="4" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="Queen.java" pinned="false" current-in-tab="true">
++        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Queen.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="158">
++              <caret line="12" selection-start-line="12" selection-end-line="12" />
++              <folding>
++                <element signature="imports" expanded="true" />
++              </folding>
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="Piece.java" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Piece.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="119">
++              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="Rook.java" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Rook.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="255">
++              <caret line="22" selection-start-line="22" selection-end-line="22" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="Colour.java" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/Colour.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="34">
++              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="JChess.java" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/JChess.java">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="93">
+-              <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
++            <state relative-caret-position="187">
++              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+     </leaf>
+   </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Kotlin File" />
++        <option value="Class" />
++        <option value="Enum" />
++      </list>
++    </option>
++  </component>
+   <component name="Git.Settings">
+-    <option name="UPDATE_TYPE" value="MERGE" />
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="check" />
++      </map>
++    </option>
+   </component>
+   <component name="IdeDocumentHistory">
+     <option name="CHANGED_PATHS">
+       <list>
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/Move.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/tiles/OccupiedTile.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/moves/NormalMove.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/tiles/Tile.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/BoardUtils.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/King.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/moves/Move.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Piece.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/moves/AttackMove.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/Builder.java" />
+         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/Board.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/PieceType.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Rook.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/JChess.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Knight.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Bishop.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Pawn.java" />
++        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Queen.java" />
+       </list>
+     </option>
+   </component>
+@@ -40,10 +197,11 @@
+     <detection-done>true</detection-done>
+     <sorting>DEFINITION_ORDER</sorting>
+   </component>
+-  <component name="ProjectFrameBounds" extendedState="1">
+-    <option name="x" value="27" />
+-    <option name="width" value="1340" />
+-    <option name="height" value="1015" />
++  <component name="ProjectFrameBounds" extendedState="6">
++    <option name="x" value="903" />
++    <option name="y" value="37" />
++    <option name="width" value="1013" />
++    <option name="height" value="1060" />
+   </component>
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectView">
+@@ -52,7 +210,7 @@
+     </navigator>
+     <panes>
+       <pane id="Scope" />
+-      <pane id="PackagesPane" />
++      <pane id="AndroidView" />
+       <pane id="ProjectPane">
+         <subPane>
+           <expand>
+@@ -95,21 +253,41 @@
+               <item name="pjv" type="462c0819:PsiDirectoryNode" />
+               <item name="board" type="462c0819:PsiDirectoryNode" />
+             </path>
++            <path>
++              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
++              <item name="chess" type="462c0819:PsiDirectoryNode" />
++              <item name="src" type="462c0819:PsiDirectoryNode" />
++              <item name="main" type="462c0819:PsiDirectoryNode" />
++              <item name="java" type="462c0819:PsiDirectoryNode" />
++              <item name="pjv" type="462c0819:PsiDirectoryNode" />
++              <item name="pieces" type="462c0819:PsiDirectoryNode" />
++            </path>
+           </expand>
+           <select />
+         </subPane>
+       </pane>
+-      <pane id="AndroidView" />
++      <pane id="PackagesPane" />
+     </panes>
+   </component>
+   <component name="PropertiesComponent">
+     <property name="WebServerToolWindowFactoryState" value="false" />
+     <property name="aspect.path.notification.shown" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../guava-21.0.jar!/" />
+-    <property name="project.structure.last.edited" value="Libraries" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
++    <property name="project.structure.last.edited" value="Modules" />
+     <property name="project.structure.proportion" value="0.0" />
+     <property name="project.structure.side.proportion" value="0.2" />
+-    <property name="settings.editor.selected.configurable" value="Errors" />
++  </component>
++  <component name="RecentsManager">
++    <key name="MoveMembersDialog.RECENTS_KEY">
++      <recent name="cz.cvut.fel.pjv.board" />
++      <recent name="cz.cvut.fel.pjv.board.Board.Builder" />
++    </key>
++    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
++      <recent name="cz.cvut.fel.pjv.board.moves" />
++    </key>
++    <key name="CreateClassDialog.RecentsKey">
++      <recent name="cz.cvut.fel.pjv.board" />
++    </key>
+   </component>
+   <component name="RunDashboard">
+     <option name="ruleStates">
+@@ -124,6 +302,17 @@
+     </option>
+   </component>
+   <component name="RunManager">
++    <configuration name="JChess" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="cz.cvut.fel.pjv.JChess" />
++      <module name="chess" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="cz.cvut.fel.pjv.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++    </configuration>
+     <configuration default="true" type="Application" factoryName="Application">
+       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+     </configuration>
+@@ -165,67 +354,324 @@
+       <properties />
+       <listeners />
+     </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="Application.JChess" />
++      </list>
++    </recent_temporary>
+   </component>
+   <component name="SvnConfiguration">
+     <configuration />
+   </component>
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="29c0b32e-be93-4704-a850-c1bc11f9a423" name="Default" comment="" />
+-      <created>1523637033329</created>
++      <changelist id="5b981da7-170f-4e13-be11-a1b03b0a0abc" name="Default" comment="" />
++      <created>1524327546274</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+-      <updated>1523637033329</updated>
+-      <workItem from="1523637038256" duration="1162000" />
++      <updated>1524327546274</updated>
++      <workItem from="1524327547570" duration="5052000" />
+     </task>
+     <servers />
+   </component>
+   <component name="TimeTrackingManager">
+-    <option name="totallyTimeSpent" value="1162000" />
++    <option name="totallyTimeSpent" value="5052000" />
+   </component>
+   <component name="ToolWindowManager">
+-    <frame x="22" y="0" width="1072" height="812" extended-state="1" />
++    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+     <layout>
++      <window_info anchor="bottom" id="SVN Repositories" sideWeight="0.49932885" weight="0.32909605" />
+       <window_info anchor="right" id="Palette" />
+       <window_info anchor="bottom" id="TODO" order="6" />
++      <window_info anchor="bottom" id="Messages" weight="0.34463277" />
+       <window_info anchor="right" id="Palette&#9;" />
+       <window_info id="Image Layers" />
+       <window_info anchor="right" id="Capture Analysis" />
+-      <window_info active="true" anchor="bottom" id="Event Log" side_tool="true" visible="true" weight="0.37829912" />
++      <window_info anchor="bottom" id="Event Log" sideWeight="0.50067115" side_tool="true" weight="0.63135594" />
+       <window_info anchor="right" id="Maven Projects" />
+       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+-      <window_info anchor="bottom" id="Version Control" />
+-      <window_info anchor="bottom" id="Run" order="2" />
++      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32909605" />
++      <window_info anchor="bottom" id="Version Control" sideWeight="0.49932885" weight="0.63135594" />
+       <window_info anchor="bottom" id="Terminal" />
+       <window_info id="Capture Tool" />
+       <window_info id="Designer" />
+-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
++      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14966443" />
+       <window_info anchor="right" id="Database" />
++      <window_info anchor="bottom" id="Find" order="1" weight="0.32909605" />
+       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+       <window_info id="UI Designer" />
+       <window_info anchor="right" id="Theme Preview" />
+-      <window_info id="Favorites" side_tool="true" />
+       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+-      <window_info anchor="bottom" id="Find" order="1" />
++      <window_info id="Favorites" side_tool="true" />
+       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
++      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+       <window_info anchor="bottom" id="Message" order="0" />
+       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+     </layout>
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="1" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State>
++              <option name="RECENTLY_FILTERED_USER_GROUPS">
++                <collection />
++              </option>
++              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
++                <collection />
++              </option>
++              <option name="COLUMN_ORDER">
++                <list>
++                  <option value="0" />
++                  <option value="1" />
++                  <option value="2" />
++                  <option value="3" />
++                </list>
++              </option>
++            </State>
++          </value>
++        </entry>
++      </map>
++    </option>
+   </component>
+   <component name="VcsContentAnnotationSettings">
+     <option name="myLimit" value="2678400000" />
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="kj,n" />
++    <option name="LAST_COMMIT_MESSAGE" value="kj,n" />
++  </component>
+   <component name="editorHistoryManager">
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="136">
++          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/moves/AttackMove.kt">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="34">
++          <caret line="2" selection-start-line="2" selection-end-line="2" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/moves/NormalMove.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="204">
++          <caret line="12" selection-start-line="12" selection-end-line="12" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/tiles/EmptyTile.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="68">
++          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/tiles/OccupiedTile.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="68">
++          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/tiles/Tile.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="446">
++          <caret line="40" selection-start-line="40" selection-end-line="40" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/../../NetBeansProjects/bulkodav/chess/src/main/java/cz/cvut/fel/pjv/board/Board.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="204">
++          <caret line="21" column="10" lean-forward="true" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/../../NetBeansProjects/bulkodav/chess/src/main/java/cz/cvut/fel/pjv/board/moves/Move.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="306">
++          <caret line="19" selection-start-line="19" selection-end-line="19" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/../../NetBeansProjects/bulkodav/chess/src/main/java/cz/cvut/fel/pjv/board/moves/AttackMove.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="68">
++          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/../../NetBeansProjects/bulkodav/chess/src/main/java/cz/cvut/fel/pjv/board/moves/NormalMove.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="136">
++          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/../../NetBeansProjects/bulkodav/chess/src/main/java/cz/cvut/fel/pjv/board/tiles/Tile.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="85">
++          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/../../NetBeansProjects/bulkodav/chess/src/main/java/cz/cvut/fel/pjv/pieces/Pawn.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="612">
++          <caret line="49" column="35" selection-start-line="49" selection-start-column="35" selection-end-line="49" selection-end-column="35" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/BoardUtils.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="85">
++          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/moves/Move.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="141">
++          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/moves/AttackMove.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="153">
++          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/Builder.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="288">
++          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
++          <folding>
++            <element signature="imports" expanded="true" />
++            <element signature="e#311#312#0" expanded="true" />
++            <element signature="e#376#377#0" expanded="true" />
++            <element signature="e#820#821#0" expanded="true" />
++            <element signature="e#858#859#0" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
+     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/board/Board.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="93">
+-          <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
++        <state relative-caret-position="141">
++          <caret line="65" column="11" selection-start-line="65" selection-start-column="11" selection-end-line="65" selection-end-column="11" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/Colour.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="34">
++          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/JChess.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="187">
++          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Knight.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="170">
++          <caret line="17" selection-start-line="17" selection-end-line="17" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/King.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="90">
++          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Bishop.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="152">
++          <caret line="16" selection-start-line="16" selection-end-line="16" />
++          <folding>
++            <element signature="imports" expanded="true" />
++            <element signature="e#428#429#0" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Pawn.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="153">
++          <caret line="20" selection-start-line="20" selection-end-line="20" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Piece.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="119">
++          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Rook.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="255">
++          <caret line="22" selection-start-line="22" selection-end-line="22" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/PieceType.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="68">
++          <caret line="4" selection-start-line="4" selection-end-line="4" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/pieces/Queen.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="158">
++          <caret line="12" selection-start-line="12" selection-end-line="12" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+Index: chess.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- chess.iml	(date 1523639292000)
++++ chess.iml	(date 1524348912000)
+@@ -11,7 +11,8 @@
+     </content>
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+-    <orderEntry type="module-library" exported="">
++    <orderEntry type="library" name="guava-21.0" level="project" />
++    <orderEntry type="module-library">
+       <library>
+         <CLASSES>
+           <root url="jar://$MODULE_DIR$/../guava-21.0.jar!/" />
+Index: src/main/java/cz/cvut/fel/pjv/board/Board.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/board/Board.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/board/Board.java	(date 1524348912000)
+@@ -1,17 +1,15 @@
+ package cz.cvut.fel.pjv.board;
+ 
+-import com.google.common.collect.HashBasedTable;
+ import com.google.common.collect.ImmutableList;
+-import com.google.common.collect.Table;
+ import cz.cvut.fel.pjv.Colour;
+-import cz.cvut.fel.pjv.board.tiles.*;
++import cz.cvut.fel.pjv.board.moves.Move;
++import cz.cvut.fel.pjv.board.tiles.Tile;
+ import cz.cvut.fel.pjv.pieces.*;
+ import java.util.*;
+ import static cz.cvut.fel.pjv.board.BoardUtils.ALL_TILES;
+ import static cz.cvut.fel.pjv.board.BoardUtils.SET_OF_TILES;
+ 
+ 
+-
+ public class Board {
+ //  Board is represented by list of tiles and white and black pieces
+     private final List<Tile> chessBoard;
+@@ -20,20 +18,23 @@
+ 
+ //  constructor calls a builder to build a board and also calls methods
+ // for getting active pieces of white team and black team
+-    private Board(Builder builder) {
++Board(final Builder builder) {
++
+         this.chessBoard = createChessBoard(builder);
+         this.whitePieces = getActivePieces(this.chessBoard, Colour.WHITE);
+         this.blackPieces = getActivePieces(this.chessBoard, Colour.BLACK);
+ //      creates a collection of white legal moves and black legal moves
+         final Collection<Move> whiteBasicLegalMoves
+-                = calculateMoves(this.whitePieces);
++                                        = calculateMoves(this.whitePieces);
+         final Collection<Move> blackBasicLegalMoves
+-                = calculateMoves(this.blackPieces);
++                                        = calculateMoves(this.blackPieces);
+     }
+ //  builds a giant string from string values which represent a given tile
+     @Override
+     public String toString() {
++
+         final StringBuilder builder = new StringBuilder();
++
+         for (int i = 0; i < ALL_TILES; i++) {
+             final String tileText = this.chessBoard.get(i).toString();
+             builder.append(String.format("%3s", tileText));
+@@ -46,17 +47,27 @@
+     }
+ 
+     private Collection<Move> calculateMoves(Collection<Piece> pieces) {
++
+         final List<Move> legalMoves = new ArrayList<>();
++
+         for (final Piece piece : pieces) {
+ //          for each piece in the collection it calculates its legal moves
+             legalMoves.addAll(piece.calculateMoves(this));
+         }
+         return ImmutableList.copyOf(legalMoves);
+     }
+-//  returns a list of current active pieces of a given colour
++
++    //  return a concrete tile object by given parameters
++    public Tile getTile(final int tileRow, final int tileColumn) {
++
++        return chessBoard.get((tileRow*8)+tileColumn);
++    }
++
+     private static Collection<Piece> getActivePieces(final List<Tile> chessBoard,
+                                                     final Colour colour) {
++
+         final List<Piece> activePieces = new ArrayList<>();
++
+         for (final Tile tile : chessBoard) {
+             if (tile.isOccupied()) {
+                 final Piece piece = tile.getPiece();
+@@ -67,13 +78,12 @@
+         }
+         return ImmutableList.copyOf(activePieces);
+     }
+-//  return a concrete tile object by given parameters
+-    public Tile getTile(final int tileRow, final int tileColumn) {
+-        return chessBoard.get((tileRow*8)+tileColumn);
+-    }
+-//  creates a standard chess board, 8x8 (one set=8), return a list of 64 tiles
++
++    //  creates a standard chess board, 8x8 (one set=8), return a list of 64 tiles
+     private static List<Tile> createChessBoard(final Builder builder){
++
+         final Tile[] tiles = new Tile[ALL_TILES];
++
+         for (int i = 0; i < SET_OF_TILES; i++) {
+             for (int j = 0; j < SET_OF_TILES; j++) {
+                 tiles[(i*8)+j] = Tile.createTile(i, j, builder.boardConfiguration.get(i,j));
+@@ -81,10 +91,11 @@
+         }
+         return ImmutableList.copyOf(tiles);
+     }
+-//  creates a board with the help of a builder, and puts standard chess pieces on their standard positions
++
++    //  creates a board with the help of a builder, and puts standard chess pieces on their standard positions
+     public static Board createStandardBoard(){
+         final Builder builder = new Builder();
+-//        BLACK
++        //        BLACK
+         builder.putPiece(new Rook(  0,0, Colour.BLACK));
+         builder.putPiece(new Knight(0,1, Colour.BLACK));
+         builder.putPiece(new Bishop(0,2, Colour.BLACK));
+@@ -101,7 +112,7 @@
+         builder.putPiece(new Pawn(  1,5, Colour.BLACK));
+         builder.putPiece(new Pawn(  1,6, Colour.BLACK));
+         builder.putPiece(new Pawn(  1,7, Colour.BLACK));
+-//        WHITE
++        //        WHITE
+         builder.putPiece(new Pawn(  6,0, Colour.WHITE));
+         builder.putPiece(new Pawn(  6,1, Colour.WHITE));
+         builder.putPiece(new Pawn(  6,2, Colour.WHITE));
+@@ -123,28 +134,4 @@
+         return builder.build();
+     }
+ 
+-    public static class Builder {
+-
+-        Table<Integer, Integer, Piece> boardConfiguration;
+-        Colour nextMove;
+-
+-        public Builder(){
+-            this.boardConfiguration = HashBasedTable.create();
+-        }
+-
+-        public Builder putPiece(final Piece piece){
+-            this.boardConfiguration.put(piece.getPieceRow(),
+-                    piece.getPieceColumn(), piece);
+-            return this;
+-        }
+-//      sets next move a of a player
+-        public Builder setMove(final Colour colour) {
+-            this.nextMove = nextMove;
+-            return this;
+-        }
+-//      builds a new board
+-        public Board build() {
+-            return new Board(this);
+-        }
+-    }
+ }
+Index: src/main/java/cz/cvut/fel/pjv/board/BoardUtils.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/board/BoardUtils.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/board/BoardUtils.java	(date 1524348912000)
+@@ -2,23 +2,20 @@
+ 
+ public class BoardUtils {
+ //  columns which might cause exceptions when calculating news
+-    public static final boolean[] FIRST_COLUMN = initColumn(0);
+-    public static final boolean[] EIGHT_COLUMN = initColumn(7);
+ //  basic important numbers
+-    public static final int ALL_TILES = 64;
++    static final int ALL_TILES = 64;
+     public static final int SET_OF_TILES = 8;
+ 
+     public BoardUtils() {
+         throw new RuntimeException("You cannot run me!");
+     }
+ 
+-//    TODO
+-    private static boolean[] initColumn(int columnNumber) {
+-        return null;
+-    }
+-
+ //  checks if the coordinate is valid
+-    public static boolean isValidTileCoordinate(final int row, final int column) {
+-        return (row >= 0 && row < SET_OF_TILES) && (column >= 0 && column < SET_OF_TILES);
++    public static boolean isValidTileCoordinate(final int row,
++                                                final int column) {
++        return (row >= 0
++                && row < SET_OF_TILES)
++                && (column >= 0
++                && column < SET_OF_TILES);
+     }
+ }
+Index: src/main/java/cz/cvut/fel/pjv/board/Builder.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/board/Builder.java	(date 1524348912000)
++++ src/main/java/cz/cvut/fel/pjv/board/Builder.java	(date 1524348912000)
+@@ -0,0 +1,33 @@
++package cz.cvut.fel.pjv.board;
++
++import com.google.common.collect.HashBasedTable;
++import com.google.common.collect.Table;
++import cz.cvut.fel.pjv.Colour;
++import cz.cvut.fel.pjv.pieces.Piece;
++
++public class Builder {
++
++    Table<Integer, Integer, Piece> boardConfiguration;
++    private Colour nextMove;
++
++    Builder(){
++        this.boardConfiguration = HashBasedTable.create();
++    }
++
++    Builder putPiece(final Piece piece){
++        this.boardConfiguration.put(piece.getPieceRow(),
++                                    piece.getPieceColumn(),
++                                    piece);
++        return this;
++    }
++    //      sets next move a of a player
++    public Builder setMove(final Colour colour) {
++        this.nextMove = colour;
++        return this;
++    }
++//      builds a new board
++
++    Board build() {
++        return new Board(this);
++    }
++}
+Index: src/main/java/cz/cvut/fel/pjv/board/moves/AttackMove.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/board/moves/AttackMove.java	(date 1524348912000)
++++ src/main/java/cz/cvut/fel/pjv/board/moves/AttackMove.java	(date 1524348912000)
+@@ -0,0 +1,21 @@
++package cz.cvut.fel.pjv.board.moves;
++
++
++import cz.cvut.fel.pjv.board.Board;
++import cz.cvut.fel.pjv.pieces.Piece;
++
++//  defines new attack move, on an occupied tile
++public final class AttackMove extends Move {
++
++    private final Piece attackedPiece;
++
++    public AttackMove(final Board board,
++                      final Piece movedPiece,
++                      final int newRow,
++                      final int newColumn,
++                      final Piece attackedPiece) {
++
++        super(board, movedPiece, newRow, newColumn);
++        this.attackedPiece = attackedPiece;
++    }
++}
+\ No newline at end of file
+Index: src/main/java/cz/cvut/fel/pjv/board/moves/Move.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/board/moves/Move.java	(date 1524348912000)
++++ src/main/java/cz/cvut/fel/pjv/board/moves/Move.java	(date 1524348912000)
+@@ -0,0 +1,24 @@
++package cz.cvut.fel.pjv.board.moves;
++
++import cz.cvut.fel.pjv.board.Board;
++import cz.cvut.fel.pjv.pieces.Piece;
++
++public abstract class Move {
++
++    private final Board board;
++    private final Piece movedPiece;
++    private final int newRow;
++    private final int newColumn;
++
++    public Move(final Board board,
++                final Piece movedPiece,
++                final int newRow,
++                final int newColumn) {
++
++        this.board = board;
++        this.movedPiece = movedPiece;
++        this.newRow = newRow;
++        this.newColumn = newColumn;
++    }
++
++}
+Index: src/main/java/cz/cvut/fel/pjv/board/moves/NormalMove.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/board/moves/NormalMove.java	(date 1524348912000)
++++ src/main/java/cz/cvut/fel/pjv/board/moves/NormalMove.java	(date 1524348912000)
+@@ -0,0 +1,16 @@
++package cz.cvut.fel.pjv.board.moves;
++
++import cz.cvut.fel.pjv.board.Board;
++import cz.cvut.fel.pjv.pieces.Piece;
++
++//  defines new basic new, on empty tile
++public final class NormalMove extends Move {
++
++    public NormalMove(final Board board,
++                      final Piece movedPiece,
++                      final int newRow,
++                      final int newColumn) {
++
++        super(board, movedPiece, newRow, newColumn);
++    }
++}
+Index: src/main/java/cz/cvut/fel/pjv/board/tiles/OccupiedTile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/board/tiles/OccupiedTile.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/board/tiles/OccupiedTile.java	(date 1524348912000)
+@@ -6,7 +6,9 @@
+ 
+     private final Piece pieceOnTile;
+ 
+-    OccupiedTile(int tileRow, int tileColumn, final Piece pieceOnTile) {
++    OccupiedTile(int tileRow,
++                 int tileColumn,
++                 final Piece pieceOnTile) {
+         super(tileRow, tileColumn);
+         this.pieceOnTile = pieceOnTile;
+     }
+@@ -20,7 +22,8 @@
+     public Piece getPiece() {
+         return this.pieceOnTile;
+     }
+-//  if the piece is black returns string representation of it in lowercase, else returns default which is uppercase
++//  if the piece is black returns string representation
++//  of it in lowercase, else returns default which is uppercase
+     @Override
+     public String toString() {
+         return getPiece().getPieceColour().isBlack()
+Index: src/main/java/cz/cvut/fel/pjv/board/tiles/Tile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/board/tiles/Tile.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/board/tiles/Tile.java	(date 1524348912000)
+@@ -14,11 +14,13 @@
+ 
+ //  creates a hashtable as a "cache" to speed up things
+     private static final Table<Integer, Integer, EmptyTile> TILES_CACHE
+-            = createAllPossibleEmptyTiles();
++                                         = createAllPossibleEmptyTiles();
+ 
+ //  method for creating a hashtable of all possible empty tiles
+     private static Table <Integer, Integer, EmptyTile> createAllPossibleEmptyTiles() {
++
+         final Table<Integer, Integer, EmptyTile> emptyTileTable = HashBasedTable.create();
++
+         for (int i = 0; i < SET_OF_TILES; i++) {
+             for (int j = 0; j < SET_OF_TILES; j++) {
+                 emptyTileTable.put(i, j, new EmptyTile(i,j));
+@@ -29,11 +31,14 @@
+ //  creates a tile, if it should be empty it returns it from the cache else creates a new tile with piece on it
+     public static Tile createTile(final int tileRow, final int tileColumn,
+                                   final Piece piece) {
++
+         return piece == null ? TILES_CACHE.get(tileRow, tileColumn)
+-                : new OccupiedTile(tileRow, tileColumn, piece);
++                    : new OccupiedTile(tileRow, tileColumn, piece);
+     }
+ 
+-    Tile(final int tileRow, final int tileColumn) {
++    Tile(final int tileRow,
++         final int tileColumn) {
++
+         this.tileRow = tileRow;
+         this.tileColumn = tileColumn;
+     }
+Index: src/main/java/cz/cvut/fel/pjv/pieces/Bishop.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/pieces/Bishop.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/pieces/Bishop.java	(date 1524348912000)
+@@ -3,7 +3,7 @@
+ import com.google.common.collect.ImmutableList;
+ import cz.cvut.fel.pjv.Colour;
+ import cz.cvut.fel.pjv.board.Board;
+-import cz.cvut.fel.pjv.board.Move;
++import cz.cvut.fel.pjv.board.moves.Move;
+ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.List;
+@@ -11,7 +11,10 @@
+ public class Bishop extends Piece {
+ 
+ 
+-    public Bishop(int pieceRow, int pieceColumn, Colour pieceColour) {
++    public Bishop(int pieceRow,
++                  int pieceColumn,
++                  Colour pieceColour) {
++
+         super(pieceRow, pieceColumn, pieceColour);
+     }
+ 
+Index: src/main/java/cz/cvut/fel/pjv/pieces/King.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/pieces/King.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/pieces/King.java	(date 1524348912000)
+@@ -3,7 +3,8 @@
+ import com.google.common.collect.ImmutableList;
+ import cz.cvut.fel.pjv.Colour;
+ import cz.cvut.fel.pjv.board.Board;
+-import cz.cvut.fel.pjv.board.Move;
++import cz.cvut.fel.pjv.board.moves.Move;
++
+ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.List;
+@@ -11,7 +12,10 @@
+ public class King extends Piece {
+ 
+ 
+-    public King(int pieceRow, int pieceColumn, Colour pieceColour) {
++    public King(int pieceRow,
++                int pieceColumn,
++                Colour pieceColour) {
++
+         super(pieceRow, pieceColumn, pieceColour);
+     }
+ 
+Index: src/main/java/cz/cvut/fel/pjv/pieces/Knight.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/pieces/Knight.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/pieces/Knight.java	(date 1524348912000)
+@@ -3,7 +3,7 @@
+ import com.google.common.collect.ImmutableList;
+ import cz.cvut.fel.pjv.Colour;
+ import cz.cvut.fel.pjv.board.Board;
+-import cz.cvut.fel.pjv.board.Move;
++import cz.cvut.fel.pjv.board.moves.Move;
+ 
+ import java.util.ArrayList;
+ import java.util.Collection;
+@@ -12,12 +12,16 @@
+ public class Knight extends Piece{
+ 
+ 
+-    public Knight(int pieceRow, int pieceColumn, Colour pieceColour) {
++    public Knight(int pieceRow,
++                  int pieceColumn,
++                  Colour pieceColour) {
++
+         super(pieceRow, pieceColumn, pieceColour);
+     }
+ 
+     @Override
+     public Collection<Move> calculateMoves(Board board) {
++
+         final List<Move> legalMoves = new ArrayList<>();
+ 
+         return ImmutableList.copyOf(legalMoves);
+Index: src/main/java/cz/cvut/fel/pjv/pieces/Pawn.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/pieces/Pawn.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/pieces/Pawn.java	(date 1524348912000)
+@@ -4,7 +4,9 @@
+ import cz.cvut.fel.pjv.Colour;
+ import cz.cvut.fel.pjv.board.Board;
+ import cz.cvut.fel.pjv.board.BoardUtils;
+-import cz.cvut.fel.pjv.board.Move;
++import cz.cvut.fel.pjv.board.moves.AttackMove;
++import cz.cvut.fel.pjv.board.moves.Move;
++import cz.cvut.fel.pjv.board.moves.NormalMove;
+ import cz.cvut.fel.pjv.board.tiles.Tile;
+ 
+ import java.util.ArrayList;
+@@ -15,44 +17,69 @@
+ 
+     private boolean jumped = false;
+     private int[] ATTACK_COLUMNS_OFFSETS = {1, -1};
+-    private int DESTINATION_ROW = this.pieceRow + 1*this.pieceColour.getDirection();
+-    public Pawn(int pieceRow, int pieceColumn, Colour pieceColour) {
++    private int DESTINATION_ROW = this.pieceRow + this.pieceColour.getDirection();
++
++    public Pawn(int pieceRow,
++                int pieceColumn,
++                Colour pieceColour) {
++
+         super(pieceRow, pieceColumn, pieceColour);
+     }
+ 
+     @Override
+     public Collection<Move> calculateMoves(Board board) {
++
+         final List<Move> legalMoves = new ArrayList<>();
+ //      calculating attack moves, pawn attacks diagonally, therefore there is column offset
+         for (final int columnOffset: ATTACK_COLUMNS_OFFSETS) {
+ //            if destination tile isn't out of board it is stored in tileInFront
+-             final Tile targetTile = validateTile(board, DESTINATION_ROW,
+-                    columnOffset+this.pieceColumn);
++             final Tile targetTile = validateTile(board,
++                                                  DESTINATION_ROW,
++                                           columnOffset+this.pieceColumn);
+ //           attack move is added into the list of legal moves if the destination is a valid tile, which is occupied by a piece of different colour
+-             if (targetTile != null && targetTile.isOccupied()
+-                    && targetTile.getPiece().getPieceColour() != this.pieceColour) {
+-                 legalMoves.add(new Move.AttackMove(board, this, DESTINATION_ROW,
+-                         this.pieceColumn+columnOffset, targetTile.getPiece()));
++             if (targetTile != null
++                 && targetTile.isOccupied()
++                 && targetTile.getPiece().getPieceColour() != this.pieceColour) {
++
++                 legalMoves.add(new AttackMove(board,
++                         this,
++                                    DESTINATION_ROW,
++                         this.pieceColumn+columnOffset,
++                                    targetTile.getPiece()));
+              }
+         }
+ //      normal move is added to the list of moves if the target tile isn't out of board and isn't occupied
+         final Tile tileInFront = validateTile(board, DESTINATION_ROW, this.pieceColumn);
+-        if (tileInFront != null && !tileInFront.isOccupied()) {
+-            legalMoves.add(new Move.NormalMove(board, this,
++
++        if (tileInFront != null
++            && !tileInFront.isOccupied()) {
++
++            legalMoves.add(new NormalMove(board, this,
+                    DESTINATION_ROW, this.pieceColumn));
+         }
+ //      pawn can move two squares only once in a game, if it hasn't done it, both square aren't occupied it can use this ability
+-        if(!jumped){
++        if(this.isFirstMove){
++
+             final Tile jumpTile = validateTile(board, DESTINATION_ROW+1, this.pieceColumn);
+-            if (jumpTile != null && !jumpTile.isOccupied() && !tileInFront.isOccupied()) {
+-                legalMoves.add(new Move.NormalMove(board, this,
+-                        DESTINATION_ROW+1, this.pieceColumn));
++            if (jumpTile != null
++                && !jumpTile.isOccupied()
++                && tileInFront != null
++                && !tileInFront.isOccupied()) {
++
++                legalMoves.add(new NormalMove(board,
++                                              this,
++                                              DESTINATION_ROW+1,
++                                              this.pieceColumn));
+             }
++            this.isFirstMove = false;
+         }
+         return ImmutableList.copyOf(legalMoves);
+     }
+ 
+-    Tile validateTile(Board board, final int row, final int column) {
++    private Tile validateTile(Board board,
++                      final int row,
++                      final int column) {
++
+         if (BoardUtils.isValidTileCoordinate(row, column)) {
+             return board.getTile(row, column);
+         } else {
+Index: src/main/java/cz/cvut/fel/pjv/pieces/Piece.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/pieces/Piece.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/pieces/Piece.java	(date 1524348912000)
+@@ -2,7 +2,7 @@
+ 
+ import cz.cvut.fel.pjv.Colour;
+ import cz.cvut.fel.pjv.board.Board;
+-import cz.cvut.fel.pjv.board.Move;
++import cz.cvut.fel.pjv.board.moves.Move;
+ 
+ import java.util.Collection;
+ 
+@@ -11,9 +11,11 @@
+     protected final int pieceRow;
+     protected final int pieceColumn;
+     protected final Colour pieceColour;
+-    protected final boolean isFirstMove;
++    protected boolean isFirstMove;
+ 
+-    public Piece(final int pieceRow, final int pieceColumn, final Colour pieceColour) {
++    public Piece(final int pieceRow,
++                 final int pieceColumn,
++                 final Colour pieceColour) {
+         this.pieceRow = pieceRow;
+         this.pieceColumn = pieceColumn;
+         this.pieceColour = pieceColour;
+@@ -37,25 +39,4 @@
+     }
+ 
+     public abstract Collection<Move> calculateMoves(final Board board);
+-
+-//    string feedback for printing pieces on board
+-    public enum PieceType {
+-        PAWN("[P]"),
+-        KNIGHT("[N]"),
+-        BISHOP("[B]"),
+-        ROOK("[R]"),
+-        QUEEN("[Q]"),
+-        KING("[K]");
+-
+-        private String pieceName;
+-
+-        PieceType(final String pieceName) {
+-            this.pieceName = pieceName;
+-        }
+-
+-        @Override
+-        public String toString() {
+-            return this.pieceName;
+-        }
+-    }
+ }
+Index: src/main/java/cz/cvut/fel/pjv/pieces/PieceType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/pieces/PieceType.java	(date 1524348912000)
++++ src/main/java/cz/cvut/fel/pjv/pieces/PieceType.java	(date 1524348912000)
+@@ -0,0 +1,23 @@
++package cz.cvut.fel.pjv.pieces;
++
++//    string feedback for printing pieces on board
++public enum PieceType {
++
++    PAWN("[P]"),
++    KNIGHT("[N]"),
++    BISHOP("[B]"),
++    ROOK("[R]"),
++    QUEEN("[Q]"),
++    KING("[K]");
++
++    private String pieceName;
++
++    PieceType(final String pieceName) {
++        this.pieceName = pieceName;
++    }
++
++    @Override
++    public String toString() {
++        return this.pieceName;
++    }
++}
+\ No newline at end of file
+Index: src/main/java/cz/cvut/fel/pjv/pieces/Queen.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/pieces/Queen.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/pieces/Queen.java	(date 1524348912000)
+@@ -3,20 +3,24 @@
+ import com.google.common.collect.ImmutableList;
+ import cz.cvut.fel.pjv.Colour;
+ import cz.cvut.fel.pjv.board.Board;
+-import cz.cvut.fel.pjv.board.Move;
++import cz.cvut.fel.pjv.board.moves.Move;
++
+ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.List;
+ 
+ public class Queen extends Piece {
+ 
++    public Queen(int pieceRow,
++                 int pieceColumn,
++                 Colour pieceColour) {
+ 
+-    public Queen(int pieceRow, int pieceColumn, Colour pieceColour) {
+         super(pieceRow, pieceColumn, pieceColour);
+     }
+ 
+     @Override
+     public Collection<Move> calculateMoves(Board board) {
++
+         final List<Move> legalMoves = new ArrayList<>();
+ 
+         return ImmutableList.copyOf(legalMoves);
+Index: src/main/java/cz/cvut/fel/pjv/pieces/Rook.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/pieces/Rook.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/pieces/Rook.java	(date 1524348912000)
+@@ -3,19 +3,24 @@
+ import com.google.common.collect.ImmutableList;
+ import cz.cvut.fel.pjv.Colour;
+ import cz.cvut.fel.pjv.board.Board;
+-import cz.cvut.fel.pjv.board.Move;
++import cz.cvut.fel.pjv.board.moves.Move;
++
+ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.List;
+ 
+ public class Rook extends Piece{
+ 
+-    public Rook(int pieceRow, int pieceColumn, Colour pieceColour) {
++    public Rook(int pieceRow,
++                int pieceColumn,
++                Colour pieceColour) {
++
+         super(pieceRow, pieceColumn, pieceColour);
+     }
+ 
+     @Override
+     public Collection<Move> calculateMoves(Board board) {
++
+         final List<Move> legalMoves = new ArrayList<>();
+ 
+         return ImmutableList.copyOf(legalMoves);
+Index: src/main/java/cz/cvut/fel/pjv/board/Move.java
+===================================================================
+--- src/main/java/cz/cvut/fel/pjv/board/Move.java	(date 1523639292000)
++++ src/main/java/cz/cvut/fel/pjv/board/Move.java	(date 1523639292000)
+@@ -1,39 +0,0 @@
+-package cz.cvut.fel.pjv.board;
+-
+-import cz.cvut.fel.pjv.pieces.Piece;
+-
+-public abstract class Move {
+-
+-    final Board board;
+-    final Piece movedPiece;
+-    final int newRow;
+-    final int newColumn;
+-
+-    public Move(final Board board, final Piece movedPiece,
+-                final int newRow, final int newColumn) {
+-        this.board = board;
+-        this.movedPiece = movedPiece;
+-        this.newRow = newRow;
+-        this.newColumn = newColumn;
+-    }
+-//  defines new basic new, on empty tile
+-    public static final class NormalMove extends Move {
+-
+-        public NormalMove(final Board board, final Piece movedPiece,
+-                         final int newRow, final int newColumn) {
+-
+-            super(board, movedPiece, newRow, newColumn);
+-        }
+-    }
+-//  defines new attack move, on an occupied tile
+-    public static final class AttackMove extends Move {
+-
+-        final Piece attackedPiece;
+-
+-        public AttackMove(final Board board, final Piece movedPiece,
+-                          final int newRow, final int newColumn, final Piece attackedPiece) {
+-            super(board, movedPiece, newRow, newColumn);
+-            this.attackedPiece = attackedPiece;
+-        }
+-    }
+-}
+diff --git target/classes/cz/cvut/fel/pjv/board/Board.class target/classes/cz/cvut/fel/pjv/board/Board.class
+index e25e3ae49bb8bdd4e9ff8757accb7eb704e36808..69b09cb59e2febfbedfcec3931bdc30233560391
+GIT binary patch
+literal 5856
+zc$}42X?RrC8Gg@fcXGLeAwVFIuqq4*Fzg0`m<1$}BrE|!ifx%pZYBehnK+pVi>Rn*
+zt!-_q-O#SsO6_9NLP(@2w$fVdYFoP3E<R6x^naf|Jf-wK=gyMJ%p~#0J<E5#^PO*b
+zzwey;=Ko%P1;84-tKnW9Q*lDaM%-7#=Kdl)fRl3ipqxG=rw_}~DM@=o!=pMT;lw0-
+z2#;y_u-yE(8z0f|Q5_${6LRt6ZhS)ak8Aj(j#A0|B%YdtPvO(D`HY6o>X?JiNg1bg
+zJdJ1M=qVk=_`GbsAXmRAX<sVBQhZs*S8!$$p2b(?>eu9s=QNzvxpqRs*L76kc{%xp
+zhHvUvf#)@ROUFvte_O|D*}tG;t?a*}W4*<EPBt%Ucu7DH^qBqq^-+JUOTg27$Uors
+zCE}s5uQ}8ouMsF}3k4(ocp_#BtR1zysX1`m7Z^yyecfi**LP^Z*D2-rxNi3Q_OPwl
+zOc9fg^n~K(&X5@}`vpoz2x*9h!)72Jiblw`KJP;A8GTBSPsy|7cZU6e!zuZ$O`%9A
+zzFA<Qw}5)}iBP!9jMXgNC*Wv^cG0pa&7p|dn&|B`V|)CaVNyz(qXB<-pFb9o^CZy`
+z?+NjUib8^AONF#f>jZ&$<ES7oT{)-T-yaGzn?ZlLB|0Fjn67NfA(v)rb*wL?*~SSv
+z&pN(WO7lsX%7N~9v@ISBMS?unyVQ~t_D6y~i>f#n%suAOxO7aObrIs%Bv6*Kn6Y$n
+zTbw4f`1_Q~%q4+h8WTu_{c$sC-wJPjbSy0d8mB^oz}&H6LRj=A@u7!D_;aF&&T^QB
+z?`k+N5X-OZxQNYf%mibl1<kn3EP=(|rlzIiXCSx8+3x5O+Ac>tGSM3$<|(O;M-QY^
+zv(`I0|8vB1b2Jev91lla>9%kpdbt8hn82(;#|RkyEDcwV8?T(|aB8$s6RKM8&F~4R
+z;R(b{;=Ex*wOuuCfyyn%;t(;fG!<BMV0=q7FlG0?*MlZl*r!=GF|Q+CTuz!b&szwU
+zsrsn5(Uk%7P6ZWRQCCO>1m=&iaW7BrH_(6!2KsQ1ff{VmFlgW+!UlrqF>nWJ4GhU?
+zy&QGmeF8HJR3v7xfnmH{@X(C026keXfc@4r^tvY_Z%5}L#$UrF1K-1C1Fzs!Mo6b)
+zGVZL4#r(&lPc>XI@EX3)(qZ5Sc-_EN{7|5LEaXTNeq`Vc{8+=A2HwI?4E$7X{TY64
+z;1~F%fw%E11HZ;^G+Z<ATl`ML@1<FPFz`qGNpATw@2fGRFEFQo4!fh#!_wh@G4Kxl
+znnzBOZ+j#Z?1>j%uMhS2MEeTcx+`Itk-}<hS2t6k)t&w$5d(k2-wpf&NAvKFfDmt-
+zY@qWx%MhC4X3QUt(jj)Qd>fSJuK`TJ_Qs|?TiMq)*EMV>J1eQc3~$rOyVC+kO%`BM
+zx2&r>8te6Q&jxSqZF(SANZvcy<?rh=BeZFG9wE6qMm#z4l`!7%p|t&_-jNj{<rjIC
+z^!WQ*)iZ!DVsbemYLfkGNL#+HVBJxLpx`Cq@^^LBg~NPK6nYNu=p}(@uP+#l2E(S0
+z!`^6wo#OB{_4X#>@{wVMnD<QIu^rt4bp>A+6O<)uSEzqSAdn#V=y^8-ztehv%+FKx
+zMm<4_Q`{*W&CatYee>Dr1PQ7<XrT2a%8?DxNOvfhV02Uj7mQ(tdUR3j)Qq^MNZbs{
+z{MQEj;e;tYRGN+9BnP+68%MH0bskN}MsgY_x^<6O&zdcK){O1R2|ao?d-LYe!~<QC
+zPmk0qfYrg>mq^9_j$E8iNa0LMYW-$hKJipVDERakPl{9hcVGekRj2X~*Nzf-M?&Cs
+z&TQDsId91HypHqwthvU%0b5Af%F(No;9y@<c@ehCsv+1fz)@Lw9*&pb9D?ftwB*dK
+zW<_$QU4-5u2SpsTzNpl=lkH*@v7JGIGhtvBW}^&V{^~AAIaZ;9f2MP(_B?DOSEY3<
+z8qox((OuY1rB*>lGZnUxQ=o+-J6gG3N{Y3%BfYkRYeL@JNn@_UrKGlA!laIiFq-YR
+zmwRf@V3V|<d>E5$xPszAOlhqu@i;DHYKMJ!+Ym|yF|EDaanR%Ldm4IG$#gkCWfNy_
+zzFswm8RydWErgrxEo>LVgCz`t7i(zACjOu|kk-V1^OS81$h{kF+^I7ld$5;UQ?sPK
+zZpyn0`>1z2XOm&S0bRp>QGFdwGV)QwR+@B$0-WrtFQJqs&1|U}#w>x><-;fwIE}d+
+z%ob#uv(d4v%uzWA+F4;k``MfCEE~dHsk}oeU#jG+;nC}`2)AJ+syW+`R(KKBIDosA
+z1FO?vsmA*idfepy01dUJgJG@JrPn@4nlz>uwi}qD;h+ZpbxO5x*Gawrx{`s~MXT)W
+zr^&#~@wj`+52m7XPO(dcU1SD*Cl#D;v8UCV29q8YYSgWKtIOA6(rN!<?_%Gaa$4mu
+z=8bUL>Xg%pH#*83gP4CB<+5L}(OKpk#KNlQU@R+h4r7sW<XhQ}v{0~>?KYa%$k;bw
+zHKSQW{BEIpwh@<7=e2bBYNnrbs*{`x5W*ql-e#4uP@}^LD;I7-?<n_5uFVQ7axIc{
+z?-YrZq<hz1C(-h6ln&s7Iq87cnC0@IMo;Z!6st6FpFy>KbA{|Ht2phcI9Ogm_uo=J
+zgj*~44P&ug;%Ep<+D_RC{%a})-e67eW>R3Tsvmpl-gZWMKUM7@miAMNcBa7HX*7A5
+z^fB_;seVlw{*5ZhWoYZsk9ZRP)8M!Pw}yoHFEnu-%VZK*W(}~S9KlfwHny7<CTuO2
+zu#|DF++KMJRULLai_=9c8^rQ<5>|BB9g5&f5>|HDor<t3Nm$)scPYY}Bw=lbT~ma0
+znJw<DEfnf;Wl80^9xdzO^&JjNliM-`$7q6cG{H5Rpp7QDM-x0bdpx5zd0bS*nN4xz
+zP@FjwR}MwXp}2D>p4@Go?0r=o9?jAy6DE&lX_SeRN3%4_1j?gXqBD{5XqM!4BX+s7
+zc1g)ejeH}HPikbH&*31d+gUC*WD3p`Oj5v4#0GeAbrHuVvD?i=46@SoFa<+6$rOH)
+zN&76*_B_+_Dyi3)eg9<k{Rj659WhbP|M3+>b1eqMZX6L^{AC%yG4U9Vi)V1JcmXHG
+y72GG@#{J@5JRts!lQuUVw9Uptw&i%(R*Oe$jd)b$k|B$OZEG@b1db_fkN+P7lOKox
+
+diff --git target/classes/cz/cvut/fel/pjv/board/BoardUtils.class target/classes/cz/cvut/fel/pjv/board/BoardUtils.class
+index a7ef1f931b544301ec98231234cf67047209516f..1328e18983e6047e79060c09df0705a552deeb0b
+GIT binary patch
+literal 657
+zc$|e&O^*^m5Pi)I%!shC=(_9R2kZ$vI0uirF)CpblF>~BN$|31hIVZny2;Rk#=o*R
+zFJ8QFqKV%9QO4?l1aBUu`qk^I*RN9Z`_K2E0G{Buj1rn2?)kW1Mgb2zJoM0FxbZxS
+zE=Gf>KV)D7hH6i%mEp>ad6Ef-nx8RLhW*jS`Prt<ay~=pR4QqnGB};?n8EGonP8|z
+zQi)gDVk*)RpC-gKA|3N&%u{LeE$N!~a>Z~Q#h=4?otf~RNW$fO9Zoe*XW<JQ-x!&!
+zP8bg4ioD3#NG77Ebvl!Z8`3Ct27~TfdOy`4$xf`3Y@uj?q2cj|mwdT>syx(L8jCY&
+zliE)C@tm)D1y$@Z1Qv%0SC`@IOc}Wl{ZFx28mURJG0|Bo=1OVPN;B13h_-EOGqnEa
+zo}s=|KA+A-Y-pZNv?GTmmFn`OJ4PEtS`lbBcj3VYttQXPl;8X(uh7S=ZHhHwPT>#&
+z_8wh>{Xk*TaIWG0%4_Qs?Y2R^E}?xwl}$AoxRvv_aj;dIP^GO6f-4*bb^i<Yn^&kd
+rE%My2aGh^->*T7XT&12X-r01~=>s`B%>5n_E~0QmKM<oKtfAm9O2>pS
+
+diff --git target/classes/cz/cvut/fel/pjv/board/tiles/OccupiedTile.class target/classes/cz/cvut/fel/pjv/board/tiles/OccupiedTile.class
+index 84830ca328052cf5819187304ddbd701e0495ef3..853d4ba6c158b75be287c51fd41bf9d130e59ca1
+GIT binary patch
+literal 1084
+zc$|$>%Wl&^6g}fSoH%ZpmeN3ymNw;)n6|@v17bm>N|gdZr0N2(nK&jmxOQYasl=b~
+z1#DP=1VLiK2k=pdJGNVeQUw;CxzBU&J$L-`*Y_U)?&5)lJT~&kVN;`{u3-yTHC)4W
+z4L8ux(1fAlriyKb!pOEvtK%Nnj>WLvHs5h`G7kA`%i*Kpgh%dxKbO}-hU_ETwZq2@
+zTaEqw`N7RYhIGs86YOH!cCBaQqn_m-h@LF8-1bc2917o-dSXn6Z|s1<_zSn^3BS)n
+zYBAs)(;QQszHFEpQl<5Ucg(={88oT2JZF65l41uZ!3?QJ^Cd%WV1-e43>%H+zlP0)
+zUN`h@cfhbh(L*s2+!5}8$5x71=!U|4`&5jg2~_M*)vh=8O=~aWb7{8QT?wE=$F2?y
+z1s#`gSq0Z|3%6C=(P?vK758*hP$eiG_fchN{4W_a(!9_(q;z%&h74^|?y5GA4Tj<g
+zbwn>s$WS?lz}QE`te)?oec8bihdBGAl}>MHnIS#K&})0gmfsSAg-v?8d3w+ESR`E}
+zrRmeLK$ap&uaJr@Mz!`0%-Hz~<umCD7U?XKS4L+kzCc=uG$TP+B1A;e1*{O7lrEB_
+zM3StPBI_#3Nu_PNWt5Wsc#5BmEXxtD9(xm9Cij|T@+323e1Y=mOmcZ9Idhs!%TJO;
+zl3X{YNKKKRBJ&=lSjkSIet?!J5;-+9_8Q&mMBv&?g?dt<MxP3$vZs=p{`jb=E58A}
+CmEs)$
+
+diff --git target/classes/cz/cvut/fel/pjv/board/tiles/Tile.class target/classes/cz/cvut/fel/pjv/board/tiles/Tile.class
+index 3a6915df64e4002d7889812d32e05fdd8da112ec..de75b9bb1de4a83dabfb11825ab6bf1b3aee622f
+GIT binary patch
+literal 2195
+zc$}?OT~pgu5Ixs6mMsJ(K-0u_6Np1=J8smLe$d*`f<uZE6KG6G$xBBF#SxV)k1f-o
+z&-o>N$!pq929nHV`qr7e<rnmSWcqckFeDUW{Ls;8@9y5+J-d5XSI_@`@(jQv?kM<F
+z#b=mO@j1RwkXI2xp&!$jQSl|dibBP#6z3Ea6<kr#k9ifRa8>SnEy;pPQc`eDK=EwH
+zy6OHPAW8zNl!~s?uGIzlS4!pi%6G-t;=;VZc-eGodewESj-`{Wxpgj%W0{`5Vyrt>
+zULabrt98R`H!Xq2N%n>Erm<z{j#01brMhQTt!Dl>mHDG?ZnZuAuI1>B%`JW1HJTf`
+zOthuX*BajT3fcS&;S*-lGCXV6ahBay%O=LbeoG*g&h$`1sOWAm`&ikoTQ}OZb*t&`
+z2n?59({NUerY+@;Qf%_I1qQ8spw7nW!`9o4{f&W&XPDnF8Vz4oa9yBza$^5~uhhL>
+zNm<}Zx>P#i+psN@Zp(7XXS#;=qYCu-E&}Je$KqHDgbQ}v_Gair?93_~@7=R`N*8(o
+zQtj4~X|@@4Lm-&W+!2UWEpK@bek^@7+d~P^x?nmTe7X}|t+?%`X<hZ(5tT5PWqTRy
+z_;ltZy~U(j3d$N5aYMn9hGl#sFwxT~XvpFc&tJn$R1~aexP?^>Z{f6t+xYg4$gdh9
+zknU!(-=Tf5HAyBl3}ZyYs3d0*7Z`dqMoa6PoH&8=CrqORext>L(YiNhw1~TB8r~Z;
+zfn3)yKkUXMI(1~cd0A~4PTN|#%kL{)${h0n@HiW7R&Xs{{%=|NUNo7bs;<SBYPGia
+z+I<i<-Nv@eZ!vx1UDK@_hvUk!INkzNJ(YEA5vh|u@zu~c<bMJPa!5EP<c8&>aE;5s
+zguvV612}^)Ejd2q6VyC|LLXpy7lG@+LSiWL6ZGJ8Qm*6K#4dtKzE2TaOC)#D_ZZ<2
+zZr=}x2mkzWUy#1Y?m~IU03jqv&oLYb7b1|H(oq8CxPC-=3h(d%#t1lwi?khK5@GJ0
+zC&z1qKgBWn0^@wO1I-yq7x<1K^cTVkQsPf2;w4fq(buW!BBGeUyL6E?HK><0P2_&Z
+z*<TQevjSPkV?=}a4eA37JVpOnJdxXh_Rw#d%sotZAa#%<19Vy`xluny$-Rd(A!SAi
+z0&)I}Gh}%qbkNthDV<~49Smd>k1&``K0@qgKhdOrFd@=3X_jeUVlQ&9Va6!E?_<V%
+zbm4OnJrEMO44thO_y8YLA7Sq%JFqF=k~!^S=vPD}obcgP!h*9A#t=0h`)PdgFC(Zf
+A$^ZZW
+
+diff --git target/classes/cz/cvut/fel/pjv/pieces/Bishop.class target/classes/cz/cvut/fel/pjv/pieces/Bishop.class
+index 8994b121e52e1f070b057033e36804a6d8598343..3ef89f6628ca49a3fe78fe0d6ae1684653c2ad2f
+GIT binary patch
+literal 1256
+zc$}S6T~8B16g|@xwk-=(s1*gI;s@Ibj0irJkN}CX$s)uO5+1k9QikmAG~3;p`m4|f
+zF`D=T{87d`+gea;L)=Z~-Z^vUoO|!g{P_9xJAid;WRb>W4NtO2;As}mu#|y;QkI6Y
+zhUXfV8AdmSFTyQ`d81l2?GM~;M<G9TT;4oy^Ihr6D5#W<7*f0P#9^2;h3~wLyt)${
+zT6LF@DO1{(dt?Pd&3j-fJQFR3g&T}b;n+@#?}*l!Y*rZ3G4M{lXJA!^v3N?dk>_8V
+zQ4$O@gVJM|pbYHDwL)i4wjC0FW!wm^ODj0xJ8G<y%yX-4@hB9oB5@r%6w)W6kvNLF
+zF?2ga)^!?|+Y`%OV>3l7r1ip|P3bg$H)i9n*v$b#o}%VTpt41LnVM+$Ru~0Dar{5E
+z-BKqV%32r*zrm0<dQ7h6H+UCSmDi}{w)0x3YR0<fxT@lGWRPW;zEa-~0;{8nR7)!w
+zR&{W^(6FZCCDwH;ph%q_dP5lI2CN?_!;m!8<y^9*#~V^MT!)kENuNwyI<I<O6sq2<
+zMCiWTvf0@`W!N_UeFsYBExD){#bLRrLnpnRYVFPb0mI^;r_c|s;1M)>vg%8Msdmyh
+zMzcet=m*l}*}0WVu#e;?pwp<HHZV#1au_GC+>OHoVTipP?huRerpQag-Zb*D!d(;y
+zQ3@8>B-!zANE}}xxwrfUsf##~E15iPEyOa#Zg5{_9QQCoglUZ6J|0l?ETMWInImLA
+oPWmBXbnd;v*2t>lv`-lMjM0mJU86BP8;j}Pke(Q$E~%)+Ur9$eH~;_u
+
+diff --git target/classes/cz/cvut/fel/pjv/pieces/King.class target/classes/cz/cvut/fel/pjv/pieces/King.class
+index 626eed85ff690903daa37c9053365e0373de7a8f..507f7953056df72ffb9dbdb15c6adc38e7b313dd
+GIT binary patch
+literal 1248
+zc$}S6YflqF6g|_|w#)L6BBCu)@xitNBZ8kwNRUL+P|#RH!pH5htV?!xn(b~){Z;4(
+zF`D=T{87d`+ghqnLflPe?%X+Z&V9`M{PpbzfOTxB$l{@bM=BC{tl|lla?nv$X{ac8
+zs$iKRv+4LwxWzE9*J^e1BR4xy$WJVnw@y2JN4O#is^vq5)Q&i|7$)nEZ|z53(+UoZ
+zrc0jbx-bp*&<Gs4?mJWAd#6pLml#`)Wm;{%>-ct+Asa8>i4P2{#xNEyNi_2Op%sO|
+zFgGeVh6&O)Bi9J6J<+j9_Jw{4+!RJ|%wNi}TCSfO9fL=q<4O|OGDAoBM3jzESA{)%
+zoI!Oh+i?40Q$uWZrybJ%?B6Bnw*Hi5;~(ti2q8~Wb16{WBEDS1v3(<q0-`wjpWJS!
+zlMO{945&2>GkTxNHGG@*yfX6!mE5#mIWn7^?Bc3KX~;ok$X{r02Z7O*Dax%C1*;l3
+zo+((<@Eq$J7Eod+Tyr}ZiX(R4%84PV%WJu03Xj`D*sjIN^n_1SoHnm{UKGl@%P{Ds
+zo1)cybHcE#U)}$5{f1mrhthSi$%fMt*sblqW>_5c1P0J59zda|D!(L{EG3O&v^qeF
+zejr;Z6j#o{K9QY(Mx%VvK%UOcV4SQ<4~Gd%#ynX};TEw-YnrS?Y~=|p6>ejeJW|1+
+zIZ5;QcO;I^k=$GUiqu&g$c4-t9laOJlzQNS%sB4QE?pd?ahEU&6v(R$JVo-%$3fpG
+lAN9PS*c#0;IOQ|aUywN)<duot3$d8igY?B1RY{^2e*+llH532<
+
+diff --git target/classes/cz/cvut/fel/pjv/pieces/Knight.class target/classes/cz/cvut/fel/pjv/pieces/Knight.class
+index facf765007638f19e9c2b4728497a02c8289ff1e..7e1bbc5ca1d90481cd8e0e56ec1c81e01da1c9c4
+GIT binary patch
+literal 1256
+zc$}S6YflqF6g|_|_OS&7M3iDHK4>d2BKWC<1WD9}0!9c4AGgc04B6djw!1a;SD_!o
+zXyOm>M;Y&IYeBJuxSPz}IdkWnd+*%&@$>6<04rF{B8`U{9%T{3<1C(FK7%qUSsJPu
+zo@!WNNUaG^1nUg5<$Aqge&A*&4EV9-@YZREZ%RjoeywuAkl2(*7Q<*mc-BtnHZ6bO
+zXgY+9H>7De2Zk@yx(_CT6VYZUUSVtr%e2~j%M<oVP-93(z&rV#fz=su(UN3C*SoZ$
+zAQ+~Hg~u>L5tyN41lG3fSS0+Se8ssb4gZM0RAa5uI5j#34+G&S62~$FAw42WMqX5n
+zYmYNz9m_VHzS!6$wuWe{w5I+nO1Jg9Fspz0t_=}#6*X4^wRPgl><Qa5g3u?5!~e<c
+zhC1m$?ghT^Y=+5lpUE*ioA*$a`5u+rv|b67O|Ey3OUh4223dxQ3-t}(H@YfGwY8{W
+zNe9O>4a+*7V?{?1C93qb9l}r;vj0|14DqsR&UsV1+?LXIEKa5?J({A_dEIrxK-FFa
+zLj7*aR(JQ9VWa%-9;h^K$VIg%T^F0Wbkf_}slR@+&oDRaDGZ!zcmR!_toq_$s+=_D
+zXtj?7{Xn`pQ&>C)`$%>SI*saS1LJgV0(r8kJwJ?KG~!8P47Z3yS>t5IB5MMZk-}|E
+z5uy|fn&UL*zae&bj`;S%7bMQ2KrUpa>FB*krqpvD$mDT{cBy@k#9i`<VTMqBfD{Os
+pje@>U7~Ok6v1OW7aM~v%KO=QE$SW1W#Yjx=x%9;tRY`fx{Q^`qI7$Ej
+
+diff --git target/classes/cz/cvut/fel/pjv/pieces/Pawn.class target/classes/cz/cvut/fel/pjv/pieces/Pawn.class
+index c0f2bb0c4239b9ddaa8c339b2b6c5131c6be3046..9fe3e6092364846c2e93b31734997779dd046505
+GIT binary patch
+literal 2967
+zc$}qH-BS}+6#p&x*s!c3N~j1_L5m@P!7pqHRb!MIg+xh&f>l_O5EqjyO*UBUceSm3
+z>AQV&rtMQ_Xs3d$9pCChpZe6lqtltrIMk{A-A$lTK4jX5J@@Xt=bYcU=lu5E{pIf;
+z9{@Or&lEJ^OeJ>UtPuS|3<wcc5WzVyJ1=8UfeTUb5>qHHC>X-95U&gK5gDTjs&TOj
+zZ{U)Q%L=w)OlXfQ&@iDOj)a0FCM%J`6@@~VF(u=w1m{#CGo4IGkVYlc1!A#4@a$MH
+z(tlwf936}F^+iv`q7o`Dh9p#<JQa<F!hu*Q5*{0j4AX|I&R#vMn@1%yc|xK7_;p`=
+zreOLelWE`d)Qm4^q>Vz(-!>${9yAh3dg<4*$#5Yvk<7)ki8NQX_8W06J*4Gy@m^ZA
+zn^*Kaov!dWttaEjyziWLE$f%yvR(&`YZ9ugDFF+aY}p&(C2U_SFbSK99WSIcGdW<)
+zBnf%gvqE{o&~gdi2_gM${ZrbE<|~+bS~y83<ECziP!v<krIKb$7vZ<8;e%ETUg*$5
+zja$J+CMWYrlV=g7D4IJg?bVK79tttj$&{8Z1-_*$vVJ{pa=%L8g|dA)BTIm~rxQIp
+zy_D=j&sg@Z0h<v(J^|-HO7EMZrWU_CpiNtDEJmeeWMu4=!4gzP^;A|f3ppZ;{FkI|
+zFbs7@OX~?1u$a5x`cR=z+eT_*%Lz_7<0U$|Oe1RM^lVB(t)~=iTFa(<#Z^&?DESmm
+z_E|Ah3VQAnS}IzwTSX(9RJ@3tD%#Mjq8%MF3>DLOQ^hVcOW5{r0s^_5HY>^?Y;!8S
+z!r}yiOsa}JxLm-DifedFLhE`N3Yb=XI2WE~SsE4B@%D49!bUDr<dm>_N5#8nlJTC3
+z_wj*@4^@1G8!WVnoA_A9Cn`S0EfsxuO+v#uAFG7MwRXj@ig8)h_?bS<Pzk%9S48rC
+z^^cy6;dgpc&lOq5T6@|;mSmSw^n4^9FEF%(wZyLIqIN09U7nTXDL;kiCrjE(U^`Z^
+zS?)fU*C*@xV5{`or}o8pY+8Z`aeK-r8=08m$^GJJ$NwL^0I1UQeR?i$3c^U(8#gk(
+zlwqXONgt;fBg?`1o_(QAreKOjQLG<7t?Ajwq=bNH^^VG{ZOoT{O)^-gxIn+`j&40a
+zB>IG)M$j;F37x%3v|3(UA{Fv-?{4*Mut%&wEl-bVue`?21%|_`T?fyq`q9k$x`F=$
+zHdKgq!C8gq7}m%Z!O;#$bQ8)we7gw;SAY(0Lu2OxB(Lo*D!h)Llo6XfGGecY+=b2S
+z{T_Bcj(Ir8??V38^7ayC9j$@wkol{iVjGcb*_G<i%2jXCFZRL%STi;)qKX-t5j}_*
+zdl+Mt(20FqVMNj+{-n6Lw|F0}kp)x^5ZM;)e9&#TbvxV+xBU(-b-Eq<x}Dy3Zpm&Z
+zr82&Nsvfyseu$oWc^>L*91!ECd2AMue~H~4_fb94F3utg1GjVBQdq#2A5c?);hPTW
+z>nC@LK7|4uhC3gkrIX&iKm*OUmYFYLThWX!wYPD$XlEZUS@ziL?GMpaZ?}v+^s}ev
+zr>V@(lJ=4(roOi09^7+Ql|+6=nPISgE~|De{L^bi4>Nj#IgK!jab`{DXmG!P1Gs@h
+zxP`;`97pgK{P+g1;sK80XB@+?2;esa@jFiAPn@x8beferh+g>6#aT1L*iY%C%@KO*
+zvMRW^T){=^9%8Lr_=6bTtk(_RA4jNX!^_-Pm-k-bUXN8@=Mz%GDZ?+LSH`O{j!LA!
+zUl@G^$76KKIQAGJ%0*%ww|Euc!+Wa4&nfyAQPeax-9z1NDD90+^LSxSnzKkQlC+s4
+zaGubE{C$m;k*{Vs^qNxWVs^4bz8ak3%w`2j3RZKQ_fH9TKS!Z1e~0b!sGnP=ywh49
+QwNTWeN(n_`I)zr~AMk?fQvd(}
+
+diff --git target/classes/cz/cvut/fel/pjv/pieces/Piece.class target/classes/cz/cvut/fel/pjv/pieces/Piece.class
+index 75668ca9f38fd1c9b662b5f4ad75a936b7dd9d1c..5e91c4db306d52b635b05d6980262bb73c8cf6f4
+GIT binary patch
+literal 1074
+zc$}S5(M}UV6g{)MZE0BwVnHZS1r>KU(RnaFmGB@5Nt2>POcQ+DE@Pc$yGypaHSwE#
+z(8R{X2S31%GTxa2A>GyoUhchf@0>H|%*>y^zkUOF39o_@_R1*Yu?kOAc&fsF3C~J!
+z7#1$22*kViGXrZeEb8S^9A<;))+){thK+Xcg$JW7<sU`JFZ&}tnKWsm93IPLn4ZKV
+zK|~)IiU%^1=^?|8(`wBFx*Z1VD83-fa$82?O*ZI?<h|bwsk7RS13&EeiB#*Wrj>q@
+zLxx6<Q7awtQ<apUo=8t`oSBYG-m2HVYkRjF+F{*s=X)d)@>L~GK^FR{P+m#OD<=o(
+z#(r|aU#r-3+kJoJ^DLF2q6$Tj$~Ypr@|o;KewroZ>ijMo2Xin3rHd<d%|kk;az^q4
+zaV*vKRkYm~iq6I|TpJ50+o-6p2;0UIstnuzyIh79ttRxN9)H{IlNfzB9c!2VRf)cx
+zg_@$Js-~EACUQL?e#%AAgJXr_Jz8ZjXaa0{Kf%1MF$`~e4AXl)hUJ-K6u#5Yz$(Q$
+zK|z&;`$SwLvNfvKv4IDa0dGP?lQlqBN(j@Hl49sei7~0WPN<0lPFd|Lct2o#y*aL^
+zn{`cXPc~dpGks(pY)*q4Gr^lgng?6oroekM!Asbh0WM6Ryq^bK^tRZcPDAf~NYx`<
+G?fwJ37tFr^
+
+diff --git target/classes/cz/cvut/fel/pjv/pieces/Queen.class target/classes/cz/cvut/fel/pjv/pieces/Queen.class
+index 681937ae85a800e5d30ca12bd64d26c17c7de048..d4be7206d53c87b550b343e6218ac6e8a8bd12b4
+GIT binary patch
+literal 1252
+zc$}S6YflqF6g|_|w#)L6BBH!1K4>d2BKWC<1PLZh3W`M%K5my`U9!8=Y<FwwuR=eF
+z(ZnC%k22ob)`DUQaW|Q{bLY%C_ujel<LB4!0M@XsBZ~(b9_mQok&ee$%%O;qPD5G4
+z6AeoYnGMHx!cB(RVzpYcK5(lYh5SUgym{K@+tQU$P$?ZUq_*X;U>L1AzSxVrh6oPK
+zhD)CDnzT&!&<q^4?m1K8JEz4kcZIR(2urm1ek6onVaUeoH}X9Lt1=A5OHz$I|I&(L
+zV3-;d9m5C(U`4JOie1?jr2D*h1>BHkaLiw*u~Mp?nr)Luq2nqNS6HDVRXFJwMa8)G
+zID_sA+jM(kW0%-!PAjDS$v<n-Y5uOu`d`?M0YaXl=1QQlNqo7wWBX<p1w?W5Ke^pd
+zCmYIo7&yMoFj4F=xu$RPu2*GVr;=OZrK7UZ<7-?|FatU04EYQ3tspQvDo3@otYO6f
+z$5Rcf2A*Nfz&r{JGuQRU;O*CHVn`NMXD(XO<F=HxD>#{+^l6F{=T*;(LREPc2Q|AT
+zo1IrD3|qy2cR;CjLoTXB;kww=l~X(Izuno{V^|pU4Eop#?n9&Js=g$cDkhCXv^qeF
+zejr<(o>@Kz`$%>I294@j19>_(fnl=BT^vR*8uMf^hFip<tZ}juv6UyZQn-yt@+bw9
+z<|NI--;g*uM{;-R3sPrsAQv)s>F9JUQ|N;GGQ+roDI&}wO{jZ>o+hu+_so!IHV%4@
+le01x*#8zom!D*k6{*267Kd(&eF2rI+7t#}BR3(L4_yv5yHqQV6
+
+diff --git target/classes/cz/cvut/fel/pjv/pieces/Rook.class target/classes/cz/cvut/fel/pjv/pieces/Rook.class
+index acc5e8659524fa0b7724dad59af75df4b694e016..fc87a35a62469bc7199201e9e03337163a4c7cb5
+GIT binary patch
+literal 1248
+zc$}S6T~8B16g|_gZOaz0MMPVq;s@Ibj0irJkRXXkW3i?sBs^}Hr7rI7G~3;p`m4|f
+zF`D=T{87d`+ghqnLflQ}-nnz;oO|!g{QULp2Y^j%rIEx#1&`8*;BgvHu#$p?QksUc
+zf~N{r84}x;Yxz42i(0i>Gd^;o7x?_dw0Y;W$M=LS0<Tg!WQgsFW0PT~X1V5@z-gJ@
+zf!?wylC23tw-0sClJj9O=D)MLM0$y_W0{88<qaX;R~VAvv>`q)uqwk;I3>}*amQwq
+z0>i?j<QS$&-w15oH}^%)B-t0*C2&jV-Z6hE$4aSos`qpr_?9h6Y}4>9;Sy0iL|v8k
+z_;!Z0ZMJoLC^kFBR<pW3t<V46l78n;TekkeZch+$BsG@;l^x<sHLbR*`+-LkNB>jX
+z4Rw;fX!@Szwi)KMA(O4UZ9a&~%A3@3!+d4QYEtqP*Ck3t3TcMih4!xJ>3vzETv}7G
+zu7cy4f(;eVv8iGSMTYz}w}YWDVfC#v3{g#9%N0X7ye&lAHaWSDaLI&a^Qz+nzU;e9
+zgKoMZI{o?y!>)Gq`Il-p<f1+luggsyI6Z+zz5beEdD0UYK`VFwg`TSXqF}O>G)~d%
+z05ST3WI110I|utjegrCw@<{_(+LuFyyz&5tY0QK?NzCFFu}CjVUL^E#m<ttdW1b>X
+zK_?p}oB58&(K({~t6vd23lq7JS)i@=LYd+KJd(-a4z1F~K^%7p6G5J$>L^m6$YPlE
+meTvbU4-4BME0a?`BmM=6vr%1%FuW9ssRPJRj8T^)YWX+KJ2hGW
+
+diff --git target/classes/cz/cvut/fel/pjv/board/Board$1.class target/classes/cz/cvut/fel/pjv/board/Board$1.class
+deleted file mode 100644
+index 1fe6aed8992302c7fab807001de847f980597b62..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git target/classes/cz/cvut/fel/pjv/board/Board$Builder.class target/classes/cz/cvut/fel/pjv/board/Board$Builder.class
+deleted file mode 100644
+index af311b90d502062af66778224e2690a4ac466c04..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git target/classes/cz/cvut/fel/pjv/board/Move$AttackMove.class target/classes/cz/cvut/fel/pjv/board/Move$AttackMove.class
+deleted file mode 100644
+index 42c881094cc8c7f1620c9d3911d65486f81266a4..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git target/classes/cz/cvut/fel/pjv/board/Move$NormalMove.class target/classes/cz/cvut/fel/pjv/board/Move$NormalMove.class
+deleted file mode 100644
+index 395fe16a936a807a4d30a6ebc9a6b0255820cb4b..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git target/classes/cz/cvut/fel/pjv/board/Move.class target/classes/cz/cvut/fel/pjv/board/Move.class
+deleted file mode 100644
+index 67e475f410796da5029cf5eb69320c56a439e55e..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git target/classes/cz/cvut/fel/pjv/pieces/Piece$PieceType.class target/classes/cz/cvut/fel/pjv/pieces/Piece$PieceType.class
+deleted file mode 100644
+index 41c7f49c81d8572393e536335d2caa033edc68c7..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
