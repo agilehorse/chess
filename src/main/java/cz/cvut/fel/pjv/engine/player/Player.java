@@ -35,14 +35,12 @@ public abstract class Player {
     }
 
     private Collection<Move> validateForCheck(final Collection<Move> allMoves) {
-        List<Move> legalMoves = new ArrayList<>(allMoves);
-        List<Move> moves = new ArrayList<>();
-        for (final Move move : legalMoves) {
-            if (!move.freeFromCheck()) {
-                moves.add(move);
+        List<Move> legalMoves = new ArrayList<>();
+        for (final Move move : allMoves) {
+            if (move.freeFromCheck()) {
+                legalMoves.add(move);
             }
         }
-        legalMoves.removeAll(moves);
         return ImmutableList.copyOf(legalMoves);
     }
 

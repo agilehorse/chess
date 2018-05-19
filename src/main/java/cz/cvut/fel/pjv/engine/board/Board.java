@@ -29,7 +29,6 @@ public class Board {
     private Player currentPlayer;
     private Pawn enPassantPawn;
     private static Colour nextMove;
-    private static boolean checkTriggered;
 
 
     //  constructor calls a boardBuilder to build a board and also calls methods
@@ -180,22 +179,10 @@ public class Board {
         return chessBoard.get((tileRow * 8) + tileColumn);
     }
 
-    public Iterable<Move> getAllLegalMoves() {
-        return Iterables.unmodifiableIterable(Iterables.concat(this.whitePlayer.getLegalMoves(),
-                this.blackPlayer.getLegalMoves()));
-    }
     public Collection<Move> getMoves(Colour colour) {
         Collection<Piece> pieces = getActivePieces(this.getChessBoard(), colour);
         Collection<Move> moves = calculateMoves(pieces);
         return moves;
-    }
-
-    public static boolean wasCheckTriggered() {
-        return checkTriggered;
-    }
-
-    public static void setCheckTriggered(boolean checkTriggered) {
-        Board.checkTriggered = checkTriggered;
     }
 
     public static void setMove(final Colour colour) {

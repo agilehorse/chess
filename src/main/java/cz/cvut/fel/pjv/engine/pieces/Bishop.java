@@ -22,11 +22,6 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public Piece returnImposter(final int row, final int column) {
-        return new Bishop(row, column, this.getPieceColour());
-    }
-
-    @Override
     public String toString() {
         return PieceType.BISHOP.toString();
     }

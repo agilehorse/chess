@@ -1,18 +1,13 @@
 package cz.cvut.fel.pjv.engine.board.moves;
 
-import com.google.common.collect.ImmutableList;
-import cz.cvut.fel.pjv.engine.Colour;
+
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.BoardUtils;
 import cz.cvut.fel.pjv.engine.board.Tile;
-import cz.cvut.fel.pjv.engine.pieces.King;
 import cz.cvut.fel.pjv.engine.pieces.Pawn;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 import cz.cvut.fel.pjv.engine.pieces.PieceType;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
 public abstract class Move {
@@ -23,6 +18,7 @@ public abstract class Move {
     private final int newColumn;
     private Tile destinationTile;
     private Tile sourceTile;
+    private String performedToString = "";
 
     public Move(final Board board,
                 final Piece movedPiece,
@@ -45,16 +41,25 @@ public abstract class Move {
     }
 
     public void execute() {
+        boolean enPassantSetNow = false;
+        if (this.getPerformedToString().equals("")) {
+            this.setPerformedToString(this.toString());
+        }
         final Tile sourceTile = this.getSourceTile();
         this.movedPiece.move(this.getNewRow(), this.getNewColumn());
         sourceTile.setPieceOnTile(null);
         this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
         if (movedPiece.getPieceType() == PieceType.PAWN && sourceTile.getTileRow() + 2 == getNewRow()) {
             this.board.setEnPassantPawn((Pawn) movedPiece);
+            enPassantSetNow = true;
         }
         this.movedPiece.setFirstMove(false);
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        this.board.recalculate(true);
+        if (this.board.getEnPassantPawn() != null
+                && this.board.getEnPassantPawn().getPieceColour() == this.movedPiece.getPieceColour()
+                && !enPassantSetNow) {
+            board.setEnPassantPawn(null);
+        }
     }
 
     @Override
@@ -125,5 +130,18 @@ public abstract class Move {
             }
         }
         return "";
+    }
+
+    public String getPerformedToString() {
+        return performedToString;
+    }
+
+    public void setPerformedToString(String performedToString) {
+
+        if (this.performedToString.equals("")) {
+            this.performedToString = performedToString;
+        } else {
+            throw new RuntimeException("Move tostring cannot be set again!");
+        }
     }
 }

@@ -17,6 +17,9 @@ public class EnPassantAttack extends AttackMove {
 
     @Override
     public void execute() {
+        if (this.getPerformedToString().equals("")) {
+            this.setPerformedToString(this.toString());
+        }
         final Tile attackedTile = this.board.getTile(this.getAttackedPiece().getPieceRow(), this.getAttackedPiece().getPieceColumn());
         this.getAttackedPiece().setActive(false);
         attackedTile.setPieceOnTile(null);
@@ -26,7 +29,6 @@ public class EnPassantAttack extends AttackMove {
         movedPiece.setFirstMove(false);
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
         this.board.setEnPassantPawn(null);
-        this.board.recalculate(true);
     }
 
     @Override

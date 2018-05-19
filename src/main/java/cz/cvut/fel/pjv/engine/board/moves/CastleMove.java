@@ -35,6 +35,9 @@ public class CastleMove extends Move {
 
     @Override
     public void execute() {
+        if (this.getPerformedToString().equals("")) {
+            this.setPerformedToString(this.toString());
+        }
         this.movedPiece.move(this.getNewRow(), this.getNewColumn());
         this.movedPiece.setFirstMove(false);
         this.castlingRook.setFirstMove(false);
@@ -46,7 +49,10 @@ public class CastleMove extends Move {
         newRookTile.setPieceOnTile(castlingRook);
         this.castlingRook.move(castlingRookNewRow, castlingRookNewColumn);
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        this.board.recalculate(true);
+        if (this.board.getEnPassantPawn() != null
+                && this.board.getEnPassantPawn().getPieceColour() == this.movedPiece.getPieceColour()) {
+            board.setEnPassantPawn(null);
+        }
     }
 
     private Rook getCastlingRook() {

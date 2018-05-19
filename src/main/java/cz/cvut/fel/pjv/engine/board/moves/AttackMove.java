@@ -47,13 +47,19 @@ public class AttackMove extends Move {
 
     @Override
     public void execute() {
+        if (this.getPerformedToString().equals("")) {
+            this.setPerformedToString(this.toString());
+        }
         this.attackedPiece.setActive(false);
         this.movedPiece.move(this.getNewRow(), this.getNewColumn());
         this.getSourceTile().setPieceOnTile(null);
         this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
         movedPiece.setFirstMove(false);
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        this.board.recalculate(true);
+        if (this.board.getEnPassantPawn() != null
+                && this.board.getEnPassantPawn().getPieceColour() == this.movedPiece.getPieceColour()) {
+            board.setEnPassantPawn(null);
+        }
     }
 
     @Override

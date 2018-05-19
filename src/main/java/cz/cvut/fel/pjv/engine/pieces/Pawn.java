@@ -38,6 +38,25 @@ public class Pawn extends Piece {
                 final Piece passingPawn = board.getEnPassantPawn();
                 if (targetTile.isOccupied()
                         && targetTile.getPiece().getPieceColour() != this.getPieceColour()) {
+                    if (this.getPieceColour() == Colour.WHITE && DESTINATION_ROW == 0) {
+                        legalMoves.add(new PawnPromotionAttack(board, this, DESTINATION_ROW, this.pieceColumn + columnOffset,
+                                targetTile.getPiece(), new Bishop(DESTINATION_ROW, this.pieceColumn + columnOffset, Colour.WHITE)));
+                        legalMoves.add(new PawnPromotionAttack(board, this, DESTINATION_ROW, this.pieceColumn + columnOffset,
+                                targetTile.getPiece(), new Knight(DESTINATION_ROW, this.pieceColumn + columnOffset, Colour.WHITE)));
+                        legalMoves.add(new PawnPromotionAttack(board, this, DESTINATION_ROW, this.pieceColumn + columnOffset,
+                                targetTile.getPiece(), new Rook(DESTINATION_ROW, this.pieceColumn + columnOffset, Colour.WHITE)));
+                        legalMoves.add(new PawnPromotionAttack(board, this, DESTINATION_ROW, this.pieceColumn + columnOffset,
+                                targetTile.getPiece(), new Queen(DESTINATION_ROW, this.pieceColumn + columnOffset, Colour.WHITE)));
+                    } else if (this.getPieceColour() == Colour.BLACK && DESTINATION_ROW == 7) {
+                        legalMoves.add(new PawnPromotionAttack(board, this, DESTINATION_ROW, this.pieceColumn + columnOffset,
+                                targetTile.getPiece(), new Bishop(DESTINATION_ROW, this.pieceColumn + columnOffset, Colour.BLACK)));
+                        legalMoves.add(new PawnPromotionAttack(board, this, DESTINATION_ROW, this.pieceColumn + columnOffset,
+                                targetTile.getPiece(), new Knight(DESTINATION_ROW, this.pieceColumn + columnOffset, Colour.BLACK)));
+                        legalMoves.add(new PawnPromotionAttack(board, this, DESTINATION_ROW, this.pieceColumn + columnOffset,
+                                targetTile.getPiece(), new Rook(DESTINATION_ROW, this.pieceColumn + columnOffset, Colour.BLACK)));
+                        legalMoves.add(new PawnPromotionAttack(board, this, DESTINATION_ROW, this.pieceColumn + columnOffset,
+                                targetTile.getPiece(), new Queen(DESTINATION_ROW, this.pieceColumn + columnOffset, Colour.BLACK)));
+                    }
                     legalMoves.add(new AttackMove(board,
                             this,
                             DESTINATION_ROW,
@@ -66,7 +85,7 @@ public class Pawn extends Piece {
                             new Rook(DESTINATION_ROW, this.pieceColumn, Colour.WHITE)));
                     legalMoves.add(new PawnPromotionMove(board, this, DESTINATION_ROW, this.pieceColumn,
                             new Queen(DESTINATION_ROW, this.pieceColumn, Colour.WHITE)));
-                } else if (this.getPieceColour() == Colour.BLACK && DESTINATION_ROW == 8) {
+                } else if (this.getPieceColour() == Colour.BLACK && DESTINATION_ROW == 7) {
                     legalMoves.add(new PawnPromotionMove(board, this, DESTINATION_ROW, this.pieceColumn,
                             new Bishop(DESTINATION_ROW, this.pieceColumn, Colour.BLACK)));
                     legalMoves.add(new PawnPromotionMove(board, this, DESTINATION_ROW, this.pieceColumn,
@@ -97,10 +116,6 @@ public class Pawn extends Piece {
         return ImmutableList.copyOf(legalMoves);
     }
 
-    @Override
-    public Piece returnImposter(int row, int column) {
-        return new Pawn(row, column, this.getPieceColour());
-    }
 
     @Override
     public String toString() {
