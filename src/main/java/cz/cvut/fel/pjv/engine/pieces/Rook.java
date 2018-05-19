@@ -22,11 +22,6 @@ public class Rook extends Piece{
     }
 
     @Override
-    public Piece returnImposter(int row, int column) {
-        return new Rook(row, column, this.getPieceColour());
-    }
-
-    @Override
     public String toString() {
         return PieceType.ROOK.toString();
     }

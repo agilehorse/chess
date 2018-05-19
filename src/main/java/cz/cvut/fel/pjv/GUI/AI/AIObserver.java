@@ -21,19 +21,5 @@ public class AIObserver implements Observer {
                 final AIPlayer aiPlayer = new AIPlayer();
                 aiPlayer.execute();
         }
-        final Board board = MainPanel.getBoard();
-        final GuiBoard guiBoard = MainPanel.getGuiBoard();
-        if (board.getCurrentPlayer().isInCheckMate()) {
-            Clock.terminate();
-            JOptionPane.showMessageDialog(guiBoard,
-                    "Game Over: Player " + board.getCurrentPlayer().toString() + " is in checkmate!", "Game Over",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
-        if (board.getCurrentPlayer().isInStaleMate()) {
-            Clock.terminate();
-            JOptionPane.showMessageDialog(guiBoard,
-                    "Game Over: Player " + board.getCurrentPlayer().toString() + " is in stalemate!", "Game Over",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
     }
 }

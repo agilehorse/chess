@@ -24,11 +24,6 @@ public class Queen extends Piece {
     }
 
     @Override
-    public Piece returnImposter(int row, int column) {
-        return new Queen(row, column, this.getPieceColour());
-    }
-
-    @Override
     public String toString() {
         return PieceType.QUEEN.toString();
     }

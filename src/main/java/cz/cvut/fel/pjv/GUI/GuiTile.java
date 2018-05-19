@@ -47,7 +47,6 @@ class GuiTile extends JPanel {
             public void mouseClicked(MouseEvent mouseEvent) {
                 if (isRightMouseButton(mouseEvent)) {
                     clearState();
-                    return;
                 } else if (isLeftMouseButton(mouseEvent)) {
                     Clock.start();
                     if (MainPanel.getSourceTile() == null) {
@@ -62,7 +61,8 @@ class GuiTile extends JPanel {
                         Move move = board.getCurrentPlayer().findMove(sourceTile, destinationTile);
                         if (move != null && move.getMoveType() == MoveType.PROMOTION) {
                             Clock.stop();
-                            move = handlePawnPromotionMove(destinationTile, sourceTile);
+                            move = handlePawnPromotionMove(sourceTile, destinationTile);
+                            if (move == null) Clock.updateClock();
                         }
                         final boolean done = board.getCurrentPlayer().initiateMove(move);
                         if (done) {
@@ -71,31 +71,30 @@ class GuiTile extends JPanel {
                         }
                         clearState();
                     }
-                    SwingUtilities.invokeLater(() -> {
-
-                        MainPanel.getGameHistoryPanel().redo(board, MainPanel.getMoveLog());
-                        MainPanel.getTakenPiecesPanel().redo(MainPanel.getMoveLog());
-                        if (MainPanel.getGameSetup().isAIPlayer(board.getCurrentPlayer())) {
-                            MainPanel.get().moveMadeUpdate(GameSetup.PlayerType.HUMAN);
-                        }
-                        guiBoard.drawBoard(MainPanel.getBoard());
-                    });
+                }
+                SwingUtilities.invokeLater(() -> {
+                    MainPanel.getGameHistoryPanel().redo(board, MainPanel.getMoveLog());
+                    MainPanel.getTakenPiecesPanel().redo(MainPanel.getMoveLog());
                     board.recalculate(true);
-                    if (board.getCurrentPlayer().isInCheckMate()) {
-                        Clock.terminate();
-                        JOptionPane.showMessageDialog(guiBoard,
-                                "Game Over: Player " + board.getCurrentPlayer().toString() + " is in checkmate!", "Game Over",
-                                JOptionPane.INFORMATION_MESSAGE);
+                    if (MainPanel.getGameSetup().isAIPlayer(board.getCurrentPlayer())) {
+                        MainPanel.get().moveMadeUpdate(GameSetup.PlayerType.HUMAN);
                     }
-                    if (board.getCurrentPlayer().isInStaleMate()) {
-                        Clock.terminate();
-                        JOptionPane.showMessageDialog(guiBoard,
-                                "Game Over: Player " + board.getCurrentPlayer().toString() + " is in stalemate!", "Game Over",
-                                JOptionPane.INFORMATION_MESSAGE);
-                    }
+                    guiBoard.drawBoard(MainPanel.getBoard());
+                });
+                board.recalculate(true);
+                if (board.getCurrentPlayer().isInCheckMate()) {
+                    Clock.terminate();
+                    JOptionPane.showMessageDialog(guiBoard,
+                            "Game Over: Player " + board.getCurrentPlayer().toString() + " is in checkmate!", "Game Over",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (board.getCurrentPlayer().isInStaleMate()) {
+                    Clock.terminate();
+                    JOptionPane.showMessageDialog(guiBoard,
+                            "Game Over: Player " + board.getCurrentPlayer().toString() + " is in stalemate!", "Game Over",
+                            JOptionPane.INFORMATION_MESSAGE);
                 }
             }
-
             @Override
             public void mousePressed(MouseEvent mouseEvent) {}
 
@@ -111,14 +110,16 @@ class GuiTile extends JPanel {
         validate();
     }
 
-    private Move handlePawnPromotionMove(final Tile destinationTile,
-                                         final Tile sourceTile) {
+    private Move handlePawnPromotionMove(final Tile sourceTile,
+                                         final Tile destinationTile) {
         Move promotionMove = null;
         PieceType pieceType;
         String[] options = {"Queen" , "Rook", "Bishop", "Knight"};
         String n = (String) JOptionPane.showInputDialog(null, "Choose which piece you want to promote to: ",
                 "Promotion Pieces", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-        if (n.equals("Rook")) {
+        if (n == null) {
+            return null;
+        } else if (n.equals("Rook")) {
             pieceType = PieceType.ROOK;
         } else if (n.equals("Bishop")) {
             pieceType = PieceType.BISHOP;

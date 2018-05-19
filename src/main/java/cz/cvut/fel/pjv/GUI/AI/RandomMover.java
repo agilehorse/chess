@@ -4,22 +4,23 @@ import cz.cvut.fel.pjv.GUI.Clock;
 import cz.cvut.fel.pjv.GUI.MainPanel;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
-import cz.cvut.fel.pjv.engine.board.moves.NullMove;
-import cz.cvut.fel.pjv.engine.pieces.King;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 import cz.cvut.fel.pjv.engine.pieces.PieceType;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Random;
 
 public class RandomMover {
     public Move get(final Board board) {
         final ArrayList<Move> moves = new ArrayList<>(board.getCurrentPlayer().getLegalMoves());
-        Random rand = new Random();
-        if (moves.size() == 0) {
+        ArrayList<Move> legalMoves = new ArrayList<>();
+        for (final Move move : moves) {
+            if (move.freeFromCheck()) {
+                legalMoves.add(move);
+            }
+        }
+        if (legalMoves.size() == 0) {
             if (board.getCurrentPlayer().isInCheckMate()) {
                 Clock.terminate();
                 JOptionPane.showMessageDialog(MainPanel.getGuiBoard(),
@@ -44,7 +45,8 @@ public class RandomMover {
                 MainPanel.exit();
             }
         }
-        int x = rand.nextInt(moves.size());
-        return moves.get(x);
+        Random rand = new Random();
+        int x = rand.nextInt(legalMoves.size());
+        return legalMoves.get(x);
     }
 }

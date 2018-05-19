@@ -31,7 +31,7 @@ public class GameHistoryPanel extends JPanel {
         int currentRow = 0;
         this.model.clear();
         for (final Move move: moveHistory.getMoves()) {
-            final String moveText = move.toString();
+            final String moveText = move.getPerformedToString();
             if (move.getMovedPiece().getPieceColour().isWhite()) {
                 this.model.setValueAt(moveText, currentRow, 0);
             } else if (move.getMovedPiece().getPieceColour().isBlack()) {
@@ -41,7 +41,7 @@ public class GameHistoryPanel extends JPanel {
         }
         if (moveHistory.getMoves().size() > 0) {
             final Move lastMove = moveHistory.getMoves().get(moveHistory.size() - 1);
-            final String moveText = lastMove.toString();
+            final String moveText = lastMove.getPerformedToString();
 
             if (lastMove.getMovedPiece().getPieceColour().isWhite()) {
                 this.model.setValueAt(moveText + calculateCheckAndCheckMateHash(board), currentRow, 0);

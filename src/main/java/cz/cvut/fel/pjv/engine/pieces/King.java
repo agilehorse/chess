@@ -38,11 +38,6 @@ public class King extends Piece {
     }
 
     @Override
-    public Piece returnImposter(int row, int column) {
-        return new King(row, column, this.getPieceColour());
-    }
-
-    @Override
     public String toString() {
         return PieceType.KING.toString();
     }

@@ -3,13 +3,15 @@ package cz.cvut.fel.pjv.GUI;
 import cz.cvut.fel.pjv.GUI.AI.AIObserver;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.Tile;
-import cz.cvut.fel.pjv.engine.board.moves.Move;
+import cz.cvut.fel.pjv.GUI.PGN.Writer;
+import cz.cvut.fel.pjv.GUI.PGN.Loader;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.File;
+import java.io.*;
 import java.util.Observable;
 
 import static cz.cvut.fel.pjv.engine.board.BoardUtils.SET_OF_TILES;
@@ -50,7 +52,9 @@ public class MainPanel extends Observable {
         this.gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
-    public static MainPanel get() {return SINGLETON;}
+    public static MainPanel get() {
+        return SINGLETON;
+    }
 
     public static MoveLog getMoveLog() {
         return moveLog;
@@ -92,6 +96,7 @@ public class MainPanel extends Observable {
                 public String getDescription() {
                     return ".pgn";
                 }
+
                 @Override
                 public boolean accept(final File file) {
                     return file.isDirectory() || file.getName().toLowerCase().endsWith("pgn");
@@ -104,7 +109,25 @@ public class MainPanel extends Observable {
         });
         fileMenu.add(saveToPGN);
         final JMenuItem openPGN = new JMenuItem("Load PGN File");
-        openPGN.addActionListener(actionEvent -> System.out.println("open pgn file"));
+        openPGN.addActionListener(actionEvent -> {
+            Object[] options = {"Load and discard",
+                    "Cancel"};
+            int n = JOptionPane.showOptionDialog(MainPanel.get().getGameFrame(),
+                    "Do you really want to load the game? Your current game will be discarded if you haven't saved it.",
+                    "Load game confirmation",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[1]);
+            if (n == 0) {
+                JFileChooser chooser = new JFileChooser();
+                int option = chooser.showOpenDialog(MainPanel.get().getGameFrame());
+                if (option == JFileChooser.APPROVE_OPTION) {
+                    loadPGNFile(chooser.getSelectedFile());
+                }
+            }
+        });
         fileMenu.add(openPGN);
         final JMenuItem resetMenuItem = new JMenuItem("Reset board", KeyEvent.VK_P);
         resetMenuItem.addActionListener(e -> resetBoard());
@@ -125,21 +148,29 @@ public class MainPanel extends Observable {
         MainPanel.board = new Board();
         MainPanel.guiBoard = null;
         MainPanel.guiBoard = new GuiBoard();
-        MainPanel.guiBoard.drawBoard(board);
         MainPanel.getMoveLog().clear();
         MainPanel.getGameHistoryPanel().redo(board, MainPanel.getMoveLog());
         MainPanel.getTakenPiecesPanel().redo(MainPanel.getMoveLog());
         Clock.resetTimer();
+        this.gameFrame.validate();
+        this.gameFrame.repaint();
     }
 
     private void savePGNFile(File selectedFile) {
         System.out.println("Not implemented yet!");
-//        try {
-//            writeGameToPGNFile(selectedFile, getMoveLog());
-//        }
-//        catch (final IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Writer.writeGameToPGNFile(selectedFile, getMoveLog());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void loadPGNFile(final File pgnFile) {
+        try {
+            Loader.persistPGNFile(pgnFile);
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setUpUpdate(GameSetup gameSetup) {
@@ -163,7 +194,9 @@ public class MainPanel extends Observable {
         return board;
     }
 
-    static Tile getSourceTile() { return sourceTile; }
+    static Tile getSourceTile() {
+        return sourceTile;
+    }
 
     static void setSourceTile(Tile sourceTile) {
         MainPanel.sourceTile = sourceTile;
