@@ -54,8 +54,8 @@ public class Tile {
 
     public String toString() {
         if (isOccupied()) {
-            return getPiece().getPieceColour().isWhite()
-                    ? getPiece().toString().toUpperCase() : getPiece().toString();
+            return getPiece().getPieceColour().isBlack()
+                    ? getPiece().toString().toLowerCase() : getPiece().toString();
         } else {
             return "-";
         }

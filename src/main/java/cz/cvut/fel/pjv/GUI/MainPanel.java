@@ -126,6 +126,7 @@ public class MainPanel extends Observable {
                     options,
                     options[1]);
             if (n == 0) {
+                resetBoard();
                 JFileChooser chooser = new JFileChooser();
                 int option = chooser.showOpenDialog(MainPanel.get().getGameFrame());
                 if (option == JFileChooser.APPROVE_OPTION) {
@@ -180,7 +181,7 @@ public class MainPanel extends Observable {
     private static void loadPGNFile(final File pgnFile) {
         try {
             MainPanel.get().gameFrame.remove(guiBoard);
-            MainPanel.get().resetBoard();
+            MainPanel.board = null;
             MainPanel.board = new Board();
             MainPanel.board = Loader.persistPGNFile(pgnFile);
             MainPanel.guiBoard = new GuiBoard();

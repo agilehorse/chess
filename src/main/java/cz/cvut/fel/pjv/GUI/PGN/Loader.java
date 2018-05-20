@@ -158,7 +158,7 @@ public class Loader {
         final List<Move> currentCandidates = new ArrayList<>();
         final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
         Tile destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
-        for (final Move move : board.getCurrentPlayer().getLegalMoves()) {
+        for (final Move move : board.getMoves(board.getCurrentPlayer().getColour())) {
             if (move.getDestinationTile() == destinationTile && move.getMovedPiece().toString().equals(movedPiece)) {
                 currentCandidates.add(move);
             }
