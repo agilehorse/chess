@@ -169,7 +169,7 @@ public class MainPanel extends Observable {
         this.gameFrame.repaint();
     }
 
-    private void savePGNFile(File selectedFile) {
+    void savePGNFile(File selectedFile) {
         try {
             Writer.writeGameToPGNFile(selectedFile, getMoveLog());
         } catch (IOException e) {
@@ -177,7 +177,7 @@ public class MainPanel extends Observable {
         }
     }
 
-    private static void loadPGNFile(final File pgnFile) {
+    static void loadPGNFile(final File pgnFile) {
         try {
             MainPanel.get().gameFrame.remove(guiBoard);
             MainPanel.board = null;
