@@ -13,7 +13,7 @@ public class Writer {
         Integer round = 1;
         for(final Move move : moveLog.getMoves()) {
             if (counter % 2 == 0) {
-                builder.append(round.toString() + ". ");
+                builder.append(round.toString()).append(".");
                 round++;
             }
             builder.append(move.getPerformedToString()).append(" ");

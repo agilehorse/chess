@@ -181,8 +181,7 @@ public class Board {
 
     public Collection<Move> getMoves(Colour colour) {
         Collection<Piece> pieces = getActivePieces(this.getChessBoard(), colour);
-        Collection<Move> moves = calculateMoves(pieces);
-        return moves;
+        return calculateMoves(pieces);
     }
 
     public static void setMove(final Colour colour) {
@@ -217,7 +216,12 @@ public class Board {
         return currentPlayer;
     }
 
-    public List<Tile> getChessBoard() {
+    private List<Tile> getChessBoard() {
         return chessBoard;
+    }
+
+    public Iterable<Move> getAllLegalMoves() {
+        return Iterables.unmodifiableIterable(Iterables.concat(this.whitePlayer.getLegalMoves(),
+                this.blackPlayer.getLegalMoves()));
     }
 }

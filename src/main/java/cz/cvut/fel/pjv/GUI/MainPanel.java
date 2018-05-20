@@ -31,7 +31,7 @@ public class MainPanel extends Observable {
     private static final MainPanel SINGLETON = new MainPanel();
 
 
-    public MainPanel() {
+    private MainPanel() {
         this.gameFrame = new JFrame("Chess");
         this.gameFrame.setLayout(new BorderLayout());
         this.gameFrame.setJMenuBar(createMenuBar());
@@ -43,7 +43,7 @@ public class MainPanel extends Observable {
         guiBoard = new GuiBoard();
         moveLog = new MoveLog();
         this.addObserver(new AIObserver());
-        this.gameSetup = new GameSetup(this.gameFrame, true);
+        gameSetup = new GameSetup(this.gameFrame, true);
         this.gameFrame.add(takenPiecesPanel, BorderLayout.EAST);
         this.gameFrame.add(gameHistoryPanel, BorderLayout.WEST);
         this.gameFrame.add(guiBoard, BorderLayout.CENTER);
@@ -104,7 +104,12 @@ public class MainPanel extends Observable {
             });
             final int option = chooser.showSaveDialog(getGameFrame());
             if (option == JFileChooser.APPROVE_OPTION) {
-                savePGNFile(chooser.getSelectedFile());
+                File file = chooser.getSelectedFile();
+                String filePath = file.getAbsolutePath();
+                if (!filePath.endsWith(".pgn")) {
+                    file = new File(filePath + ".pgn");
+                }
+                savePGNFile(file);
             }
         });
         fileMenu.add(saveToPGN);
@@ -124,7 +129,14 @@ public class MainPanel extends Observable {
                 JFileChooser chooser = new JFileChooser();
                 int option = chooser.showOpenDialog(MainPanel.get().getGameFrame());
                 if (option == JFileChooser.APPROVE_OPTION) {
-                    loadPGNFile(chooser.getSelectedFile());
+                    File file = chooser.getSelectedFile();
+                    if (file.getName().endsWith(".pgn")) {
+                        loadPGNFile(file);
+                    } else {
+                        JOptionPane.showMessageDialog(MainPanel.getGuiBoard(),
+                                "Invalid file format!", "Input file error",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
             }
         });
@@ -144,14 +156,14 @@ public class MainPanel extends Observable {
                 board.getTile(i, j).setPieceOnTile(null);
             }
         }
-        MainPanel.board = null;
+        this.gameFrame.remove(guiBoard);
         MainPanel.board = new Board();
-        MainPanel.guiBoard = null;
         MainPanel.guiBoard = new GuiBoard();
         MainPanel.getMoveLog().clear();
         MainPanel.getGameHistoryPanel().redo(board, MainPanel.getMoveLog());
         MainPanel.getTakenPiecesPanel().redo(MainPanel.getMoveLog());
         Clock.resetTimer();
+        this.gameFrame.add(guiBoard, BorderLayout.CENTER);
         this.gameFrame.validate();
         this.gameFrame.repaint();
     }
@@ -167,7 +179,20 @@ public class MainPanel extends Observable {
 
     private static void loadPGNFile(final File pgnFile) {
         try {
-            Loader.persistPGNFile(pgnFile);
+            MainPanel.get().gameFrame.remove(guiBoard);
+            MainPanel.get().resetBoard();
+            MainPanel.board = new Board();
+            MainPanel.board = Loader.persistPGNFile(pgnFile);
+            MainPanel.guiBoard = new GuiBoard();
+            MainPanel.moveLog = Loader.getMoveLog();
+            MainPanel.getGameHistoryPanel().redo(board, Loader.getMoveLog());
+            MainPanel.getTakenPiecesPanel().redo(Loader.getMoveLog());
+            MainPanel.get().gameFrame.add(takenPiecesPanel, BorderLayout.EAST);
+            MainPanel.get().gameFrame.add(gameHistoryPanel, BorderLayout.WEST);
+            MainPanel.get().gameFrame.add(guiBoard, BorderLayout.CENTER);
+            MainPanel.get().gameFrame.validate();
+            MainPanel.get().gameFrame.repaint();
+
         } catch (final IOException e) {
             e.printStackTrace();
         }
