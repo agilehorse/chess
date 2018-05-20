@@ -31,7 +31,7 @@ public class MainPanel extends Observable {
     private static final MainPanel SINGLETON = new MainPanel();
 
 
-    private MainPanel() {
+    MainPanel() {
         this.gameFrame = new JFrame("Chess");
         this.gameFrame.setLayout(new BorderLayout());
         this.gameFrame.setJMenuBar(createMenuBar());
@@ -151,7 +151,7 @@ public class MainPanel extends Observable {
         return fileMenu;
     }
 
-    private void resetBoard() {
+    void resetBoard() {
         for (int i = 0; i < SET_OF_TILES; i++) {
             for (int j = 0; j < SET_OF_TILES; j++) {
                 board.getTile(i, j).setPieceOnTile(null);
@@ -170,7 +170,6 @@ public class MainPanel extends Observable {
     }
 
     private void savePGNFile(File selectedFile) {
-        System.out.println("Not implemented yet!");
         try {
             Writer.writeGameToPGNFile(selectedFile, getMoveLog());
         } catch (IOException e) {

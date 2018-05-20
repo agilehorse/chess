@@ -19,7 +19,7 @@ import static cz.cvut.fel.pjv.engine.board.BoardUtils.SET_OF_TILES;
 
 public class Board {
 
-    //  Board is represented by list of tiles and white and black pieces
+    //  Board is represented by list of tiles and white and black engine.pieces
     private final List<Tile> chessBoard;
     private static Table<Integer, Integer, Piece> boardConfiguration;
     private Collection<Piece> whitePieces;
@@ -32,7 +32,7 @@ public class Board {
 
 
     //  constructor calls a boardBuilder to build a board and also calls methods
-// for getting active pieces of white team and black team
+// for getting active engine.pieces of white team and black team
     public Board() {
         boardConfiguration = HashBasedTable.create();
         setUpStandardBoard();

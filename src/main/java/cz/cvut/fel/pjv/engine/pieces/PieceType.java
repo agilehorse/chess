@@ -1,6 +1,6 @@
 package cz.cvut.fel.pjv.engine.pieces;
 
-//    string feedback for printing pieces on board
+//    string feedback for printing engine.pieces on board
 public enum PieceType {
 
     PAWN("P", 1),

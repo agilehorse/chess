@@ -1,6 +1,5 @@
 package cz.cvut.fel.pjv.GUI;
 
-import cz.cvut.fel.pjv.JavaFXGUI.Main;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
