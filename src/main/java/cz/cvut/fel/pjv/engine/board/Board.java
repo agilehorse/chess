@@ -133,7 +133,7 @@ public class Board {
         return builder.toString();
     }
 
-    private Collection<Move> calculateMoves(Collection<Piece> pieces) {
+    Collection<Move> calculateMoves(Collection<Piece> pieces) {
         final List<Move> legalMoves = new ArrayList<>();
         for (final Piece piece : pieces) {
 //          for each piece in the collection it calculates its legal moves
@@ -169,7 +169,7 @@ public class Board {
         return ImmutableList.copyOf(tiles);
     }
 
-    static void putPiece(final Piece piece) {
+    private static void putPiece(final Piece piece) {
         boardConfiguration.put(piece.getPieceRow(),
                 piece.getPieceColumn(),
                 piece);
