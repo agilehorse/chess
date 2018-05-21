@@ -1,9 +1,6 @@
 package cz.cvut.fel.pjv.engine.board;
 
-import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Table;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,8 +8,6 @@ import java.util.Map;
 
 
 public class BoardUtils {
-//  columns which might cause exceptions when calculating news
-//  basic important numbers
 
     static final int ALL_TILES = 64;
     public static final int SET_OF_TILES = 8;
@@ -36,7 +31,7 @@ public class BoardUtils {
     private static Map<String,  List<Integer>> translateNotationToCoords() {
         final Map<String,  List<Integer>> positionToCoordinate = new HashMap<>();
         for (int i = 0; i < ALL_TILES; i++) {
-            List<Integer> coordinates = new ArrayList<Integer>();
+            List<Integer> coordinates = new ArrayList<>();
             coordinates.add(i/8);
             coordinates.add(i%8);
             positionToCoordinate.put(TILE_NOTATION.get(i), coordinates);

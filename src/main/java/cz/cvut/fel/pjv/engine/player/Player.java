@@ -2,7 +2,6 @@ package cz.cvut.fel.pjv.engine.player;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
-import cz.cvut.fel.pjv.GUI.GameSetup;
 import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.Tile;

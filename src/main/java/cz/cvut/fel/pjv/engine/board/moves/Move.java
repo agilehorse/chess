@@ -54,6 +54,7 @@ public abstract class Move {
             enPassantSetNow = true;
         }
         this.movedPiece.setFirstMove(false);
+        //noinspection AccessStaticViaInstance
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
         if (this.board.getEnPassantPawn() != null
                 && this.board.getEnPassantPawn().getPieceColour() == this.movedPiece.getPieceColour()

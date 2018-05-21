@@ -12,7 +12,6 @@ import static org.junit.Assert.assertEquals;
 public class MainPanelTest {
 
     private MainPanel mainPanel;
-    private String moveMadeBoard;
 
     @BeforeClass
     public static void beforeClass(){
@@ -50,17 +49,19 @@ public class MainPanelTest {
         final File file = new File(new File("src/test/java/cz/cvut/fel/pjv/GUI/test.pgn").getAbsolutePath());
         if(!file.exists()){
             try {
+                //noinspection ResultOfMethodCallIgnored
                 file.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         makeMove();
-        moveMadeBoard = MainPanel.getBoard().toString();
+        String moveMadeBoard = MainPanel.getBoard().toString();
         MainPanel.get().savePGNFile(file);
         MainPanel.get().resetBoard();
         MainPanel.loadPGNFile(file);
         assertEquals(MainPanel.getBoard().toString(), moveMadeBoard);
+        //noinspection ResultOfMethodCallIgnored
         file.delete();
     }
 }

@@ -1,8 +1,5 @@
 package cz.cvut.fel.pjv.engine.board.moves;
 
-import cz.cvut.fel.pjv.engine.board.Board;
-import cz.cvut.fel.pjv.engine.pieces.King;
-
 import java.util.Objects;
 
 public class NullMove extends Move {

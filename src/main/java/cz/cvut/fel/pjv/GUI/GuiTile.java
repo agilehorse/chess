@@ -25,7 +25,6 @@ import static javax.swing.SwingUtilities.isRightMouseButton;
 class GuiTile extends JPanel {
 
     private static final Dimension TILE_DIMENSION = new Dimension(10, 10);
-    private String pieceIconPath = "images/pieces/";
     private final int row;
     private final int column;
     private Board board;
@@ -160,6 +159,7 @@ class GuiTile extends JPanel {
         Tile thisTile = board.getTile(this.row, this.column);
         if (thisTile.isOccupied()) {
             try {
+                String pieceIconPath = "images/pieces/";
                 final BufferedImage image
                         = ImageIO.read(new File(pieceIconPath
                         + thisTile.getPiece().getPieceColour().toString().substring(0, 1)

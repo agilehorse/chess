@@ -21,6 +21,7 @@ public class DataModel extends DefaultTableModel {
 
     @Override
     public int getRowCount() {
+        //noinspection ConstantConditions
         if (this.values == null) {
             return 0;
         }

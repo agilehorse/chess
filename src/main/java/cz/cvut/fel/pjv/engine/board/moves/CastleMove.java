@@ -48,6 +48,7 @@ public class CastleMove extends Move {
         Tile newRookTile = this.board.getTile(castlingRookNewRow, castlingRookNewColumn);
         newRookTile.setPieceOnTile(castlingRook);
         this.castlingRook.move(castlingRookNewRow, castlingRookNewColumn);
+        //noinspection AccessStaticViaInstance
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
         if (this.board.getEnPassantPawn() != null
                 && this.board.getEnPassantPawn().getPieceColour() == this.movedPiece.getPieceColour()) {

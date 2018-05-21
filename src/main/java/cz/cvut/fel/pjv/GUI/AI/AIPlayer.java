@@ -1,13 +1,9 @@
 package cz.cvut.fel.pjv.GUI.AI;
 
-import cz.cvut.fel.pjv.GUI.Clock;
 import cz.cvut.fel.pjv.GUI.GameSetup;
 import cz.cvut.fel.pjv.GUI.MainPanel;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
-import cz.cvut.fel.pjv.engine.board.moves.MoveType;
-import cz.cvut.fel.pjv.engine.pieces.PieceType;
-
 import javax.swing.*;
 import java.util.concurrent.ExecutionException;
 
@@ -17,15 +13,9 @@ public class AIPlayer extends SwingWorker<Move, String> {
     }
 
     @Override
-    protected Move doInBackground() throws Exception {
+    protected Move doInBackground() {
         final RandomMover randomMover = new RandomMover();
-        Move aiMove = randomMover.get(MainPanel.getBoard());
-        if (aiMove.getMoveType().equals(MoveType.ATTACK) && aiMove.getAttackedPiece().getPieceType().equals(PieceType.KING)) {
-            aiMove = randomMover.get(MainPanel.getBoard());
-        } else {
-            return aiMove;
-        }
-        throw new RuntimeException("cannot reach here");
+        return randomMover.get(MainPanel.getBoard());
     }
 
     @Override

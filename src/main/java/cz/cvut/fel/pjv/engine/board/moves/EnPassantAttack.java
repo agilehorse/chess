@@ -21,12 +21,12 @@ public class EnPassantAttack extends AttackMove {
             this.setPerformedToString(this.toString());
         }
         final Tile attackedTile = this.board.getTile(this.getAttackedPiece().getPieceRow(), this.getAttackedPiece().getPieceColumn());
-        this.getAttackedPiece().setActive(false);
         attackedTile.setPieceOnTile(null);
         this.movedPiece.move(getNewRow(), getNewColumn());
         this.getDestinationTile().setPieceOnTile(movedPiece);
         this.getSourceTile().setPieceOnTile(null);
         movedPiece.setFirstMove(false);
+        //noinspection AccessStaticViaInstance
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
         this.board.setEnPassantPawn(null);
     }
@@ -38,7 +38,6 @@ public class EnPassantAttack extends AttackMove {
         final King king = this.board.getCurrentPlayer().getPlayersKing();
         final Tile kingTile = this.board.getTile(king.getPieceRow(), king.getPieceColumn());
         this.getAttackedPiece().move(-1, -1);
-        this.getAttackedPiece().setActive(false);
         attackedTile.setPieceOnTile(null);
         this.movedPiece.move(getNewRow(), getNewColumn());
         this.getDestinationTile().setPieceOnTile(movedPiece);
@@ -51,7 +50,6 @@ public class EnPassantAttack extends AttackMove {
             }
         }
         getAttackedPiece().move(attackedTile.getTileRow(), attackedTile.getTileColumn());
-        getAttackedPiece().setActive(true);
         attackedTile.setPieceOnTile(getMovedPiece());
         getDestinationTile().setPieceOnTile(null);
         movedPiece.move(this.getSourceTile().getTileRow(), this.getSourceTile().getTileColumn());

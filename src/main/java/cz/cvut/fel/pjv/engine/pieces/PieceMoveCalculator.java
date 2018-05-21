@@ -15,7 +15,7 @@ import static cz.cvut.fel.pjv.engine.board.BoardUtils.OFFSETS;
 
 public class PieceMoveCalculator {
 
-    public static Collection<Move> calculateCastlingMoves(Board board, Player player, int row, Collection<Move> playersMoves, Collection<Move> opponentMoves) {
+    public static Collection<Move> calculateCastlingMoves(Board board, Player player, int row, Collection<Move> opponentMoves) {
 
         final List<Move> castleMoves = new ArrayList<>();
         if (player.getPlayersKing().isFirstMove() && !player.isInCheck() && !player.isCastled()) {

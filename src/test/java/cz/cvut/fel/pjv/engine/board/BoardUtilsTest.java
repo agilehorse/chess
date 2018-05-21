@@ -5,13 +5,8 @@
  */
 package cz.cvut.fel.pjv.engine.board;
 
-import com.sun.org.apache.regexp.internal.recompile;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;

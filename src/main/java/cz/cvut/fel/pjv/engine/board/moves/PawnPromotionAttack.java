@@ -5,11 +5,9 @@ import cz.cvut.fel.pjv.engine.board.BoardUtils;
 import cz.cvut.fel.pjv.engine.pieces.Pawn;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 
-import java.util.Objects;
-
 public class PawnPromotionAttack extends AttackMove{
+
     final Board board;
-    private final Pawn promotedPawn;
     private final int newRow;
     private final int newColumn;
     private Piece newPiece;
@@ -24,7 +22,6 @@ public class PawnPromotionAttack extends AttackMove{
                              final Piece newPiece) {
         super(board, promotedPawn, newRow, newColumn, attackedPiece);
         this.board = board;
-        this.promotedPawn = promotedPawn;
         this.newRow = newRow;
         this.attackedPiece = attackedPiece;
         this.newColumn = newColumn;
@@ -48,5 +45,10 @@ public class PawnPromotionAttack extends AttackMove{
                 this.movedPiece.getPieceColumn()).substring(0,1) + "x" +
                 BoardUtils.getPositionAtCoordinate(this.newRow, this.newColumn)
                 + "=" + this.newPiece.getPieceType();
+    }
+
+    @Override
+    public Piece getAttackedPiece() {
+        return attackedPiece;
     }
 }

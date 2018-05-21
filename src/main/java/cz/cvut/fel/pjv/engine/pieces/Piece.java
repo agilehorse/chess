@@ -2,9 +2,7 @@ package cz.cvut.fel.pjv.engine.pieces;
 
 import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.Board;
-import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
-
 import java.util.Collection;
 import java.util.Objects;
 
@@ -14,7 +12,6 @@ public abstract class Piece {
     int pieceColumn;
     private final Colour pieceColour;
     private boolean isFirstMove;
-    private boolean active;
 
     public Piece(final PieceType pieceType,
                  final int pieceRow,
@@ -25,15 +22,6 @@ public abstract class Piece {
         this.pieceColumn = pieceColumn;
         this.pieceColour = pieceColour;
         this.isFirstMove = true;
-        this.active = true;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public PieceType getPieceType(){

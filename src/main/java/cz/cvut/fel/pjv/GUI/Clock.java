@@ -48,6 +48,7 @@ public class Clock extends JPanel implements Runnable {
         while (true) {
             System.out.print("");//unnecessary but necessary
 
+            //noinspection CatchMayIgnoreException
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {

@@ -50,11 +50,11 @@ public class AttackMove extends Move {
         if (this.getPerformedToString().equals("")) {
             this.setPerformedToString(this.toString());
         }
-        this.attackedPiece.setActive(false);
         this.movedPiece.move(this.getNewRow(), this.getNewColumn());
         this.getSourceTile().setPieceOnTile(null);
         this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
         movedPiece.setFirstMove(false);
+        //noinspection AccessStaticViaInstance
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
         if (this.board.getEnPassantPawn() != null
                 && this.board.getEnPassantPawn().getPieceColour() == this.movedPiece.getPieceColour()) {
@@ -67,7 +67,6 @@ public class AttackMove extends Move {
         boolean invalid = false;
         final King king = this.board.getCurrentPlayer().getPlayersKing();
         final Tile kingTile = this.board.getTile(king.getPieceRow(), king.getPieceColumn());
-        this.attackedPiece.setActive(false);
         this.attackedPiece.move(-1, -1);
         this.movedPiece.move(this.getNewRow(), this.getNewColumn());
         this.getSourceTile().setPieceOnTile(null);
@@ -82,7 +81,6 @@ public class AttackMove extends Move {
         this.movedPiece.move(this.getSourceTile().getTileRow(), this.getSourceTile().getTileColumn());
         this.getSourceTile().setPieceOnTile(movedPiece);
         this.getDestinationTile().setPieceOnTile(this.attackedPiece);
-        this.attackedPiece.setActive(true);
         this.attackedPiece.move(getDestinationTile().getTileRow(), getDestinationTile().getTileColumn());
         this.board.recalculate(false);
         return !invalid;
