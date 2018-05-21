@@ -35,7 +35,7 @@ public class Clock extends JPanel implements Runnable {
         this.setVisible(true);
     }
 
-    public static void updateClock() {
+    static void updateClock() {
         stopped = false;
         if (turn.isWhite())
             turn = Colour.BLACK;
@@ -85,6 +85,7 @@ public class Clock extends JPanel implements Runnable {
     static void resetTimer() {
         whiteTime = 0;
         blackTime = 0;
+        turn = Colour.WHITE;
     }
 
     static void stop() {
@@ -97,4 +98,5 @@ public class Clock extends JPanel implements Runnable {
         started = true;
         thread.start(); }
     }
+
 }

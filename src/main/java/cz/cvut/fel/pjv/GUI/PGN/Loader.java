@@ -9,6 +9,7 @@ import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
 import cz.cvut.fel.pjv.engine.board.moves.MoveType;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -54,7 +55,6 @@ public class Loader {
                 final Move move = createMove(loadedBoard, moveString);
                 if (move != null) {
                     move.execute();
-                    System.out.println(loadedBoard.toString());
                     moveLog.addMove(move);
                 }
                 loadedBoard.recalculate(true);
@@ -91,53 +91,72 @@ public class Loader {
 
         Tile sourceTile;
         Tile destinationTile;
-
-        if (kingSideCastleMatcher.matches()) {
-            return extractCastleMove(board, "O-O");
-        } else if (queenSideCastleMatcher.matches()) {
-            return extractCastleMove(board, "O-O-O");
-        } else if (plainPawnMatcher.matches()) {
-            final String destinationSquare = plainPawnMatcher.group(1);
-            final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
-            destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
-            sourceTile = deriveCurrentCoordinate(board, "P", destinationSquare, "");
-            return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
-        } else if (attackPawnMatcher.matches()) {
-            final String destinationSquare = attackPawnMatcher.group(3);
-            final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
-            destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
-            final String disambiguationFile = attackPawnMatcher.group(1) != null ? attackPawnMatcher.group(1) : "";
-            sourceTile = deriveCurrentCoordinate(board, "P", destinationSquare, disambiguationFile);
-            return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
-        } else if (attackPawnPromotionMatcher.matches()) {
-            final String destinationSquare = attackPawnPromotionMatcher.group(2);
-            final String disambiguationFile = attackPawnPromotionMatcher.group(1) != null ? attackPawnPromotionMatcher.group(1) : "";
-            final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
-            destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
-            sourceTile = deriveCurrentCoordinate(board, "P", destinationSquare, disambiguationFile);
-            return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
-        } else if (pawnPromotionMatcher.find()) {
-            final String destinationSquare = pawnPromotionMatcher.group(1);
-            final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
-            destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
-            sourceTile = deriveCurrentCoordinate(board, "P", destinationSquare, "");
-            return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
-        } else if (plainMajorMatcher.find()) {
-            final String destinationSquare = plainMajorMatcher.group(3);
-            final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
-            destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
-            final String disambiguationFile = plainMajorMatcher.group(2) != null ? plainMajorMatcher.group(2) : "";
-            sourceTile = deriveCurrentCoordinate(board, plainMajorMatcher.group(1), destinationSquare, disambiguationFile);
-            return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
-        } else if (attackMajorMatcher.find()) {
-            final String destinationSquare = attackMajorMatcher.group(4);
-            final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
-            destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
-            final String disambiguationFile = attackMajorMatcher.group(2) != null ? attackMajorMatcher.group(2) : "";
-            sourceTile = deriveCurrentCoordinate(board, attackMajorMatcher.group(1), destinationSquare, disambiguationFile);
-            return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
-        }
+            if (kingSideCastleMatcher.matches()) {
+                return extractCastleMove(board, "O-O");
+            } else if (queenSideCastleMatcher.matches()) {
+                return extractCastleMove(board, "O-O-O");
+            } else if (plainPawnMatcher.matches()) {
+                final String destinationSquare = plainPawnMatcher.group(1);
+                final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
+                destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
+                sourceTile = deriveCurrentCoordinate(board, "P", destinationSquare, "");
+                if (sourceTile != null) {
+                    return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
+                } else {
+                    fileLoadError();
+                }
+            } else if (attackPawnMatcher.matches()) {
+                final String destinationSquare = attackPawnMatcher.group(3);
+                final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
+                destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
+                final String disambiguationFile = attackPawnMatcher.group(1) != null ? attackPawnMatcher.group(1) : "";
+                sourceTile = deriveCurrentCoordinate(board, "P", destinationSquare, disambiguationFile);
+                if (sourceTile != null) {
+                    return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
+                }
+            } else if (attackPawnPromotionMatcher.matches()) {
+                final String destinationSquare = attackPawnPromotionMatcher.group(2);
+                final String disambiguationFile = attackPawnPromotionMatcher.group(1) != null ? attackPawnPromotionMatcher.group(1) : "";
+                final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
+                destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
+                sourceTile = deriveCurrentCoordinate(board, "P", destinationSquare, disambiguationFile);
+                if (sourceTile != null) {
+                    return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
+                }
+            } else if (pawnPromotionMatcher.find()) {
+                final String destinationSquare = pawnPromotionMatcher.group(1);
+                final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
+                destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
+                sourceTile = deriveCurrentCoordinate(board, "P", destinationSquare, "");
+                if (sourceTile != null) {
+                    return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
+                }
+            } else if (plainMajorMatcher.find()) {
+                final String destinationSquare = plainMajorMatcher.group(3);
+                final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
+                destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
+                final String disambiguationFile = plainMajorMatcher.group(2) != null ? plainMajorMatcher.group(2) : "";
+                sourceTile = deriveCurrentCoordinate(board, plainMajorMatcher.group(1), destinationSquare, disambiguationFile);
+                if (sourceTile != null) {
+                    return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
+                }
+            } else if (attackMajorMatcher.find()) {
+                final String destinationSquare = attackMajorMatcher.group(4);
+                final List<Integer> coordsList = BoardUtils.getCoordinateAtPosition(destinationSquare);
+                destinationTile = board.getTile(coordsList.get(0), coordsList.get(1));
+                final String disambiguationFile = attackMajorMatcher.group(2) != null ? attackMajorMatcher.group(2) : "";
+                sourceTile = deriveCurrentCoordinate(board, attackMajorMatcher.group(1), destinationSquare, disambiguationFile);
+                if (sourceTile != null) {
+                    return findMove(board, sourceTile.getPiece().getPieceColour(), sourceTile, destinationTile);
+                }
+            }
         return null;
+    }
+
+    private static void fileLoadError() {
+        JOptionPane.showMessageDialog(MainPanel.getGuiBoard(),
+                "Invalid file!", "Input file error",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     private static Move extractCastleMove(final Board board,

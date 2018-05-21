@@ -31,7 +31,7 @@ public class MainPanel extends Observable {
     private static final MainPanel SINGLETON = new MainPanel();
 
 
-    MainPanel() {
+    public MainPanel() {
         this.gameFrame = new JFrame("Chess");
         this.gameFrame.setLayout(new BorderLayout());
         this.gameFrame.setJMenuBar(createMenuBar());
@@ -134,7 +134,7 @@ public class MainPanel extends Observable {
                     if (file.getName().endsWith(".pgn")) {
                         loadPGNFile(file);
                     } else {
-                        JOptionPane.showMessageDialog(MainPanel.getGuiBoard(),
+                        JOptionPane.showMessageDialog(MainPanel.get().gameFrame,
                                 "Invalid file format!", "Input file error",
                                 JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -151,7 +151,7 @@ public class MainPanel extends Observable {
         return fileMenu;
     }
 
-    void resetBoard() {
+    public void resetBoard() {
         for (int i = 0; i < SET_OF_TILES; i++) {
             for (int j = 0; j < SET_OF_TILES; j++) {
                 board.getTile(i, j).setPieceOnTile(null);
@@ -177,7 +177,7 @@ public class MainPanel extends Observable {
         }
     }
 
-    static void loadPGNFile(final File pgnFile) {
+    public static void loadPGNFile(final File pgnFile) {
         try {
             MainPanel.get().gameFrame.remove(guiBoard);
             MainPanel.board = null;

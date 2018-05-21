@@ -1,26 +1,18 @@
 package cz.cvut.fel.pjv.GUI;
 
-import cz.cvut.fel.pjv.GUI.PGN.Writer;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class MainPanelProcessTest {
 
     private MainPanel mainPanel;
     private String moveMadeBoard;
-    private MoveLog moveLog;
 
     @BeforeClass
     public static void beforeClass(){
@@ -40,7 +32,6 @@ public class MainPanelProcessTest {
         System.out.println("resetBoard");
         final String newBoard = MainPanel.getBoard().toString();
         makeMove();
-        moveLog = MainPanel.getMoveLog();
         MainPanel.get().resetBoard();
         final String resetedBoard = MainPanel.getBoard().toString();
         assertEquals(newBoard, resetedBoard);
