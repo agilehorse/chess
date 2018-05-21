@@ -2,6 +2,7 @@ package cz.cvut.fel.pjv.engine.board;
 
 import cz.cvut.fel.pjv.engine.board.moves.Move;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
+import cz.cvut.fel.pjv.engine.pieces.PieceType;
 import cz.cvut.fel.pjv.engine.player.Player;
 import org.junit.After;
 import org.junit.Before;
@@ -48,5 +49,20 @@ public class BoardTest {
         whitePieces = board.getWhitePieces();
         final Collection<Move> newMoves = board.calculateMoves(whitePieces);
         assertNotEquals(moves, newMoves);
+    }
+//  process test
+    @Test
+    public void enPassantTest() {
+        System.out.println("enPassantTest");
+        final Board board = new Board();
+        for (final Move move : board.getCurrentPlayer().getLegalMoves()) {
+            int row = move.getMovedPiece().getPieceRow();
+            int row2 = move.getDestinationTile().getTileRow() - 2*move.getMovedPiece().getPieceColour().getDirection() ;
+            if (move.getMovedPiece().getPieceType().equals(PieceType.PAWN) &&  row==row2 ) {
+                board.getCurrentPlayer().initiateMove(move);
+                assertNotEquals(null, board.getEnPassantPawn());
+            }
+        }
+        System.out.println(board.toString());
     }
 }

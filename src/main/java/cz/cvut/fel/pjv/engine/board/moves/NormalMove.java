@@ -46,7 +46,7 @@ public class NormalMove extends Move {
         this.getDestinationTile().setPieceOnTile(this.movedPiece);
         final King king = this.board.getCurrentPlayer().getPlayersKing();
         final Tile kingTile = this.board.getTile(king.getPieceRow(), king.getPieceColumn());
-        for (final Move move : this.board.getMoves(this.board.getCurrentPlayer().getOpponent().getColour())) {
+        for (final Move move : this.board.getMovesByColour(this.board.getCurrentPlayer().getOpponent().getColour())) {
             if (move.getDestinationTile() == kingTile) {
                 invalid = true;
                 break;

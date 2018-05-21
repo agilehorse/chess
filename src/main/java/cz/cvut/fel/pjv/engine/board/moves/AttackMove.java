@@ -72,7 +72,7 @@ public class AttackMove extends Move {
         this.getSourceTile().setPieceOnTile(null);
         this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
         this.board.recalculate(false);
-        for (final Move move : this.board.getMoves(this.board.getCurrentPlayer().getOpponent().getColour())) {
+        for (final Move move : this.board.getMovesByColour(this.board.getCurrentPlayer().getOpponent().getColour())) {
             if (move.getDestinationTile() == kingTile) {
                 invalid = true;
                 break;
