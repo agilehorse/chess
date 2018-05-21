@@ -49,16 +49,15 @@ public abstract class Move {
         this.movedPiece.move(this.getNewRow(), this.getNewColumn());
         sourceTile.setPieceOnTile(null);
         this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
-        if (movedPiece.getPieceType() == PieceType.PAWN && sourceTile.getTileRow() + 2 == getNewRow()) {
+        if (movedPiece.getPieceType() == PieceType.PAWN && (sourceTile.getTileRow() + 2*movedPiece.getPieceColour().getDirection()) == getNewRow()) {
             this.board.setEnPassantPawn((Pawn) movedPiece);
             enPassantSetNow = true;
         }
         this.movedPiece.setFirstMove(false);
         //noinspection AccessStaticViaInstance
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        if (this.board.getEnPassantPawn() != null
-                && this.board.getEnPassantPawn().getPieceColour() == this.movedPiece.getPieceColour()
-                && !enPassantSetNow) {
+        if (!enPassantSetNow && this.board.getEnPassantPawn() != null
+                && this.board.getEnPassantPawn().getPieceColour() == this.movedPiece.getPieceColour()) {
             board.setEnPassantPawn(null);
         }
     }

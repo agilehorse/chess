@@ -179,7 +179,7 @@ public class Board {
         return chessBoard.get((tileRow * 8) + tileColumn);
     }
 
-    public Collection<Move> getMoves(Colour colour) {
+    public Collection<Move> getMovesByColour(Colour colour) {
         Collection<Piece> pieces = getActivePieces(this.getChessBoard(), colour);
         return calculateMoves(pieces);
     }

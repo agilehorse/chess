@@ -42,9 +42,7 @@ public class PawnPromotionMove extends NormalMove {
 
     @Override
     public String toString() {
-        return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPieceRow(),
-                this.movedPiece.getPieceColumn()) + "-" +
-                BoardUtils.getPositionAtCoordinate(this.newRow, this.newColumn)
+        return BoardUtils.getPositionAtCoordinate(this.newRow, this.newColumn)
                 + "=" + this.newPiece.getPieceType();
     }
 

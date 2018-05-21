@@ -1,7 +1,6 @@
 package cz.cvut.fel.pjv.engine.board.moves;
 
 import cz.cvut.fel.pjv.engine.board.Board;
-import cz.cvut.fel.pjv.engine.board.BoardUtils;
 import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.pieces.King;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
@@ -43,7 +42,7 @@ public class EnPassantAttack extends AttackMove {
         this.getDestinationTile().setPieceOnTile(movedPiece);
         this.getSourceTile().setPieceOnTile(null);
         this.board.recalculate(false);
-        for (final Move move : this.board.getMoves(this.board.getCurrentPlayer().getOpponent().getColour())) {
+        for (final Move move : this.board.getMovesByColour(this.board.getCurrentPlayer().getOpponent().getColour())) {
             if (move.getDestinationTile() == kingTile) {
                 invalid = true;
                 break;

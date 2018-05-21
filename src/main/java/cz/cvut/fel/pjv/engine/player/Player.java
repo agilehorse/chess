@@ -81,7 +81,7 @@ public abstract class Player {
     private boolean hasNoEscapeMoves() {
         Collection<Move> kingsMoves = new ArrayList<>(this.playersKing.calculateMoves(board));
         Collection<Move> movesToRemove = new ArrayList<>();
-        Collection<Move> opponentMoves = this.board.getMoves(this.board.getCurrentPlayer().getOpponent().getColour());
+        Collection<Move> opponentMoves = this.board.getMovesByColour(this.board.getCurrentPlayer().getOpponent().getColour());
         for (final Move kingMove : kingsMoves) {
             for (final Move opponentMove : opponentMoves) {
                 if (opponentMove.getDestinationTile() == kingMove.getDestinationTile()) {

@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class GameHistoryPanel extends JPanel {
 
-    private static final Dimension HISTORY_PANEL_DIMENSION = new Dimension(100,400);
+    private static final Dimension HISTORY_PANEL_DIMENSION = new Dimension(150,400);
     private final DataModel model;
     private final JScrollPane jScrollPane;
     private final Clock clock;

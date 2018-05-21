@@ -42,7 +42,7 @@ public class PawnPromotionAttack extends AttackMove{
     @Override
     public String toString() {
         return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPieceRow(),
-                this.movedPiece.getPieceColumn()).substring(0,1) + "x" +
+                this.movedPiece.getPieceColumn()) + "x" +
                 BoardUtils.getPositionAtCoordinate(this.newRow, this.newColumn)
                 + "=" + this.newPiece.getPieceType();
     }

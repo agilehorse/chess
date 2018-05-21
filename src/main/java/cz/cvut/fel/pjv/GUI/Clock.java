@@ -9,6 +9,7 @@ public class Clock extends JPanel implements Runnable {
 
     private static Thread thread;
     private static final Dimension CLOCK_PANEL_DIMENSION = new Dimension(50, 30);
+    @SuppressWarnings("FieldCanBeLocal")
     private JPanel whiteTimer, blackTimer;
     private JLabel whiteLabel, blackLabel;
     private static int whiteTime;
@@ -98,6 +99,18 @@ public class Clock extends JPanel implements Runnable {
         turn = Colour.WHITE;
         started = true;
         thread.start(); }
+    }
+
+    int getWhiteTime() {
+        return whiteTime;
+    }
+
+    int getBlackTime() {
+        return blackTime;
+    }
+
+    static Colour getTurn() {
+        return turn;
     }
 
 }
