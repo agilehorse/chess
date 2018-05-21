@@ -14,8 +14,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-public class MainPanelTest {
+public class MainPanelProcessTest {
 
     private MainPanel mainPanel;
     private String moveMadeBoard;
@@ -37,19 +38,19 @@ public class MainPanelTest {
     @Test
     public void resetBoard() {
         System.out.println("resetBoard");
-        final String newBoard = mainPanel.getBoard().toString();
+        final String newBoard = MainPanel.getBoard().toString();
         makeMove();
-        moveLog = mainPanel.getMoveLog();
-        mainPanel.get().resetBoard();
-        final String resetedBoard = mainPanel.getBoard().toString();
+        moveLog = MainPanel.getMoveLog();
+        MainPanel.get().resetBoard();
+        final String resetedBoard = MainPanel.getBoard().toString();
         assertEquals(newBoard, resetedBoard);
     }
 
     private void makeMove() {
-        final Move[] moves = mainPanel.getBoard().getCurrentPlayer().getLegalMoves().toArray(new Move[1]);
+        final Move[] moves = MainPanel.getBoard().getCurrentPlayer().getLegalMoves().toArray(new Move[1]);
         final Move move = moves[0];
-        mainPanel.getBoard().getCurrentPlayer().initiateMove(move);
-        mainPanel.getMoveLog().addMove(move);
+        MainPanel.getBoard().getCurrentPlayer().initiateMove(move);
+        MainPanel.getMoveLog().addMove(move);
     }
 
     @Test
@@ -64,12 +65,10 @@ public class MainPanelTest {
             }
         }
         makeMove();
-        moveMadeBoard = mainPanel.getBoard().toString();
-
-        System.out.println(moveMadeBoard);
+        moveMadeBoard = MainPanel.getBoard().toString();
         MainPanel.get().savePGNFile(file);
-
-        mainPanel.get().loadPGNFile(file);
-        assertEquals(true, mainPanel.get().getBoard().toString().equals(moveMadeBoard));
+        MainPanel.get().resetBoard();
+        MainPanel.loadPGNFile(file);
+        assertTrue(MainPanel.getBoard().toString().equals(moveMadeBoard));
     }
 }

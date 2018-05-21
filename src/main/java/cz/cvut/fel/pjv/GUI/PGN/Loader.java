@@ -50,7 +50,6 @@ public class Loader {
             }
             moveStringList.removeAll(Arrays.asList("", null));
             Board loadedBoard = new Board();
-            System.out.println(moveStringList);
             for (final String moveString : moveStringList) {
                 final Move move = createMove(loadedBoard, moveString);
                 if (move != null) {

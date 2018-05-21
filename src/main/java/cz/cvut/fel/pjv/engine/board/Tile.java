@@ -77,10 +77,6 @@ public class Tile {
         return tileNotation;
     }
 
-    public Piece getPieceOnTile() {
-        return pieceOnTile;
-    }
-
     public void setPieceOnTile(Piece piece) {
         this.pieceOnTile = piece;
     }

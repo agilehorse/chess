@@ -169,7 +169,7 @@ public class Board {
         return ImmutableList.copyOf(tiles);
     }
 
-    private static void putPiece(final Piece piece) {
+    static void putPiece(final Piece piece) {
         boardConfiguration.put(piece.getPieceRow(),
                 piece.getPieceColumn(),
                 piece);
