@@ -49,7 +49,7 @@ public abstract class Move {
         this.movedPiece.move(this.getNewRow(), this.getNewColumn());
         sourceTile.setPieceOnTile(null);
         this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
-        if (movedPiece.getPieceType() == PieceType.PAWN && (sourceTile.getTileRow() + 2*movedPiece.getPieceColour().getDirection()) == getNewRow()) {
+        if (movedPiece.getPieceType() == PieceType.PAWN && sourceTile.getTileRow() + 2 == getNewRow()) {
             this.board.setEnPassantPawn((Pawn) movedPiece);
             enPassantSetNow = true;
         }
