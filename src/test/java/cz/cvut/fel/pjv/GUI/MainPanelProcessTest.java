@@ -56,7 +56,7 @@ public class MainPanelProcessTest {
     @Test
     public void saveAndLoad(){
         System.out.println("saveAndLoad");
-        File file = new File("C:/Users/13dvz/OneDrive/Documents/NetBeansProjects/bulkodav/chess/src/test/java/cz/cvut/fel/pjv/GUI/test.pgn");
+        final File file = new File(new File("src/test/java/cz/cvut/fel/pjv/GUI/test.pgn").getAbsolutePath());
         if(!file.exists()){
             try {
                 file.createNewFile();
