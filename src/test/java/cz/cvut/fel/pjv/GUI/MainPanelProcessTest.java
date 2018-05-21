@@ -69,7 +69,7 @@ public class MainPanelProcessTest {
         MainPanel.get().savePGNFile(file);
         MainPanel.get().resetBoard();
         MainPanel.loadPGNFile(file);
-        assertTrue(MainPanel.getBoard().toString().equals(moveMadeBoard));
+        assertEquals(MainPanel.getBoard().toString(), moveMadeBoard);
         file.delete();
     }
 }
