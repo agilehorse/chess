@@ -25,7 +25,7 @@ public class PlayerTest {
     public void tearDown() {
         
     }
-
+// process test
     @Test
     public void isCastled() {
         MainPanel mainPanel = new MainPanel();
@@ -44,6 +44,7 @@ public class PlayerTest {
             }
         }
     }
+// process test
     @Test
     public void isInCheckMate() {
         MainPanel mainPanel = new MainPanel();
@@ -54,7 +55,7 @@ public class PlayerTest {
         MainPanel.getBoard().recalculate(true);
         assertTrue(MainPanel.getBoard().getCurrentPlayer().isInCheckMate());
     }
-
+// process test
     @Test
     public void isInStaleMate() {
         MainPanel mainPanel = new MainPanel();

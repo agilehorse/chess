@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 
-public class MainPanelProcessTest {
+public class MainPanelTest {
 
     private MainPanel mainPanel;
     private String moveMadeBoard;
@@ -43,7 +43,7 @@ public class MainPanelProcessTest {
         MainPanel.getBoard().getCurrentPlayer().initiateMove(move);
         MainPanel.getMoveLog().addMove(move);
     }
-
+// process test
     @Test
     public void saveAndLoad(){
         System.out.println("saveAndLoad");

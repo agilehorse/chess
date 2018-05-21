@@ -35,15 +35,16 @@ public class BoardTest {
 
     @Test
     public void setMove() {
-        System.out.println("recalculateBoard");
+        System.out.println("setMove");
         final Player player = board.getCurrentPlayer();
         Board.setMove(player.getOpponent().getColour());
         board.recalculate(true);
         assertEquals(player.getOpponent(), board.getCurrentPlayer());
     }
-
+// process test
     @Test
     public void calculateMoves() {
+        System.out.println("calculateMoves");
         Collection<Piece> whitePieces = board.getWhitePieces();
         this.moves = board.calculateMoves(whitePieces);
         final Move move = new ArrayList<>(board.getCurrentPlayer().getLegalMoves()).get(0);
