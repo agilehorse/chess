@@ -51,6 +51,8 @@ public class BoardTest {
         assertNotEquals(moves, newMoves);
     }
 //  process test
+//    during the test we found out that enPassant doesn't work right
+//    neet to fix it
     @Test
     public void enPassantTest() {
         System.out.println("enPassantTest");

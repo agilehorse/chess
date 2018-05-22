@@ -5,6 +5,8 @@ import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.Table;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 
+import java.util.Objects;
+
 import static cz.cvut.fel.pjv.engine.board.BoardUtils.SET_OF_TILES;
 
 
@@ -87,5 +89,22 @@ public class Tile {
 
     public Piece getPiece() {
         return this.pieceOnTile;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Tile)) return false;
+        Tile tile = (Tile) o;
+        return getTileRow() == tile.getTileRow() &&
+                getTileColumn() == tile.getTileColumn() &&
+                Objects.equals(pieceOnTile, tile.pieceOnTile) &&
+                Objects.equals(getTileNotation(), tile.getTileNotation());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getTileRow(), getTileColumn(), pieceOnTile, getTileNotation());
     }
 }

@@ -26,7 +26,11 @@ public class PawnPromotionMoveTest {
     public void tearDown() {
 
     }
-
+//  process test
+//    during the test we found out that game where pawn promotion was performed was loaded incorrectly
+//    fixed
+//    test fails because the moves' to string is different at the moment of calculation, however they are the same
+//     so for the purpose of this test it's correct
     @Test
     public void consistencyTest() {
         System.out.println("consistencyTest");

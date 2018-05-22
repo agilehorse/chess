@@ -23,7 +23,7 @@ public class MainPanel extends Observable {
     private static TakenPiecesPanel takenPiecesPanel;
     private static MoveLog moveLog;
     private static GuiBoard guiBoard;
-    private static final Dimension OUTER_FRAME_SIZE = new Dimension(750, 600);
+    private static final Dimension OUTER_FRAME_SIZE = new Dimension(730, 600);
     private static Board board;
     private static Tile sourceTile;
     private static Piece movedPiece;
