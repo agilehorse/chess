@@ -50,10 +50,7 @@ public class CastleMove extends Move {
         this.castlingRook.move(castlingRookNewRow, castlingRookNewColumn);
         //noinspection AccessStaticViaInstance
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        if (this.board.getEnPassantPawn() != null
-                && this.board.getEnPassantPawn().getPieceColour() == this.movedPiece.getPieceColour()) {
-            board.setEnPassantPawn(null);
-        }
+        board.setEnPassantPawn(null);
     }
 
     private Rook getCastlingRook() {

@@ -27,13 +27,13 @@ public class EnPassantAttack extends AttackMove {
         movedPiece.setFirstMove(false);
         //noinspection AccessStaticViaInstance
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        this.board.setEnPassantPawn(null);
+        board.setEnPassantPawn(null);
     }
 
     @Override
     public boolean freeFromCheck() {
         boolean invalid = false;
-        final Tile attackedTile = this.getDestinationTile();
+        final Tile attackedTile = this.board.getTile(this.getAttackedPiece().getPieceRow(), this.getAttackedPiece().getPieceColumn());
         final King king = this.board.getCurrentPlayer().getPlayersKing();
         final Tile kingTile = this.board.getTile(king.getPieceRow(), king.getPieceColumn());
         this.getAttackedPiece().move(-1, -1);
@@ -48,8 +48,8 @@ public class EnPassantAttack extends AttackMove {
                 break;
             }
         }
+        attackedTile.setPieceOnTile(getAttackedPiece());
         getAttackedPiece().move(attackedTile.getTileRow(), attackedTile.getTileColumn());
-        attackedTile.setPieceOnTile(getMovedPiece());
         getDestinationTile().setPieceOnTile(null);
         movedPiece.move(this.getSourceTile().getTileRow(), this.getSourceTile().getTileColumn());
         this.getSourceTile().setPieceOnTile(movedPiece);

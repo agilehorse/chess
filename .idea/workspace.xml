@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3596f27-33a7-4074-92df-e85559f39092" name="Default" comment="code cleanup, clock test added, pawn promotion test added">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+    <list default="true" id="f3596f27-33a7-4074-92df-e85559f39092" name="Default" comment="en passant bugs corrected, now works on both sides and also after loading game from PGN file">
+      <change afterPath="$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/enPassantTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chess.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameHistoryPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameHistoryPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/PGN/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/PGN/Loader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/BoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionMoveTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionMoveTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MoveLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MoveLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/AttackMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/AttackMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/CastleMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/CastleMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/EnPassantAttack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/EnPassantAttack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NormalMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NormalMove.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,105 +22,105 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Loader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/PGN/Loader.java">
+      <file leaf-file-name="Move.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/Move.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1359">
-              <caret line="137" selection-start-line="137" selection-end-line="137" />
+            <state relative-caret-position="173">
+              <caret line="119" column="4" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PawnPromotionMoveTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionMoveTest.java">
+      <file leaf-file-name="CastleMove.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/CastleMove.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
+            <state relative-caret-position="294">
+              <caret line="52" column="37" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoardTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/BoardTest.java">
+      <file leaf-file-name="EnPassantAttack.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/EnPassantAttack.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+            <state relative-caret-position="334">
+              <caret line="46" column="31" lean-forward="true" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PawnPromotionAttack.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionAttack.java">
+      <file leaf-file-name="Pawn.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/Pawn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="196">
+              <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PawnPromotionMove.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionMove.java">
+      <file leaf-file-name="MoveLog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MoveLog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-391">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/Tile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="94" column="37" selection-start-line="94" selection-start-column="37" selection-end-line="94" selection-end-column="37" />
+            <state relative-caret-position="142">
+              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
               <folding>
-                <element signature="e#2675#2676#0" expanded="true" />
-                <element signature="e#2714#2715#0" expanded="true" />
+                <element signature="e#503#504#0" expanded="true" />
+                <element signature="e#543#544#0" expanded="true" />
+                <element signature="e#563#564#0" expanded="true" />
+                <element signature="e#597#598#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChessMain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/ChessMain.java">
+      <file leaf-file-name="enPassantTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/enPassantTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="142">
+              <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
               <folding>
-                <element signature="e#170#171#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuiBoard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiBoard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainPanel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MainPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="25" column="70" selection-start-line="25" selection-start-column="70" selection-end-line="25" selection-end-column="70" />
+            <state relative-caret-position="272">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AttackMove.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/AttackMove.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="58" column="37" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiTile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiTile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="116" selection-start-line="116" selection-end-line="116" />
               <folding>
-                <element signature="e#2077#2078#0" expanded="true" />
-                <element signature="e#2109#2110#0" expanded="true" />
-                <element signature="e#8068#8069#0" expanded="true" />
-                <element signature="e#8096#8097#0" expanded="true" />
+                <element signature="e#6558#6559#0" expanded="true" />
+                <element signature="e#6612#6613#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameHistoryPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameHistoryPanel.java">
+      <file leaf-file-name="NormalMove.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NormalMove.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="9" column="77" selection-start-line="9" selection-start-column="77" selection-end-line="9" selection-end-column="77" />
+            <state relative-caret-position="274">
+              <caret line="51" column="37" lean-forward="true" selection-start-line="51" selection-end-line="52" />
             </state>
           </provider>
         </entry>
@@ -155,10 +153,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/JChess.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/PawnMove.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/PawnAttackMove.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NormalMove.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/PieceType.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/KingSideCastle.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/QueenSideCastle.java" />
@@ -179,9 +174,6 @@
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/player/MoveState.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameSetup.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/AI/RandomMover.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/AttackMove.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/CastleMove.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/EnPassantAttack.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/MoveType.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NullMove.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/BoardUtils.java" />
@@ -189,8 +181,6 @@
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/player/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/AI/AIPlayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/DataModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiTile.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MoveLog.java" />
         <option value="$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/BoardUtilsTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/GUI/MainPanelTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/Clock.java" />
@@ -199,13 +189,21 @@
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionMove.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionAttack.java" />
         <option value="$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/GUI/ClockTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/Move.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/Tile.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MainPanel.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameHistoryPanel.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/PGN/Loader.java" />
         <option value="$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionMoveTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/BoardTest.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NormalMove.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/AttackMove.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/CastleMove.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/EnPassantAttack.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MoveLog.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/enPassantTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/Move.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiTile.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MainPanel.java" />
       </list>
     </option>
   </component>
@@ -234,9 +232,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="10" />
-    <option name="width" value="1100" />
-    <option name="height" value="1040" />
+    <option name="x" value="832" />
+    <option name="width" value="1098" />
+    <option name="height" value="1018" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -329,77 +327,6 @@
               <item name="pjv" type="462c0819:PsiDirectoryNode" />
               <item name="GUI" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pjv" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="PGN" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pjv" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pjv" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pjv" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="board" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pjv" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="board" type="462c0819:PsiDirectoryNode" />
-              <item name="moves" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pjv" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="pieces" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -465,20 +392,14 @@
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
-    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in chess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cz.cvut.fel.pjv.engine.board.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="cz.cvut.fel.pjv.engine.board" />
-      <option name="MAIN_CLASS_NAME" value="cz.cvut.fel.pjv.engine.board.BoardTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="package" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -501,29 +422,6 @@
       <option name="PACKAGE_NAME" value="cz.cvut.fel.pjv.engine.board" />
       <option name="MAIN_CLASS_NAME" value="cz.cvut.fel.pjv.engine.board.BoardTest" />
       <option name="METHOD_NAME" value="enPassantTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="ClockTest.clockAllFunctionalities" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cz.cvut.fel.pjv.GUI.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="cz.cvut.fel.pjv.GUI" />
-      <option name="MAIN_CLASS_NAME" value="cz.cvut.fel.pjv.GUI.ClockTest" />
-      <option name="METHOD_NAME" value="clockAllFunctionalities" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -573,6 +471,29 @@
       </option>
       <patterns />
     </configuration>
+    <configuration name="enPassantTest.enPassant" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chess" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cz.cvut.fel.pjv.engine.board.moves.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="cz.cvut.fel.pjv.engine.board.moves" />
+      <option name="MAIN_CLASS_NAME" value="cz.cvut.fel.pjv.engine.board.moves.enPassantTest" />
+      <option name="METHOD_NAME" value="enPassant" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -597,18 +518,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.ChessMain" />
-      <item itemvalue="JUnit.ClockTest.clockAllFunctionalities" />
       <item itemvalue="JUnit.BoardTest.enPassantTest" />
-      <item itemvalue="JUnit.BoardTest" />
       <item itemvalue="JUnit.PawnPromotionMoveTest.consistencyTest" />
+      <item itemvalue="JUnit.enPassantTest.enPassant" />
+      <item itemvalue="JUnit.All in chess" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ChessMain" />
+        <item itemvalue="JUnit.All in chess" />
         <item itemvalue="JUnit.PawnPromotionMoveTest.consistencyTest" />
+        <item itemvalue="JUnit.enPassantTest.enPassant" />
         <item itemvalue="JUnit.BoardTest.enPassantTest" />
-        <item itemvalue="JUnit.BoardTest" />
-        <item itemvalue="JUnit.ClockTest.clockAllFunctionalities" />
       </list>
     </recent_temporary>
   </component>
@@ -740,81 +661,89 @@
       <option name="project" value="LOCAL" />
       <updated>1526917302290</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="loading game where pawn promotion was performed is now correct">
+      <created>1526982709052</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1526982709052</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BoardTest_enPassantTest - 2018.05.21 at 21h 14m 08s.xml">
-      <configuration name="BoardTest.enPassantTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardTest_enPassantTest - 2018.05.21 at 21h 14m 20s.xml">
-      <configuration name="BoardTest.enPassantTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardTest_enPassantTest - 2018.05.21 at 21h 14m 22s.xml">
-      <configuration name="BoardTest.enPassantTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardTest_enPassantTest - 2018.05.21 at 21h 14m 54s.xml">
-      <configuration name="BoardTest.enPassantTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardTest_enPassantTest - 2018.05.21 at 21h 27m 07s.xml">
-      <configuration name="BoardTest.enPassantTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardTest_enPassantTest - 2018.05.21 at 21h 27m 33s.xml">
-      <configuration name="BoardTest.enPassantTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PawnPromotionMoveTest_consistencyTest - 2018.05.21 at 21h 49m 19s.xml">
-      <configuration name="PawnPromotionMoveTest.consistencyTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PawnPromotionMoveTest_consistencyTest - 2018.05.21 at 21h 50m 00s.xml">
-      <configuration name="PawnPromotionMoveTest.consistencyTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="PawnPromotionMoveTest_consistencyTest - 2018.05.21 at 21h 54m 24s.xml">
       <configuration name="PawnPromotionMoveTest.consistencyTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="PawnPromotionMoveTest_consistencyTest - 2018.05.22 at 11h 42m 32s.xml">
       <configuration name="PawnPromotionMoveTest.consistencyTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="enPassantTest_enPassant - 2018.05.22 at 13h 27m 22s.xml">
+      <configuration name="enPassantTest.enPassant" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="enPassantTest_enPassant - 2018.05.22 at 13h 29m 28s.xml">
+      <configuration name="enPassantTest.enPassant" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="enPassantTest_enPassant - 2018.05.22 at 13h 41m 47s.xml">
+      <configuration name="enPassantTest.enPassant" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="enPassantTest_enPassant - 2018.05.22 at 13h 42m 35s.xml">
+      <configuration name="enPassantTest.enPassant" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="enPassantTest_enPassant - 2018.05.22 at 14h 27m 03s.xml">
+      <configuration name="enPassantTest.enPassant" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="enPassantTest_enPassant - 2018.05.22 at 14h 27m 10s.xml">
+      <configuration name="enPassantTest.enPassant" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PawnPromotionMoveTest_consistencyTest - 2018.05.22 at 14h 28m 06s.xml">
+      <configuration name="PawnPromotionMoveTest.consistencyTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_chess - 2018.05.22 at 14h 32m 45s.xml">
+      <configuration name="All in chess" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240683000" />
+    <option name="totallyTimeSpent" value="250177000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="right" x="705" y="119" width="166" height="586" id="Palette" order="4" type="FLOATING" />
+      <window_info anchor="right" x="705" y="119" width="166" height="586" id="Palette" order="8" type="FLOATING" />
       <window_info anchor="bottom" id="TODO" order="11" />
       <window_info anchor="bottom" id="Messages" order="4" weight="0.32344633" />
-      <window_info anchor="right" id="Palette&#9;" order="1" />
+      <window_info anchor="right" id="Palette&#9;" order="2" />
       <window_info id="Image Layers" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013423" side_tool="true" weight="0.32909605" />
-      <window_info anchor="right" id="Maven Projects" order="7" weight="0.32896304" />
+      <window_info anchor="right" id="Maven Projects" order="13" weight="0.32885906" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="3" sideWeight="0.4986577" weight="0.32909605" />
-      <window_info anchor="bottom" x="28" y="552" width="1490" height="227" id="Run" order="7" sideWeight="0.49932885" visible="true" weight="0.4138418" />
+      <window_info anchor="bottom" x="28" y="552" width="1490" height="227" id="Run" order="7" sideWeight="0.49932885" weight="0.4138418" />
       <window_info anchor="bottom" id="Terminal" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.13422818" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.1704698" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="bottom" id="Find" order="6" visible="true" weight="0.32768363" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="14" weight="0.24966443" />
       <window_info id="UI Designer" order="1" />
-      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.3559322" />
-      <window_info anchor="right" x="705" y="119" width="166" height="586" id="Palette" order="4" type="FLOATING" />
+      <window_info anchor="right" x="705" y="119" width="166" height="586" id="Palette" order="9" type="FLOATING" />
       <window_info anchor="bottom" id="SVN Repositories" order="12" weight="0.32909605" />
       <window_info id="Designer" order="0" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="6" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="11" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="15" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="4" weight="0.32471263" />
       <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.31208053" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="3" />
@@ -823,15 +752,14 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="UI Designer" order="1" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.3559322" />
-      <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.32768363" />
       <window_info anchor="bottom" id="Terminal" order="1" />
-      <window_info anchor="right" id="Maven Projects" order="7" weight="0.32896304" />
+      <window_info anchor="right" id="Maven Projects" order="12" weight="0.32896304" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout>
     <layout-to-restore>
@@ -917,15 +845,21 @@
     <MESSAGE value="marked process tests" />
     <MESSAGE value="code cleanup" />
     <MESSAGE value="code cleanup, clock test added, pawn promotion test added" />
-    <option name="LAST_COMMIT_MESSAGE" value="code cleanup, clock test added, pawn promotion test added" />
+    <MESSAGE value="loading game where pawn promotion was performed is now correct" />
+    <MESSAGE value="en passant corrected" />
+    <MESSAGE value="en passant bugs corrected, now works on both sides and also after loading game from PGN file" />
+    <option name="LAST_COMMIT_MESSAGE" value="en passant bugs corrected, now works on both sides and also after loading game from PGN file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="452" />
+      <option name="time" value="459" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="this" />
+      </configuration>
+      <configuration name="Application">
+        <watch expression="board.chessBoard" />
       </configuration>
     </watches-manager>
   </component>
@@ -934,38 +868,17 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionMoveTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/Move.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/AI/AIPlayer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/AI/RandomMover.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/PGN/Writer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameSetup.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MoveLog.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/TakenPiecesPanel.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/Clock.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/BoardUtilsTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/TileTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/Bishop.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/King.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/Knight.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/PieceMoveCalculator.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/Queen.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/PieceType.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/CastleMove.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/KingSideCastle.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/AttackMove.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1016,64 +929,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/Piece.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/Pawn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/EnPassantAttack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/player/PlayerTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/pawnPromotedQueenGame.pgn" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/DataModel.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/GUI/ClockTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NormalMove.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="757">
-          <caret line="54" column="44" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/MoveType.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/Move.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/GUI/MainPanelTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/player/BlackPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiTile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
         </state>
       </provider>
     </entry>
@@ -1105,26 +965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MainPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="25" column="70" selection-start-line="25" selection-start-column="70" selection-end-line="25" selection-end-column="70" />
-          <folding>
-            <element signature="e#2077#2078#0" expanded="true" />
-            <element signature="e#2109#2110#0" expanded="true" />
-            <element signature="e#8068#8069#0" expanded="true" />
-            <element signature="e#8096#8097#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameHistoryPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="77" selection-start-line="9" selection-start-column="77" selection-end-line="9" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionAttack.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1139,24 +979,190 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/DataModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-80">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GameHistoryPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-223">
+          <caret line="9" column="77" selection-start-line="9" selection-start-column="77" selection-end-line="9" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/PGN/Loader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1359">
+        <state relative-caret-position="17">
           <caret line="137" selection-start-line="137" selection-end-line="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/pawnPromotedQueenGame.pgn">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/BoardUtilsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-845">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/TileTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-911">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/pieces/KingTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-570">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/PawnPromotionMoveTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
+        <state relative-caret-position="234">
+          <caret line="50" column="47" lean-forward="true" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/BoardTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+        <state relative-caret-position="564">
+          <caret line="63" column="60" lean-forward="true" selection-start-line="63" selection-start-column="60" selection-end-line="63" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/player/PlayerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="62" column="37" lean-forward="true" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/GUI/ClockTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/GUI/MainPanelTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/KingSideCastle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-18">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/NormalMove.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="51" column="37" lean-forward="true" selection-start-line="51" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/CastleMove.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="52" column="37" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/pieces/Pawn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/AttackMove.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="58" column="37" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/EnPassantAttack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="46" column="31" lean-forward="true" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MoveLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <folding>
+            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#563#564#0" expanded="true" />
+            <element signature="e#597#598#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cz/cvut/fel/pjv/engine/board/moves/enPassantTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/engine/board/moves/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="119" column="4" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/GuiTile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+          <folding>
+            <element signature="e#6558#6559#0" expanded="true" />
+            <element signature="e#6612#6613#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fel/pjv/GUI/MainPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>

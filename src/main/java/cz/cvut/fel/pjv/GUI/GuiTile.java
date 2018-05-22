@@ -4,6 +4,7 @@ import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
 import cz.cvut.fel.pjv.engine.board.moves.MoveType;
+import cz.cvut.fel.pjv.engine.pieces.Pawn;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 import cz.cvut.fel.pjv.engine.pieces.PieceType;
 
@@ -46,6 +47,7 @@ class GuiTile extends JPanel {
                 if (isRightMouseButton(mouseEvent)) {
                     clearState();
                 } else if (isLeftMouseButton(mouseEvent)) {
+                    setEnPassantPawn();
                     Clock.start();
                     if (MainPanel.getSourceTile() == null) {
                         MainPanel.setSourceTile(getAsTileObject());
@@ -106,6 +108,15 @@ class GuiTile extends JPanel {
             public void mouseExited(MouseEvent mouseEvent) {}
         });
         validate();
+    }
+
+    private void setEnPassantPawn() {
+        final Move lastMove = MainPanel.getMoveLog().getLastMove();
+        if(lastMove != null && lastMove.getMovedPiece().getPieceType().equals(PieceType.PAWN)
+                && lastMove.getSourceTile().getTileRow() == (lastMove.getDestinationTile().getTileRow() - 2*lastMove.getMovedPiece().getPieceColour().getDirection())) {
+            this.board.setEnPassantPawn((Pawn) lastMove.getMovedPiece());
+            board.recalculate(true);
+        }
     }
 
     private Move handlePawnPromotionMove(final Tile sourceTile,

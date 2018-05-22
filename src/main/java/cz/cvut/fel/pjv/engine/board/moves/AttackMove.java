@@ -56,10 +56,7 @@ public class AttackMove extends Move {
         movedPiece.setFirstMove(false);
         //noinspection AccessStaticViaInstance
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        if (this.board.getEnPassantPawn() != null
-                && this.board.getEnPassantPawn().getPieceColour() == this.movedPiece.getPieceColour()) {
-            board.setEnPassantPawn(null);
-        }
+        board.setEnPassantPawn(null);
     }
 
     @Override

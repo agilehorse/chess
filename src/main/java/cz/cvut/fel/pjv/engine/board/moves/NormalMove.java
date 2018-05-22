@@ -4,6 +4,7 @@ import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.BoardUtils;
 import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.pieces.King;
+import cz.cvut.fel.pjv.engine.pieces.Pawn;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 import cz.cvut.fel.pjv.engine.pieces.PieceType;
 
@@ -35,6 +36,21 @@ public class NormalMove extends Move {
             return movedPiece.getPieceType().toString() + disambiguationTile() +
                     BoardUtils.getPositionAtCoordinate(this.getNewRow(), this.getNewColumn());
         }
+    }
+
+    public void execute() {
+        if (this.getPerformedToString().equals("")) {
+            this.setPerformedToString(this.toString());
+        }
+        final Tile sourceTile = this.getSourceTile();
+        this.movedPiece.move(this.getNewRow(), this.getNewColumn());
+        sourceTile.setPieceOnTile(null);
+        this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
+        this.movedPiece.setFirstMove(false);
+        //noinspection AccessStaticViaInstance
+        this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
+        board.setEnPassantPawn(null);
+
     }
 
     @Override

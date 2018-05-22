@@ -22,11 +22,18 @@ public class MoveLog {
         this.moves.add(move);
     }
 
-    public int size() {
+    int size() {
         return this.moves.size();
     }
 
-    void clear(){
+    void clear() {
         this.moves.clear();
+    }
+
+    Move getLastMove() {
+        if (this.moves.size() > 0) {
+            return this.moves.get(moves.size() - 1);
+        }
+        return null;
     }
 }

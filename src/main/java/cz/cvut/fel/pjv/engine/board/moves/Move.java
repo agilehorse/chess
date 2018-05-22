@@ -40,28 +40,6 @@ public abstract class Move {
         this.sourceTile = board.getTile(movedPiece.getPieceRow(), movedPiece.getPieceColumn());
     }
 
-    public void execute() {
-        boolean enPassantSetNow = false;
-        if (this.getPerformedToString().equals("")) {
-            this.setPerformedToString(this.toString());
-        }
-        final Tile sourceTile = this.getSourceTile();
-        this.movedPiece.move(this.getNewRow(), this.getNewColumn());
-        sourceTile.setPieceOnTile(null);
-        this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
-        if (movedPiece.getPieceType() == PieceType.PAWN && sourceTile.getTileRow() + 2 == getNewRow()) {
-            this.board.setEnPassantPawn((Pawn) movedPiece);
-            enPassantSetNow = true;
-        }
-        this.movedPiece.setFirstMove(false);
-        //noinspection AccessStaticViaInstance
-        this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
-        if (!enPassantSetNow && this.board.getEnPassantPawn() != null
-                && this.board.getEnPassantPawn().getPieceColour() == this.movedPiece.getPieceColour()) {
-            board.setEnPassantPawn(null);
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,11 +53,14 @@ public abstract class Move {
                 Objects.equals(getSourceTile(), move.getSourceTile());
     }
 
+
     @Override
     public int hashCode() {
 
         return Objects.hash(getBoard(), getMovedPiece(), getNewRow(), getNewColumn(), getDestinationTile(), getSourceTile());
     }
+
+    public abstract void execute();
 
     public abstract MoveType getMoveType();
 
@@ -136,7 +117,7 @@ public abstract class Move {
         return performedToString;
     }
 
-    public void setPerformedToString(String performedToString) {
+    void setPerformedToString(String performedToString) {
 
         if (this.performedToString.equals("")) {
             this.performedToString = performedToString;
