@@ -58,31 +58,10 @@ public class TileTest
 	Tile expResult = Tile.createTile(5, 5, null);
 	
 //	act
-	Tile result = Tile.createTile(tileRow, tileColumn, piece);
+	@SuppressWarnings("ConstantConditions") Tile result = Tile.createTile(tileRow, tileColumn, piece);
 
 //	asserts
 	assertEquals(expResult, result);
     }
-    
-    /**
-     * Test of toString method, of class Tile.
-     */
-    @Test
-    public void testToStringReturnsSlash()
-    {
-//	arrange
-	System.out.println("toString");
-	int tileRow = 5;
-	int tileColumn = 5;
-	Piece piece = null;
-	String expResult = "-";
-	
-//	act
-	Tile tile = Tile.createTile(tileRow, tileColumn, piece);
-	String result = tile.toString();
-	
-//	assert
-	assertEquals(expResult, result);
-    }
-      
+
 }

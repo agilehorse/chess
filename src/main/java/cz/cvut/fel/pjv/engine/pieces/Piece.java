@@ -59,7 +59,7 @@ public abstract class Piece {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof Piece)) return false;
         Piece piece = (Piece) o;
@@ -77,7 +77,8 @@ public abstract class Piece {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPieceType(), getPieceRow(), getPieceColumn(), getPieceColour(), isFirstMove());
+        return Objects.hash(getPieceType(), getPieceRow(), getPieceColumn(),
+                getPieceColour(), isFirstMove());
     }
 
     public int getPieceValue() {

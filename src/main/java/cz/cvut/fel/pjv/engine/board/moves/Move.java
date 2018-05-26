@@ -4,9 +4,7 @@ package cz.cvut.fel.pjv.engine.board.moves;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.BoardUtils;
 import cz.cvut.fel.pjv.engine.board.Tile;
-import cz.cvut.fel.pjv.engine.pieces.Pawn;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
-import cz.cvut.fel.pjv.engine.pieces.PieceType;
 
 import java.util.Objects;
 
@@ -32,12 +30,37 @@ public abstract class Move {
         setSourceTile();
     }
 
+    String disambiguationFile() {
+        for (final Move move : this.board.getCurrentPlayer().getLegalMoves()) {
+            if (move.getDestinationTile() == this.getDestinationTile() &&
+                    !this.equals(move) &&
+                    this.movedPiece.getPieceType().equals(move.getMovedPiece().getPieceType())) {
+                return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPieceRow(),
+                        this.movedPiece.getPieceColumn()).substring(0, 1);
+            }
+        }
+        return "";
+    }
+
+    public void setPerformedToString(String performedToString) {
+        if (this.performedToString.equals("")) {
+            this.performedToString = performedToString;
+        } else if ((performedToString.equals("+") || performedToString.equals("#"))) {
+            if (!this.performedToString.endsWith("+")) {
+                this.performedToString += performedToString;
+            } else {
+                this.performedToString = this.performedToString.substring(0, this.performedToString.length()-1) + performedToString;
+            }
+        }
+    }
+
     private void setDestinationTile() {
-        this.destinationTile = board.getTile(newRow, newColumn);
+        this.destinationTile = Board.getTile(newRow, newColumn);
     }
 
     private void setSourceTile() {
-        this.sourceTile = board.getTile(movedPiece.getPieceRow(), movedPiece.getPieceColumn());
+        this.sourceTile = Board.getTile(movedPiece.getPieceRow(),
+                movedPiece.getPieceColumn());
     }
 
     @Override
@@ -53,11 +76,10 @@ public abstract class Move {
                 Objects.equals(getSourceTile(), move.getSourceTile());
     }
 
-
     @Override
     public int hashCode() {
-
-        return Objects.hash(getBoard(), getMovedPiece(), getNewRow(), getNewColumn(), getDestinationTile(), getSourceTile());
+        return Objects.hash(getBoard(), getMovedPiece(), getNewRow(),
+                getNewColumn(), getDestinationTile(), getSourceTile());
     }
 
     public abstract void execute();
@@ -80,14 +102,6 @@ public abstract class Move {
         return board;
     }
 
-    public int getCurrentRow() {
-        return this.movedPiece.getPieceRow();
-    }
-
-    public int getCurrentColumn() {
-        return this.movedPiece.getPieceColumn();
-    }
-
     public Tile getDestinationTile() {
         return destinationTile;
     }
@@ -102,27 +116,7 @@ public abstract class Move {
 
     public abstract boolean freeFromCheck();
 
-    String disambiguationTile() {
-        for (final Move move : this.board.getCurrentPlayer().getLegalMoves()) {
-            if (move.getDestinationTile() == this.getDestinationTile() && !this.equals(move) &&
-                    this.movedPiece.getPieceType().equals(move.getMovedPiece().getPieceType())) {
-                return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPieceRow(),
-                        this.movedPiece.getPieceColumn()).substring(0, 1);
-            }
-        }
-        return "";
-    }
-
     public String getPerformedToString() {
         return performedToString;
-    }
-
-    void setPerformedToString(String performedToString) {
-
-        if (this.performedToString.equals("")) {
-            this.performedToString = performedToString;
-        } else {
-            throw new RuntimeException("Move tostring cannot be set again!");
-        }
     }
 }

@@ -17,6 +17,10 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>cz.cvut.fel.pjv</groupId>
+                <artifactId>chess</artifactId>
+            </plugin>
         </plugins>
     </build>
     <dependencies>

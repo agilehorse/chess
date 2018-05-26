@@ -9,13 +9,12 @@ import java.util.concurrent.ExecutionException;
 
 public class AIPlayer extends SwingWorker<Move, String> {
 
-    public AIPlayer() {
+    AIPlayer() {
     }
 
     @Override
     protected Move doInBackground() {
-        final RandomMover randomMover = new RandomMover();
-        return randomMover.get(MainPanel.getBoard());
+        return RandomMover.get(MainPanel.getBoard());
     }
 
     @Override
@@ -23,10 +22,10 @@ public class AIPlayer extends SwingWorker<Move, String> {
         try {
             final Board board = MainPanel.getBoard();
             final Move aiMove = get();
-            final boolean done = board.getCurrentPlayer().initiateMove(aiMove);
+            final boolean done = board.getCurrentPlayer().executeMove(aiMove);
             if (done) {
                 MainPanel.getMoveLog().addMove(aiMove);
-                board.recalculate(true);
+                board.recalculate();
                 MainPanel.getGameHistoryPanel().redo(MainPanel.getBoard(), MainPanel.getMoveLog());
                 MainPanel.getTakenPiecesPanel().redo(MainPanel.getMoveLog());
                 MainPanel.getGuiBoard().drawBoard(MainPanel.getBoard());

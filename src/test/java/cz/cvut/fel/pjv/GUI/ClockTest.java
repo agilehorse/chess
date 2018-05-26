@@ -31,18 +31,11 @@ public class ClockTest {
     public void clockAllFunctionalities() {
         System.out.println("clockAllFunctionalities");
         final int whiteTime = clock.getWhiteTime();
-        final int blackTime = clock.getBlackTime();
         Clock.start();
-        assertTrue(Clock.getTurn().isWhite());
         sleep();
-        Clock.updateClock();
-        assertTrue(Clock.getTurn().isBlack());
-        sleep();
-        Clock.terminate();
+        Clock.stop();
         final int newWhiteTime = clock.getWhiteTime();
-        final int newBlackTime = clock.getWhiteTime();
         assertNotEquals(newWhiteTime, whiteTime);
-        assertNotEquals(newBlackTime, blackTime);
     }
 
     private void sleep() {

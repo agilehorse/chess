@@ -17,8 +17,6 @@ import java.util.List;
 public class Knight extends Piece {
 
     private static int[] KING_OFFSETS_EVEN = {2, -2};
-    private static int[] KING_OFFSETS_ODD = {1, -1};
-
 
     public Knight(
             int pieceRow,
@@ -29,8 +27,11 @@ public class Knight extends Piece {
 
     @Override
     public Collection<Move> calculateMoves(Board board) {
-        return ImmutableList.copyOf(Iterables.unmodifiableIterable(Iterables.concat(calculateKnightMoves(board, KING_OFFSETS_EVEN, KING_OFFSETS_ODD),
-                calculateKnightMoves(board, KING_OFFSETS_ODD, KING_OFFSETS_EVEN))));
+//      to get desired L shape move we have to iterate over even column offsets and odd row offsets = standard offsets
+//        then the offsets switch first odd then even
+        return ImmutableList.copyOf(Iterables.unmodifiableIterable(Iterables.concat(
+                calculateKnightMoves(board, KING_OFFSETS_EVEN, BoardUtils.STANDARD_OFFSETS),
+                calculateKnightMoves(board, BoardUtils.STANDARD_OFFSETS, KING_OFFSETS_EVEN))));
     }
 
     private Collection<Move> calculateKnightMoves(final Board board,
@@ -39,18 +40,21 @@ public class Knight extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
         for (int rowOffset : rowOffsets) {
             for (int columnOffset : columnOffsets) {
+//                check if destination tile is valid
                 if (BoardUtils.isValidTileCoordinate(this.pieceRow + rowOffset,
                         this.pieceColumn + columnOffset)) {
-                    final Tile targetTile = board.getTile(this.pieceRow + rowOffset,
+//                    gets tile
+                    final Tile targetTile = Board.getTile(this.pieceRow + rowOffset,
                             this.pieceColumn + columnOffset);
                     if (!targetTile.isOccupied()) {
+//                        if the tile is not occupied creates normal move
                         legalMoves.add(new NormalMove(board,
                                 this,
                                 this.pieceRow + rowOffset,
                                 this.pieceColumn + columnOffset));
                     } else {
                         Piece pieceAtDestinationTile = targetTile.getPiece();
-
+//                  if it's occupied and has and piece on tile has different colour creats attack move
                         if (pieceAtDestinationTile.getPieceColour() != this.getPieceColour()) {
                             legalMoves.add(new AttackMove(board, this,
                                     this.pieceRow + rowOffset,

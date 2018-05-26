@@ -15,35 +15,31 @@ public class Tile {
     private final int tileRow;
     private final int tileColumn;
     private Piece pieceOnTile;
-    private final String tileNotation;
     //  creates a hashtable as a "cache" to speed up things
     private static final Table<Integer, Integer, Tile> TILES_CACHE
             = createAllPossibleEmptyTiles();
 
     private Tile(final int tileRow,
-                 final int tileColumn,
-                 final String tileNotation) {
+                 final int tileColumn) {
         this.tileRow = tileRow;
         this.tileColumn = tileColumn;
-        this.tileNotation = tileNotation;
         this.pieceOnTile = null;
     }
 
-    //  method for creating a hashtable of all possible empty tiles
+    //  method for creating a hash-table of all possible empty tiles
     private static Table<Integer, Integer, Tile> createAllPossibleEmptyTiles() {
         final Table<Integer, Integer, Tile> emptyTileTable = HashBasedTable.create();
-        int counter = 0;
         for (int i = 0; i < SET_OF_TILES; i++) {
             for (int j = 0; j < SET_OF_TILES; j++) {
-                emptyTileTable.put(i, j, new Tile(i, j, BoardUtils.TILE_NOTATION.get(counter)));
-                counter++;
+                emptyTileTable.put(i, j, new Tile(i, j));
             }
         }
         return ImmutableTable.copyOf(emptyTileTable);
     }
 
     //  creates a tile, if it should be empty it returns it from the cache else creates a new tile with piece on it
-    static Tile createTile(final int tileRow, final int tileColumn,
+    static Tile createTile(final int tileRow,
+                           final int tileColumn,
                            final Piece piece) {
         Tile tile = TILES_CACHE.get(tileRow, tileColumn);
         if (piece == null) {
@@ -53,18 +49,9 @@ public class Tile {
             return tile;
         }
     }
-
+// returns algebraic notation of tile
     public String toString() {
-        if (isOccupied()) {
-            return getPiece().getPieceColour().isBlack()
-                    ? getPiece().toString().toLowerCase() : getPiece().toString();
-        } else {
-            return "-";
-        }
-    }
-
-    String algebraicToString() {
-        return this.getTileNotation();
+        return BoardUtils.getPositionAtCoordinate(this.tileRow, this.tileColumn);
     }
 
     public int getTileRow() {
@@ -73,10 +60,6 @@ public class Tile {
 
     public int getTileColumn() {
         return tileColumn;
-    }
-
-    private String getTileNotation() {
-        return tileNotation;
     }
 
     public void setPieceOnTile(Piece piece) {
@@ -98,13 +81,11 @@ public class Tile {
         Tile tile = (Tile) o;
         return getTileRow() == tile.getTileRow() &&
                 getTileColumn() == tile.getTileColumn() &&
-                Objects.equals(pieceOnTile, tile.pieceOnTile) &&
-                Objects.equals(getTileNotation(), tile.getTileNotation());
+                Objects.equals(pieceOnTile, tile.pieceOnTile);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(getTileRow(), getTileColumn(), pieceOnTile, getTileNotation());
+        return Objects.hash(getTileRow(), getTileColumn(), pieceOnTile);
     }
 }

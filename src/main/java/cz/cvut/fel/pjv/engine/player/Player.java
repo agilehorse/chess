@@ -13,26 +13,28 @@ import cz.cvut.fel.pjv.engine.pieces.Piece;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static cz.cvut.fel.pjv.engine.pieces.PieceType.KING;
 
 public abstract class Player {
 
+    private final static Logger LOGGER = Logger.getLogger(Player.class.getSimpleName());
     protected Board board;
     King playersKing;
     private Collection<Move> legalMoves;
     private boolean isInCheck;
 
-    Player(Board board, Collection<Move> legalMoves, Collection<Move> opponentMoves) {
+    Player(final Board board,
+           final Collection<Move> legalMoves,
+           final Collection<Move> opponentMoves) {
         this.board = board;
         this.playersKing = setUpKing();
         this.legalMoves = ImmutableList.copyOf(Iterables.concat(legalMoves,
                 calculateCastling(legalMoves, opponentMoves)));
-        this.isInCheck = !Player.calculateCheck(this.playersKing.getPieceRow(),
-                this.playersKing.getPieceColumn(),
-                opponentMoves).isEmpty();
     }
-
+//  method for validating if the current player's king will get in check after current player makes a move
     private Collection<Move> validateForCheck(final Collection<Move> allMoves) {
         List<Move> legalMoves = new ArrayList<>();
         for (final Move move : allMoves) {
@@ -42,70 +44,78 @@ public abstract class Player {
         }
         return ImmutableList.copyOf(legalMoves);
     }
-
-    public static Collection<Move> calculateCheck(int kingsRow, int kingsColumn, Collection<Move> opponentMoves) {
+//  checks if enemy has attack move on tile with input coordinates, usually checking the king, but also rook while calculating castle moves
+    public static boolean kingIsAttacked(final int kingsRow,
+                                         final int kingsColumn,
+                                         final Collection<Move> opponentMoves) {
         final List<Move> attackMoves = new ArrayList<>();
         for (final Move move : opponentMoves) {
             if (kingsRow == move.getNewRow() && kingsColumn == move.getNewColumn()) {
                 attackMoves.add(move);
             }
         }
-        return ImmutableList.copyOf(attackMoves);
+        return !ImmutableList.copyOf(attackMoves).isEmpty();
     }
-
+//  sets up king from players pieces
     private King setUpKing() {
-        for (Piece piece : getActivePieces()) {
+        for (final Piece piece : getActivePieces()) {
             if (piece.getPieceType() == KING) {
                 return (King) piece;
             }
         }
         throw new RuntimeException("Invalid Board! King is missing.");
     }
-
-    public boolean initiateMove(Move move) {
+// method for initiating move
+    public boolean executeMove(final Move move) {
+//      if it's not null and player's legal moves contain input move, move is executed
         if (move == null || !isMoveLegal(move)) {
             return false;
         } else {
             move.execute();
-            if (!calculateCheck(move.getNewRow(),
-                    move.getNewColumn(), this.legalMoves).isEmpty()) {
-                this.getOpponent().isInCheck = true;
-            }
+            //            if the move is castle, sets king as castled
             if (move.getMoveType() == MoveType.CASTLE) {
                 this.playersKing.setCastled();
             }
             return true;
         }
     }
-
+// method for checking if king can perform any move to escape check
     private boolean hasNoEscapeMoves() {
-        Collection<Move> kingsMoves = new ArrayList<>(this.playersKing.calculateMoves(board));
-        Collection<Move> movesToRemove = new ArrayList<>();
-        Collection<Move> opponentMoves = this.board.getMovesByColour(this.board.getCurrentPlayer().getOpponent().getColour());
-        for (final Move kingMove : kingsMoves) {
-            for (final Move opponentMove : opponentMoves) {
-                if (opponentMove.getDestinationTile() == kingMove.getDestinationTile()) {
-                    movesToRemove.add(kingMove);
-                }
+        ArrayList<Move> kingsMoves = new ArrayList<>();
+        for (final Move move : this.getLegalMoves()) {
+            if (move.getMovedPiece().equals(this.playersKing)) {
+                kingsMoves.add(move);
             }
         }
-        kingsMoves.removeAll(movesToRemove);
         return kingsMoves.isEmpty();
     }
 
-    public void setLegalMoves(Collection<Move> legalMoves, Collection<Move> opponentMoves) {
+    public void setLegalMoves(final Collection<Move> legalMoves,
+                              final Collection<Move> opponentMoves) {
         final Collection<Move> moves = validateForCheck(legalMoves);
         this.legalMoves = ImmutableList.copyOf(Iterables.concat(moves,
                 calculateCastling(moves, opponentMoves)));
-    }
 
-    public Move findMove(final Tile sourceTile, final Tile destinationTile) {
+    }
+// method for finding move by it's destination tile and source tile
+    public Move findMove(final Tile sourceTile,
+                         final Tile destinationTile) {
         for (final Move move : this.legalMoves) {
-            if (move.getSourceTile() == sourceTile && move.getDestinationTile() == destinationTile) {
+            if (move.getSourceTile() == sourceTile && move.getDestinationTile() ==
+                    destinationTile) {
                 return move;
             }
         }
         return null;
+    }
+//
+    public void setIsInCheck(final Collection<Move> opponentMoves) {
+        this.isInCheck = Player.kingIsAttacked(this.playersKing.getPieceRow(),
+                this.playersKing.getPieceColumn(),
+                opponentMoves);
+        if (this.isInCheck) {
+            LOGGER.log(Level.INFO, this.toString() + " player is in check.");
+        }
     }
 
     public King getPlayersKing() {
@@ -124,12 +134,6 @@ public abstract class Player {
 
     public boolean isInCheck() {
         return this.isInCheck;
-    }
-
-    public void setIsInCheck(Collection<Move> opponentMoves) {
-        this.isInCheck = !Player.calculateCheck(this.playersKing.getPieceRow(),
-                this.playersKing.getPieceColumn(),
-                opponentMoves).isEmpty();
     }
 
     public boolean isInCheckMate() {

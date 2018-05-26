@@ -1,7 +1,6 @@
 package cz.cvut.fel.pjv.engine.board;
 
 import com.google.common.collect.ImmutableList;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,10 +10,15 @@ public class BoardUtils {
 
     static final int ALL_TILES = 64;
     public static final int SET_OF_TILES = 8;
-    public static int[] OFFSETS = {1, -1};
-    static final List<String> TILE_NOTATION = initAlgebraicNotation();
-    private static final Map<String,  List<Integer>> POSITION_TO_COORDINATES = translateNotationToCoords();
+    public static int[] STANDARD_OFFSETS = {1, -1};
+    private static List<String> TILE_NOTATION = initAlgebraicNotation();
+    private static Map<String,  Tile> POSITION_TO_COORDINATES = translateNotationToCoords();
 
+    public BoardUtils() {
+        throw new RuntimeException("You cannot instatiate me!");
+    }
+
+//list of algebraic notations of all tiles
     private static List<String> initAlgebraicNotation() {
         return ImmutableList.copyOf(new String[]{
                 "a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8",
@@ -27,20 +31,13 @@ public class BoardUtils {
                 "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1"
         });
     }
-
-    private static Map<String,  List<Integer>> translateNotationToCoords() {
-        final Map<String,  List<Integer>> positionToCoordinate = new HashMap<>();
+// sets us a map of tile and tile notation pairs
+    private static Map<String,  Tile> translateNotationToCoords() {
+        final Map<String,  Tile> positionToCoordinate = new HashMap<>();
         for (int i = 0; i < ALL_TILES; i++) {
-            List<Integer> coordinates = new ArrayList<>();
-            coordinates.add(i/8);
-            coordinates.add(i%8);
-            positionToCoordinate.put(TILE_NOTATION.get(i), coordinates);
+            positionToCoordinate.put(TILE_NOTATION.get(i), Board.getTile(i/8, i%8));
         }
         return positionToCoordinate;
-    }
-
-    public BoardUtils() {
-        throw new RuntimeException("You cannot run me!");
     }
 
 //  checks if the coordinate is valid
@@ -51,11 +48,11 @@ public class BoardUtils {
                 && (column >= 0
                 && column < SET_OF_TILES);
     }
-
-    public static List<Integer> getCoordinateAtPosition(final String position) {
+//  returns tile found by its tile notation
+    public static Tile getCoordinateAtPosition(final String position) {
         return POSITION_TO_COORDINATES.get(position);
     }
-
+//  gets tile notation by its coordinates
     public static String getPositionAtCoordinate(final int row,
                                           final int column) {
         return TILE_NOTATION.get((row * 8) + column);

@@ -23,7 +23,7 @@ public class MainPanelTest {
 
     @Before
     public void setUp() {
-        mainPanel = new MainPanel();
+        mainPanel = MainPanel.get();
     }
 
     @Test
@@ -39,7 +39,7 @@ public class MainPanelTest {
     private void makeMove() {
         final Move[] moves = MainPanel.getBoard().getCurrentPlayer().getLegalMoves().toArray(new Move[1]);
         final Move move = moves[0];
-        MainPanel.getBoard().getCurrentPlayer().initiateMove(move);
+        MainPanel.getBoard().getCurrentPlayer().executeMove(move);
         MainPanel.getMoveLog().addMove(move);
     }
 // process test

@@ -34,7 +34,7 @@ public class BoardTest {
         System.out.println("setMove");
         final Player player = board.getCurrentPlayer();
         Board.setMove(player.getOpponent().getColour());
-        board.recalculate(true);
+        board.recalculate();
         assertEquals(player.getOpponent(), board.getCurrentPlayer());
     }
 // process test
@@ -44,8 +44,8 @@ public class BoardTest {
         Collection<Piece> whitePieces = board.getWhitePieces();
         Collection<Move> moves = board.calculateMoves(whitePieces);
         final Move move = new ArrayList<>(board.getCurrentPlayer().getLegalMoves()).get(0);
-        board.getCurrentPlayer().initiateMove(move);
-        board.recalculate(true);
+        board.getCurrentPlayer().executeMove(move);
+        board.recalculate();
         whitePieces = board.getWhitePieces();
         final Collection<Move> newMoves = board.calculateMoves(whitePieces);
         assertNotEquals(moves, newMoves);
@@ -61,7 +61,7 @@ public class BoardTest {
             int row = move.getMovedPiece().getPieceRow();
             int row2 = move.getDestinationTile().getTileRow() - 2*move.getMovedPiece().getPieceColour().getDirection() ;
             if (move.getMovedPiece().getPieceType().equals(PieceType.PAWN) &&  row==row2 ) {
-                board.getCurrentPlayer().initiateMove(move);
+                board.getCurrentPlayer().executeMove(move);
                 assertNotEquals(null, board.getEnPassantPawn());
             }
         }

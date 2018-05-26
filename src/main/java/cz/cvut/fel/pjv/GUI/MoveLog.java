@@ -29,11 +29,4 @@ public class MoveLog {
     void clear() {
         this.moves.clear();
     }
-
-    Move getLastMove() {
-        if (this.moves.size() > 0) {
-            return this.moves.get(moves.size() - 1);
-        }
-        return null;
-    }
 }

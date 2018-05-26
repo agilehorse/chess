@@ -10,9 +10,10 @@ import cz.cvut.fel.pjv.engine.pieces.Piece;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static cz.cvut.fel.pjv.engine.board.BoardUtils.SET_OF_TILES;
 
@@ -28,14 +29,16 @@ public class MainPanel extends Observable {
     private static Tile sourceTile;
     private static Piece movedPiece;
     private static GameSetup gameSetup;
+    private static ClockSetup clockSetup;
     private static final MainPanel SINGLETON = new MainPanel();
+    private final static Logger LOGGER = Logger.getLogger(MainPanel.class.getSimpleName());
 
-
-    public MainPanel() {
+    private MainPanel() {
         this.gameFrame = new JFrame("Chess");
         this.gameFrame.setLayout(new BorderLayout());
         this.gameFrame.setJMenuBar(createMenuBar());
-        this.gameFrame.setIconImage(new ImageIcon("images/other/icon.png").getImage());
+        this.gameFrame.setIconImage(new ImageIcon(
+                "images/other/icon.png").getImage());
         this.gameFrame.setSize(OUTER_FRAME_SIZE);
         board = new Board();
         gameHistoryPanel = new GameHistoryPanel();
@@ -44,6 +47,11 @@ public class MainPanel extends Observable {
         moveLog = new MoveLog();
         this.addObserver(new AIObserver());
         gameSetup = new GameSetup(this.gameFrame, true);
+        gameSetup.setLocation(gameFrame.getWidth()/2 - gameSetup.getWidth()/2,
+                gameFrame.getHeight()/2 - gameSetup.getHeight()/2);
+        clockSetup = new ClockSetup(this.gameFrame, true);
+        clockSetup.setLocation(gameFrame.getWidth()/2 - gameSetup.getWidth()/2,
+                gameFrame.getHeight()/2 - gameSetup.getHeight()/2);
         this.gameFrame.add(takenPiecesPanel, BorderLayout.EAST);
         this.gameFrame.add(gameHistoryPanel, BorderLayout.WEST);
         this.gameFrame.add(guiBoard, BorderLayout.CENTER);
@@ -64,10 +72,6 @@ public class MainPanel extends Observable {
         return guiBoard;
     }
 
-    public static void exit() {
-        System.exit(0);
-    }
-
     public void moveMadeUpdate(GameSetup.PlayerType computer) {
         setChanged();
         notifyObservers(computer);
@@ -80,15 +84,21 @@ public class MainPanel extends Observable {
     }
 
     private JMenu createFileMenu() {
-        final JMenu fileMenu = new JMenu("File");
-        final JMenuItem setupGameMenuItem = new JMenuItem("Setup Game", KeyEvent.VK_S);
+        final JMenu fileMenu = new JMenu("Game");
+        final JMenuItem setupGameMenuItem = new JMenuItem("Player Setup");
         setupGameMenuItem.addActionListener(e -> {
             getGameSetup().promptUser();
             setUpUpdate(getGameSetup());
         });
         fileMenu.add(setupGameMenuItem);
+        final JMenuItem setupClockMenuItem = new JMenuItem("Clock setup");
+        setupClockMenuItem.addActionListener(e -> {
+            getClockSetup().promptUser();
+            setUpUpdate(getGameSetup());
+        });
+        fileMenu.add(setupClockMenuItem);
 
-        final JMenuItem saveToPGN = new JMenuItem("Save Game", KeyEvent.VK_S);
+        final JMenuItem saveToPGN = new JMenuItem("Save to PGN");
         saveToPGN.addActionListener(e -> {
             final JFileChooser chooser = new JFileChooser();
             chooser.setFileFilter(new FileFilter() {
@@ -99,7 +109,8 @@ public class MainPanel extends Observable {
 
                 @Override
                 public boolean accept(final File file) {
-                    return file.isDirectory() || file.getName().toLowerCase().endsWith("pgn");
+                    return file.isDirectory() ||
+                            file.getName().toLowerCase().endsWith("pgn");
                 }
             });
             final int option = chooser.showSaveDialog(getGameFrame());
@@ -113,12 +124,14 @@ public class MainPanel extends Observable {
             }
         });
         fileMenu.add(saveToPGN);
-        final JMenuItem openPGN = new JMenuItem("Load PGN File");
+        final JMenuItem openPGN = new JMenuItem("Load from PGN File");
         openPGN.addActionListener(actionEvent -> {
             Object[] options = {"Load and discard",
                     "Cancel"};
             int n = JOptionPane.showOptionDialog(MainPanel.get().getGameFrame(),
-                    "Do you really want to load the game? Your current game will be discarded if you haven't saved it.",
+                    "Do you really want to load the game? " +
+                            "Your current game will be discarded if " +
+                            "you haven't saved it.",
                     "Load game confirmation",
                     JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
@@ -142,7 +155,7 @@ public class MainPanel extends Observable {
             }
         });
         fileMenu.add(openPGN);
-        final JMenuItem resetMenuItem = new JMenuItem("Reset board", KeyEvent.VK_P);
+        final JMenuItem resetMenuItem = new JMenuItem("Reset board");
         resetMenuItem.addActionListener(e -> resetBoard());
         fileMenu.add(resetMenuItem);
         final JMenuItem exitMenuItem = new JMenuItem("Exit");
@@ -150,11 +163,11 @@ public class MainPanel extends Observable {
         fileMenu.add(exitMenuItem);
         return fileMenu;
     }
-
+//    resets everything
     public void resetBoard() {
         for (int i = 0; i < SET_OF_TILES; i++) {
             for (int j = 0; j < SET_OF_TILES; j++) {
-                board.getTile(i, j).setPieceOnTile(null);
+                Board.getTile(i, j).setPieceOnTile(null);
             }
         }
         this.gameFrame.remove(guiBoard);
@@ -167,18 +180,16 @@ public class MainPanel extends Observable {
         this.gameFrame.add(guiBoard, BorderLayout.CENTER);
         this.gameFrame.validate();
         this.gameFrame.repaint();
+        LOGGER.log(Level.INFO, "Board have been reset.");
     }
 
     void savePGNFile(File selectedFile) {
-        try {
-            Writer.writeGameToPGNFile(selectedFile, getMoveLog());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Writer.writeGameToPGNFile(selectedFile, getMoveLog());
     }
 
     public static void loadPGNFile(final File pgnFile) {
         try {
+//            resets everything and loads the file
             MainPanel.get().gameFrame.remove(guiBoard);
             MainPanel.board = null;
             MainPanel.board = new Board();
@@ -192,12 +203,13 @@ public class MainPanel extends Observable {
             MainPanel.get().gameFrame.add(guiBoard, BorderLayout.CENTER);
             MainPanel.get().gameFrame.validate();
             MainPanel.get().gameFrame.repaint();
+            LOGGER.log(Level.INFO, "File loaded successfully");
 
         } catch (final IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.INFO, "Unexpected error while loading file!");
         }
     }
-
+//notifies AI player
     private void setUpUpdate(GameSetup gameSetup) {
         setChanged();
         notifyObservers(gameSetup);
@@ -235,8 +247,12 @@ public class MainPanel extends Observable {
         MainPanel.movedPiece = movedPiece;
     }
 
-    private JFrame getGameFrame() {
+    JFrame getGameFrame() {
         return gameFrame;
+    }
+
+    private static ClockSetup getClockSetup() {
+        return clockSetup;
     }
 }
 

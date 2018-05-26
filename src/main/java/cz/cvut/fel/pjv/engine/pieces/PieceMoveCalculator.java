@@ -11,21 +11,28 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static cz.cvut.fel.pjv.engine.board.BoardUtils.OFFSETS;
+import static cz.cvut.fel.pjv.engine.board.BoardUtils.STANDARD_OFFSETS;
 
 public class PieceMoveCalculator {
-
-    public static Collection<Move> calculateCastlingMoves(Board board, Player player, int row, Collection<Move> opponentMoves) {
-
+//method for calculating castle moves
+    public static Collection<Move> calculateCastlingMoves(final Board board,
+                                                          final Player player,
+                                                          final int row,
+                                                          final Collection<Move> opponentMoves) {
         final List<Move> castleMoves = new ArrayList<>();
-        if (player.getPlayersKing().isFirstMove() && !player.isInCheck() && !player.isCastled()) {
-            if (!board.getTile(row, 5).isOccupied()
-                    && !board.getTile(row, 6).isOccupied()) {
-                final Tile rookTile = board.getTile(row, 7);
+//        if conditions for castle are met
+        if (player.getPlayersKing().isFirstMove() && !player.isInCheck() &&
+                !player.isCastled()) {
+//            if any tile between rook and king isn't occupied
+            if (!Board.getTile(row, 5).isOccupied()
+                    && !Board.getTile(row, 6).isOccupied()) {
+                final Tile rookTile = Board.getTile(row, 7);
                 if (rookTile.isOccupied() && rookTile.getPiece().isFirstMove()) {
-                    if (Player.calculateCheck(row, 5, opponentMoves).isEmpty()
-                            && Player.calculateCheck(row, 6, opponentMoves).isEmpty()
+//                    if any tile between rook and king is attacked by enemy piece
+                    if (!Player.kingIsAttacked(row, 5, opponentMoves)
+                            && !Player.kingIsAttacked(row, 6, opponentMoves)
                             && rookTile.getPiece().getPieceType() == PieceType.ROOK) {
+//                        new castle move added
                         castleMoves.add(new KingSideCastle(board,
                                 player.getPlayersKing(),
                                 row,
@@ -38,14 +45,16 @@ public class PieceMoveCalculator {
                     }
                 }
             }
-            if (!board.getTile(row, 1).isOccupied()
-                    && !board.getTile(row, 2).isOccupied()
-                    && !board.getTile(row, 3).isOccupied()) {
-                final Tile rookTile = board.getTile(row, 0);
+            //            if any tile between rook and king isn't occupied
+            if (!Board.getTile(row, 1).isOccupied()
+                    && !Board.getTile(row, 2).isOccupied()
+                    && !Board.getTile(row, 3).isOccupied()) {
+                final Tile rookTile = Board.getTile(row, 0);
                 if (rookTile.isOccupied() && rookTile.getPiece().isFirstMove()) {
-                    if (Player.calculateCheck(row, 1, opponentMoves).isEmpty()
-                            && Player.calculateCheck(row, 2, opponentMoves).isEmpty()
-                            && Player.calculateCheck(row, 3, opponentMoves).isEmpty()
+                    //                    if any tile between rook and king is attacked by enemy piece
+                    if (!Player.kingIsAttacked(row, 1, opponentMoves)
+                            && !Player.kingIsAttacked(row, 2, opponentMoves)
+                            && !Player.kingIsAttacked(row, 3, opponentMoves)
                             && rookTile.getPiece().getPieceType() == PieceType.ROOK) {
                         castleMoves.add(new QueenSideCastle(board,
                                 player.getPlayersKing(),
@@ -62,24 +71,32 @@ public class PieceMoveCalculator {
         }
         return ImmutableList.copyOf(castleMoves);
     }
-
-    static List<Move> calculateDiagonalSliderMoves(Board board, Piece piece, int maxReach) {
+// method for calculating diagonal moves
+    static List<Move> calculateDiagonalSliderMoves(final Board board,
+                                                   final Piece piece,
+                                                   final int maxReach) {
         final List<Move> legalMoves = new ArrayList<>();
-        for (int rowOffset : OFFSETS) {
-            for (int columnOffset : OFFSETS) {
+        for (int rowOffset : STANDARD_OFFSETS) {
+            for (int columnOffset : STANDARD_OFFSETS) {
                 for (int i = 1; i <= maxReach; i++) {
-                    if (BoardUtils.isValidTileCoordinate(piece.pieceRow + i * rowOffset,
+//                    if the target tile lies on board
+                    if (BoardUtils.isValidTileCoordinate(
+                            piece.pieceRow + i * rowOffset,
                             piece.pieceColumn + i * columnOffset)) {
-                        final Tile targetTile = board.getTile(piece.pieceRow + i * rowOffset,
+                        final Tile targetTile = Board.getTile(
+                                piece.pieceRow + i * rowOffset,
                                 piece.pieceColumn + i * columnOffset);
                         if (!targetTile.isOccupied()) {
+//                            if it's not occupied creates a normal move
                             legalMoves.add(new NormalMove(board,
                                     piece,
                                     piece.pieceRow + i * rowOffset,
                                     piece.pieceColumn + i * columnOffset));
                         } else {
+//                            if it's occupied creates attack move
                             Piece pieceAtDestinationTile = targetTile.getPiece();
-                            if (pieceAtDestinationTile.getPieceColour() != piece.getPieceColour()) {
+                            if (pieceAtDestinationTile.getPieceColour() !=
+                                    piece.getPieceColour()) {
                                 legalMoves.add(new AttackMove(board, piece,
                                         piece.pieceRow + i * rowOffset,
                                         piece.pieceColumn + i * columnOffset,
@@ -96,14 +113,17 @@ public class PieceMoveCalculator {
         return ImmutableList.copyOf(legalMoves);
     }
 
-    static List<Move> calculateStraightSliderMoves(Board board, Piece piece, int maxReach) {
+    static List<Move> calculateStraightSliderMoves(final Board board, final Piece piece,
+                                                   final int maxReach) {
         final List<Move> legalMoves = new ArrayList<>();
-        for (int columnOffset : OFFSETS) {
+        for (int columnOffset : STANDARD_OFFSETS) {
             for (int i = 1; i <= maxReach; i++) {
+                //                    if the target tile lies on board
                 if (BoardUtils.isValidTileCoordinate(piece.pieceRow,
                         piece.pieceColumn + i * columnOffset)) {
-                    final Tile targetTile = board.getTile(piece.pieceRow,
+                    final Tile targetTile = Board.getTile(piece.pieceRow,
                             piece.pieceColumn + i * columnOffset);
+                    //                            if it's not occupied creates a normal move
                     if (!targetTile.isOccupied()) {
                         legalMoves.add(new NormalMove(board,
                                 piece,
@@ -111,7 +131,9 @@ public class PieceMoveCalculator {
                                 piece.pieceColumn + i * columnOffset));
                     } else {
                         Piece pieceAtDestinationTile = targetTile.getPiece();
-                        if (pieceAtDestinationTile.getPieceColour() != piece.getPieceColour()) {
+                        if (pieceAtDestinationTile.getPieceColour() !=
+                                piece.getPieceColour()) {
+                            //                            if it's occupied creates attack move
                             legalMoves.add(new AttackMove(board, piece,
                                     piece.pieceRow,
                                     piece.pieceColumn + i * columnOffset,
@@ -124,20 +146,26 @@ public class PieceMoveCalculator {
                 }
             }
         }
-        for (int rowOffset : OFFSETS) {
+        for (int rowOffset : STANDARD_OFFSETS) {
             for (int i = 1; i <= maxReach; i++) {
-                if (BoardUtils.isValidTileCoordinate(piece.pieceRow + i * rowOffset,
+                //                    if the target tile lies on board
+                if (BoardUtils.isValidTileCoordinate(
+                        piece.pieceRow + i * rowOffset,
                         piece.pieceColumn)) {
-                    final Tile targetTile = board.getTile(piece.pieceRow + i * rowOffset,
+                    final Tile targetTile = Board.getTile(
+                            piece.pieceRow + i * rowOffset,
                             piece.pieceColumn);
+                    //                            if it's not occupied creates a normal move
                     if (!targetTile.isOccupied()) {
                         legalMoves.add(new NormalMove(board,
                                 piece,
                                 piece.pieceRow + i * rowOffset,
                                 piece.pieceColumn));
                     } else {
+                        //                            if it's occupied creates attack move
                         Piece pieceAtDestinationTile = targetTile.getPiece();
-                        if (pieceAtDestinationTile.getPieceColour() != piece.getPieceColour()) {
+                        if (pieceAtDestinationTile.getPieceColour() !=
+                                piece.getPieceColour()) {
                             legalMoves.add(new AttackMove(board, piece,
                                     piece.pieceRow + i * rowOffset,
                                     piece.pieceColumn,

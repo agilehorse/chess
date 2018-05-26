@@ -1,10 +1,10 @@
 package cz.cvut.fel.pjv.engine.board.moves;
 
 import cz.cvut.fel.pjv.engine.board.Board;
-import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.pieces.*;
-
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CastleMove extends Move {
 
@@ -14,6 +14,8 @@ public class CastleMove extends Move {
     private int castlingRookOldColumn;
     private int castlingRookNewRow;
     private int castlingRookNewColumn;
+    private final static Logger LOGGER = Logger.getLogger(CastleMove.class.getName());
+
 
     CastleMove(final Board board,
                final King castlingKing,
@@ -32,25 +34,32 @@ public class CastleMove extends Move {
         this.castlingRookNewColumn = castlingRookNewColumn;
         this.moveType = MoveType.CASTLE;
     }
-
+//  method for execution of a legal castle move
     @Override
     public void execute() {
+        //        sets PGN string format
+
         if (this.getPerformedToString().equals("")) {
             this.setPerformedToString(this.toString());
         }
-        this.movedPiece.move(this.getNewRow(), this.getNewColumn());
-        this.movedPiece.setFirstMove(false);
-        this.castlingRook.setFirstMove(false);
+//      moves king
         this.getSourceTile().setPieceOnTile(null);
         this.getDestinationTile().setPieceOnTile(this.getMovedPiece());
-        Tile oldRookTile = this.board.getTile(castlingRook.getPieceRow(), castlingRook.getPieceColumn());
-        oldRookTile.setPieceOnTile(null);
-        Tile newRookTile = this.board.getTile(castlingRookNewRow, castlingRookNewColumn);
-        newRookTile.setPieceOnTile(castlingRook);
+        this.movedPiece.move(this.getNewRow(), this.getNewColumn());
+        this.movedPiece.setFirstMove(false);
+
+//      moves rook
+        Board.getTile(castlingRook.getPieceRow(),
+                castlingRook.getPieceColumn()).setPieceOnTile(null);
+        Board.getTile(castlingRookNewRow,
+                castlingRookNewColumn).setPieceOnTile(castlingRook);
         this.castlingRook.move(castlingRookNewRow, castlingRookNewColumn);
+        this.castlingRook.setFirstMove(false);
         //noinspection AccessStaticViaInstance
         this.board.setMove(this.board.getCurrentPlayer().getOpponent().getColour());
+        //        switches turn to opponent
         board.setEnPassantPawn(null);
+        LOGGER.log(Level.INFO, this.castlingRook.getPieceColour() + " castle move was made.");
     }
 
     private Rook getCastlingRook() {
@@ -58,7 +67,7 @@ public class CastleMove extends Move {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof CastleMove)) return false;
         if (!super.equals(o)) return false;
@@ -73,7 +82,9 @@ public class CastleMove extends Move {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getMoveType(), getCastlingRook(), castlingRookOldRow, castlingRookOldColumn, castlingRookNewRow, castlingRookNewColumn);
+        return Objects.hash(super.hashCode(), getMoveType(), getCastlingRook(),
+                castlingRookOldRow, castlingRookOldColumn, castlingRookNewRow,
+                castlingRookNewColumn);
     }
 
     @Override

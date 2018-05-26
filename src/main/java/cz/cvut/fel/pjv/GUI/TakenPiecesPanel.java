@@ -1,6 +1,7 @@
 package cz.cvut.fel.pjv.GUI;
 
 import com.google.common.primitives.Ints;
+import cz.cvut.fel.pjv.GUI.PGN.Writer;
 import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
 import cz.cvut.fel.pjv.engine.board.moves.MoveType;
@@ -15,6 +16,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TakenPiecesPanel extends JPanel {
 
@@ -23,6 +26,8 @@ public class TakenPiecesPanel extends JPanel {
     private final JPanel northPanel;
     private final JPanel southPanel;
     private static final EtchedBorder PANEL_BORDER = new EtchedBorder(EtchedBorder.RAISED);
+    private final static Logger LOGGER = Logger.getLogger(Writer.class.getSimpleName());
+
 
     TakenPiecesPanel() {
         super(new BorderLayout());
@@ -42,7 +47,7 @@ public class TakenPiecesPanel extends JPanel {
         this.southPanel.removeAll();
         final List<Piece> whiteTakenPieces = new ArrayList<>();
         final List<Piece> blackTakenPieces = new ArrayList<>();
-
+//      gets attacked piece from move from move log
         for(final Move move : moveLog.getMoves()){
             if (move.getMoveType() == MoveType.ATTACK) {
                 final Piece takenPiece = move.getAttackedPiece();
@@ -55,23 +60,30 @@ public class TakenPiecesPanel extends JPanel {
                 }
             }
         }
-        whiteTakenPieces.sort((piece, piece2) -> Ints.compare(piece.getPieceValue(), piece2.getPieceValue()));
+//        sort pieces depending on their value
+        whiteTakenPieces.sort((piece, piece2) -> Ints.compare(piece.getPieceValue(),
+                piece2.getPieceValue()));
 
-        blackTakenPieces.sort((piece, piece2) -> Ints.compare(piece.getPieceValue(), piece2.getPieceValue()));
+        blackTakenPieces.sort((piece, piece2) -> Ints.compare(piece.getPieceValue(),
+                piece2.getPieceValue()));
+//      adds images for each piece
         addImages(whiteTakenPieces);
         addImages(blackTakenPieces);
         validate();
     }
+//    adds images of piece to the panel depending on their piece type
     private void addImages(Collection<Piece> pieces) {
         for (final Piece takenPiece : pieces) {
             try {
+                //                images are save in pattern- for instance white bishop = WB.png
                 final BufferedImage image = ImageIO.read(new File("images/pieces/"
                         + takenPiece.getPieceColour().toString().substring(0,1)
                         + takenPiece.getPieceType().toString()
                         + ".png"));
                 this.southPanel.add(new JLabel(new ImageIcon(image)));
             } catch (final IOException e) {
-                e.printStackTrace();
+                LOGGER.log(Level.INFO, "Unexpected error while displaying " +
+                        "taken piece icon!");
             }
         }
     }

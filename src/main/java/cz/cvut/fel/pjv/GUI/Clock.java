@@ -1,116 +1,162 @@
 package cz.cvut.fel.pjv.GUI;
 
-import cz.cvut.fel.pjv.engine.Colour;
+import cz.cvut.fel.pjv.GUI.PGN.Writer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Clock extends JPanel implements Runnable {
 
     private static Thread thread;
-    private static final Dimension CLOCK_PANEL_DIMENSION = new Dimension(50, 30);
     @SuppressWarnings("FieldCanBeLocal")
     private JPanel whiteTimer, blackTimer;
-    private JLabel whiteLabel, blackLabel;
+    private static JLabel whiteLabel, blackLabel;
     private static int whiteTime;
     private static int blackTime;
     private static boolean started;
-    private static Colour turn;
-    private static boolean terminate;
     private static boolean stopped;
+    private static int[] userInputTimes;
+    private static final Dimension CLOCK_PANEL_DIMENSION = new Dimension(40, 50);
+    private final static Logger LOGGER = Logger.getLogger(Clock.class.getSimpleName());
+
 
     Clock() {
+//         new thread made
         thread = new Thread(this);
         this.setLayout(new BorderLayout());
+//        sets up white timer
         this.whiteTimer = new JPanel();
-        this.whiteLabel = new JLabel();
+        whiteLabel = new JLabel();
         this.whiteTimer.add(whiteLabel);
-        this.whiteLabel.setText(whiteTime / 600 + ":" + (whiteTime % 600) / 10 + ":" + (whiteTime % 600) % 10);
+        whiteLabel.setText(whiteTime / 600 + ":" +
+                whiteTime % 600 + ":" + (whiteTime % 600) % 10);
+//        sets up black timer
         this.blackTimer = new JPanel();
-        this.blackLabel = new JLabel();
+        blackLabel = new JLabel();
         this.blackTimer.add(blackLabel);
-        this.blackLabel.setText(blackTime / 600 + ":" + (blackTime % 600) / 10 + ":" + (blackTime % 600) % 10);
-        this.add(whiteTimer, BorderLayout.WEST);
-        this.add(blackTimer, BorderLayout.EAST);
+        blackLabel.setText(blackTime / 600 + ":" +
+                blackTime % 600 + ":" + (blackTime % 600) % 10);
+        userInputTimes = ClockSetup.getTimes();
+        this.add(whiteTimer, BorderLayout.SOUTH);
+        this.add(blackTimer, BorderLayout.NORTH);
         this.setPreferredSize(CLOCK_PANEL_DIMENSION);
         this.setVisible(true);
     }
-
-    static void updateClock() {
-        stopped = false;
-        if (turn.isWhite())
-            turn = Colour.BLACK;
-        else turn = Colour.WHITE;
-
+// called on mode change
+    static void modeChanged() {
+        userInputTimes = ClockSetup.getTimes();
+//        if the mode is classic, timer are set to what user has inputted
+        if (ClockSetup.getMode() == 1) {
+            assert userInputTimes != null;
+            whiteTime = userInputTimes[0] * 600;
+            whiteLabel.setText(whiteTime / 600 + ":" +
+                    whiteTime % 600 + ":" + (whiteTime % 600) % 10);
+            blackTime = userInputTimes[1] * 600;
+            blackLabel.setText(blackTime / 600 + ":" +
+                    blackTime % 600 + ":" + (blackTime % 600) % 10);
+            started = false;
+            start();
+//       otherwise everything is reset
+        } else if (ClockSetup.getMode() == 2) {
+            started = false;
+            resetTimer();
+            start();
+        } else {
+            stop();
+            resetTimer();
+//            if there is no clock mode, the clock will become invisible
+            MainPanel.getGameHistoryPanel().setTimerVisible(false);
+        }
     }
 
+//    wakes up clock if stopped
+    static void wakeUp() {
+        stopped = false;
+    }
+//   method for starting clock
+    static void start() {
+        if (!started) {
+            started = true;
+            if (thread.getState().equals(Thread.State.NEW)) {
+                thread.start();
+            }
+        }
+        LOGGER.log(Level.INFO, "Clock started.");
+    }
+
+    @SuppressWarnings("InfiniteLoopStatement")
     @Override
     public void run() {
         while (true) {
-            System.out.print("");//unnecessary but necessary
-
+            System.out.print("");
             //noinspection CatchMayIgnoreException
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
             }
             if (!stopped) {
-                if (turn.isWhite()) {
-                    whiteTime++;
-                    setText(whiteLabel, blackLabel);
-                    if (terminate) {
-                        break;
+                if (MainPanel.getBoard().getCurrentPlayer().getColour().isWhite()) {
+//                    adds time to white clock
+                    if (userInputTimes != null) {
+                        whiteTime--;
+                    } else {
+                        whiteTime++;
+                    }
+                    setText(whiteLabel, blackLabel, true);
+                    if (userInputTimes != null && whiteTime == 0) {
+                        JOptionPane.showMessageDialog(MainPanel.getGuiBoard(),
+                                "White player's time is up! Black player wins!", "Game over",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        stop();
                     }
                 } else {
-                    blackTime++;
-                    setText(whiteLabel, blackLabel);
-                    if (terminate) {
-                        break;
+//                    ads time to black clock
+                    if (userInputTimes != null) {
+                        blackTime--;
+                    } else {
+                        blackTime++;
                     }
+                    if (userInputTimes != null && blackTime == 0) {
+                        JOptionPane.showMessageDialog(MainPanel.getGuiBoard(),
+                                "Black player's time is up! White player wins", "Game over",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        stop();
+                    }
+                    setText(whiteLabel, blackLabel, false);
                 }
             }
         }
     }
 
-    private void setText(JLabel activeLabel, JLabel inactiveLabel) {
-        activeLabel.setForeground(Color.RED);
-        activeLabel.setText(whiteTime / 600 + ":" + (whiteTime % 600) / 10 + ":" + (whiteTime % 600) % 10);
-        inactiveLabel.setForeground(Color.BLACK);
-        inactiveLabel.setText(blackTime / 600 + ":" + (blackTime % 600) / 10 + ":" + (blackTime % 600) % 10);
-
-    }
-
-    public static void terminate() {
-        Clock.terminate = true;
+    private void setText(JLabel white, JLabel black, boolean isWhite) {
+//        changes colour of current active time to red
+        if (isWhite) {
+            white.setForeground(Color.RED);
+            black.setForeground(Color.BLACK);
+        } else {
+            white.setForeground(Color.BLACK);
+            black.setForeground(Color.RED);
+        }
+        white.setText(whiteTime / 600 + ":" + (whiteTime % 600) / 10 +
+                ":" + (whiteTime % 600) % 10);
+        black.setText(blackTime / 600 + ":" + (blackTime % 600) / 10 +
+                ":" + (blackTime % 600) % 10);
     }
 
     static void resetTimer() {
         whiteTime = 0;
         blackTime = 0;
-        turn = Colour.WHITE;
+        LOGGER.log(Level.INFO, "Clock reset.");
     }
 
-    static void stop() {
+    public static void stop() {
         stopped = true;
-    }
-
-    static void start() {
-        if (!started) {
-        turn = Colour.WHITE;
-        started = true;
-        thread.start(); }
+        LOGGER.log(Level.INFO, "Clock stopped.");
     }
 
     int getWhiteTime() {
         return whiteTime;
     }
-
-    int getBlackTime() {
-        return blackTime;
-    }
-
-    static Colour getTurn() {
-        return turn;
-    }
-
 }

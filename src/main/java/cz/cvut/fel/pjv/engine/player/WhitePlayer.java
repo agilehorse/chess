@@ -9,7 +9,8 @@ import java.util.Collection;
 
 
 public class WhitePlayer extends Player {
-    public WhitePlayer(Board board, Collection<Move> legalMoves, Collection<Move> opponentMoves) {
+    public WhitePlayer(final Board board, final Collection<Move> legalMoves,
+                       final Collection<Move> opponentMoves) {
         super(board, legalMoves, opponentMoves);
     }
 
@@ -34,7 +35,8 @@ public class WhitePlayer extends Player {
 
     protected Collection<Move> calculateCastling(final Collection<Move> playerMoves,
                                                  final Collection<Move> opponentMoves) {
-        return ImmutableList.copyOf(PieceMoveCalculator.calculateCastlingMoves(this.board, this, 7, opponentMoves));
+        return ImmutableList.copyOf(PieceMoveCalculator.calculateCastlingMoves(
+                this.board, this, 7, opponentMoves));
     }
 
     @Override

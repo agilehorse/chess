@@ -38,7 +38,8 @@ public class PawnPromotionAttack extends AttackMove{
     public MoveType getMoveType() {
         return this.moveType;
     }
-
+// tile notation for pawn promotion attack move is pawn's column, x, destination tile,
+// equal sign and initial character of promoted piece piece type
     @Override
     public String toString() {
         return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPieceRow(),

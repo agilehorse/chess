@@ -39,7 +39,8 @@ public class PawnPromotionMove extends NormalMove {
     public MoveType getMoveType() {
         return this.moveType;
     }
-
+    // tile notation for pawn promotion attack move is destination tile,
+// equal sign and initial character of promoted piece piece type
     @Override
     public String toString() {
         return BoardUtils.getPositionAtCoordinate(this.newRow, this.newColumn)
@@ -47,7 +48,7 @@ public class PawnPromotionMove extends NormalMove {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof PawnPromotionMove)) return false;
         if (!super.equals(o)) return false;
@@ -62,6 +63,7 @@ public class PawnPromotionMove extends NormalMove {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getBoard(), promotedPawn, getNewRow(), getNewColumn(), newPiece, getMoveType());
+        return Objects.hash(super.hashCode(), getBoard(), promotedPawn,
+                getNewRow(), getNewColumn(), newPiece, getMoveType());
     }
 }

@@ -8,7 +8,9 @@ import cz.cvut.fel.pjv.engine.pieces.*;
 import java.util.Collection;
 
 public class BlackPlayer extends Player {
-    public BlackPlayer(Board board, Collection<Move> legalMoves, Collection<Move> opponentMoves) {
+    public BlackPlayer(final Board board,
+                       final Collection<Move> legalMoves,
+                       final Collection<Move> opponentMoves) {
         super(board, legalMoves, opponentMoves);
     }
 
@@ -33,7 +35,8 @@ public class BlackPlayer extends Player {
 
     protected Collection<Move> calculateCastling(final Collection<Move> playerMoves,
                                                  final Collection<Move> opponentMoves) {
-        return ImmutableList.copyOf(PieceMoveCalculator.calculateCastlingMoves(this.board, this, 0, opponentMoves));
+        return ImmutableList.copyOf(PieceMoveCalculator.calculateCastlingMoves(
+                this.board, this, 0, opponentMoves));
     }
 
     @Override

@@ -4,8 +4,8 @@ import com.google.common.collect.ImmutableList;
 import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
-
 import java.util.Collection;
+
 
 public class Bishop extends Piece {
 

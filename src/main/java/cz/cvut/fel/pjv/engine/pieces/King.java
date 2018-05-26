@@ -4,8 +4,6 @@ import com.google.common.collect.ImmutableList;
 import cz.cvut.fel.pjv.engine.Colour;
 import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
-import cz.cvut.fel.pjv.engine.board.moves.MoveType;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -25,15 +23,10 @@ public class King extends Piece {
     @Override
     public Collection<Move> calculateMoves(Board board) {
         final List<Move> legalMoves
-                = new ArrayList<>(PieceMoveCalculator.calculateStraightSliderMoves(board, this, 1));
-        legalMoves.addAll(PieceMoveCalculator.calculateDiagonalSliderMoves(board, this, 1));
-        if (board.getCurrentPlayer() != null) {
-            for (final Move move : board.getCurrentPlayer().getLegalMoves()) {
-                if (move.getMoveType() == MoveType.CASTLE && move.getMovedPiece().equals(this)) {
-                    legalMoves.add(move);
-                }
-            }
-        }
+                = new ArrayList<>(PieceMoveCalculator.calculateStraightSliderMoves(board,
+                this, 1));
+        legalMoves.addAll(PieceMoveCalculator.calculateDiagonalSliderMoves(board,
+                this, 1));
         return ImmutableList.copyOf(legalMoves);
     }
 

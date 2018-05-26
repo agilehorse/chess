@@ -22,7 +22,8 @@ public enum Colour {
         }
 
         @Override
-        public Player getCurrentPlayer(WhitePlayer whitePlayer, BlackPlayer blackPlayer) {
+        public Player getCurrentPlayer(final WhitePlayer whitePlayer,
+                                       final BlackPlayer blackPlayer) {
             return whitePlayer;
         }
     },
@@ -43,7 +44,8 @@ public enum Colour {
         }
 
         @Override
-        public Player getCurrentPlayer(WhitePlayer whitePlayer, BlackPlayer blackPlayer) {
+        public Player getCurrentPlayer(final WhitePlayer whitePlayer,
+                                       final BlackPlayer blackPlayer) {
             return blackPlayer;
         }
     };
@@ -54,5 +56,6 @@ public enum Colour {
 
     public abstract boolean isWhite();
 
-    public abstract Player getCurrentPlayer(WhitePlayer whitePlayer, BlackPlayer blackPlayer);
+    public abstract Player getCurrentPlayer(final WhitePlayer whitePlayer,
+                                            final BlackPlayer blackPlayer);
 }

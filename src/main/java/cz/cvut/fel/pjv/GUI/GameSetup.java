@@ -6,7 +6,7 @@ import cz.cvut.fel.pjv.engine.player.Player;
 import javax.swing.*;
 import java.awt.*;
 
-public class GameSetup extends JDialog{
+public class GameSetup extends JDialog {
     private PlayerType whitePlayerType;
     private PlayerType blackPlayerType;
 
@@ -33,21 +33,24 @@ public class GameSetup extends JDialog{
         blackHumanButton.setSelected(true);
 
         getContentPane().add(jPanel);
-        jPanel.add(new JLabel("White"));
-        jPanel.add(whiteHumanButton);
-        jPanel.add(whiteComputerButton);
         jPanel.add(new JLabel("Black"));
         jPanel.add(blackHumanButton);
         jPanel.add(blackComputerButton);
+        jPanel.add(new JLabel("White"));
+        jPanel.add(whiteHumanButton);
+        jPanel.add(whiteComputerButton);
 
-        jPanel.add(new JLabel("Search"));
 
         final JButton cancelButton = new JButton("Cancel");
         final JButton okButton = new JButton("OK");
-
+//      sets players
         okButton.addActionListener(e -> {
-            whitePlayerType = whiteComputerButton.isSelected() ? PlayerType.COMPUTER : PlayerType.HUMAN;
-            blackPlayerType = blackComputerButton.isSelected() ? PlayerType.COMPUTER : PlayerType.HUMAN;
+            whitePlayerType = whiteComputerButton.isSelected()
+                    ? PlayerType.COMPUTER
+                    : PlayerType.HUMAN;
+            blackPlayerType = blackComputerButton.isSelected()
+                    ? PlayerType.COMPUTER
+                    : PlayerType.HUMAN;
             GameSetup.this.setVisible(false);
         });
 
@@ -59,7 +62,6 @@ public class GameSetup extends JDialog{
         jPanel.add(cancelButton);
         jPanel.add(okButton);
 
-        setLocationRelativeTo(frame);
         pack();
         setVisible(false);
     }
@@ -68,7 +70,7 @@ public class GameSetup extends JDialog{
         setVisible(true);
         repaint();
     }
-
+//  checks what type of player is current player by colour
     public boolean isAIPlayer(final Player player) {
         if(player.getColour() == Colour.WHITE) {
             return getWhitePlayerType() == PlayerType.COMPUTER;
@@ -76,14 +78,13 @@ public class GameSetup extends JDialog{
         return getBlackPlayerType() == PlayerType.COMPUTER;
     }
 
-    public PlayerType getWhitePlayerType() {
+    private PlayerType getWhitePlayerType() {
         return this.whitePlayerType;
     }
 
-    public PlayerType getBlackPlayerType() {
+    private PlayerType getBlackPlayerType() {
         return this.blackPlayerType;
     }
-
 
     public enum PlayerType {
             HUMAN,

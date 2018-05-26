@@ -4,10 +4,8 @@ import cz.cvut.fel.pjv.engine.board.Board;
 import cz.cvut.fel.pjv.engine.board.Tile;
 import cz.cvut.fel.pjv.engine.board.moves.Move;
 import cz.cvut.fel.pjv.engine.board.moves.MoveType;
-import cz.cvut.fel.pjv.engine.pieces.Pawn;
 import cz.cvut.fel.pjv.engine.pieces.Piece;
 import cz.cvut.fel.pjv.engine.pieces.PieceType;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -19,12 +17,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static javax.swing.SwingUtilities.isLeftMouseButton;
 import static javax.swing.SwingUtilities.isRightMouseButton;
 
 class GuiTile extends JPanel {
 
+    private final static Logger LOGGER = Logger.getLogger(GuiTile.class.getSimpleName());
     private static final Dimension TILE_DIMENSION = new Dimension(10, 10);
     private final int row;
     private final int column;
@@ -39,16 +40,16 @@ class GuiTile extends JPanel {
         setPreferredSize(TILE_DIMENSION);
         setTileColor();
         this.board = MainPanel.getBoard();
-        setTilePieceIcon(this.board);
+        setTilePieceIcon();
 
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 if (isRightMouseButton(mouseEvent)) {
+//                    clears move initiation if right clicked
                     clearState();
                 } else if (isLeftMouseButton(mouseEvent)) {
-                    setEnPassantPawn();
-                    Clock.start();
+                    if (ClockSetup.getMode() != 0) Clock.start();
                     if (MainPanel.getSourceTile() == null) {
                         MainPanel.setSourceTile(getAsTileObject());
                         MainPanel.setMovedPiece(MainPanel.getSourceTile().getPiece());
@@ -58,40 +59,50 @@ class GuiTile extends JPanel {
                     } else {
                         final Tile sourceTile = MainPanel.getSourceTile();
                         final Tile destinationTile = getAsTileObject();
-                        Move move = board.getCurrentPlayer().findMove(sourceTile, destinationTile);
+                        Move move = board.getCurrentPlayer().findMove(sourceTile,
+                                destinationTile);
+//                        if move is promotion calls method to hande it and stops clock
                         if (move != null && move.getMoveType() == MoveType.PROMOTION) {
-                            Clock.stop();
+                            if (ClockSetup.getMode() != 0) Clock.stop();
                             move = handlePawnPromotionMove(sourceTile, destinationTile);
-                            if (move == null) Clock.updateClock();
+                            if (move == null) Clock.wakeUp();
                         }
-                        final boolean done = board.getCurrentPlayer().initiateMove(move);
+//                        executes move
+                        final boolean done =
+                                board.getCurrentPlayer().executeMove(move);
                         if (done) {
                             MainPanel.getMoveLog().addMove(move);
-                            Clock.updateClock();
                         }
                         clearState();
                     }
                 }
                 SwingUtilities.invokeLater(() -> {
-                    MainPanel.getGameHistoryPanel().redo(board, MainPanel.getMoveLog());
-                    MainPanel.getTakenPiecesPanel().redo(MainPanel.getMoveLog());
-                    board.recalculate(true);
+//                    recalculates board, refreshes game history panel and taken pieces panel
+                    board.recalculate();
                     if (MainPanel.getGameSetup().isAIPlayer(board.getCurrentPlayer())) {
+//                        notifies observers that move has been made
                         MainPanel.get().moveMadeUpdate(GameSetup.PlayerType.HUMAN);
                     }
+                    MainPanel.getGameHistoryPanel().redo(board, MainPanel.getMoveLog());
+                    MainPanel.getTakenPiecesPanel().redo(MainPanel.getMoveLog());
                     guiBoard.drawBoard(MainPanel.getBoard());
                 });
-                board.recalculate(true);
+//                ends game if current player is in checkmate
                 if (board.getCurrentPlayer().isInCheckMate()) {
-                    Clock.terminate();
+                    if (ClockSetup.getMode() != 0) Clock.stop();
                     JOptionPane.showMessageDialog(guiBoard,
-                            "Game Over: Player " + board.getCurrentPlayer().toString() + " is in checkmate!", "Game Over",
+                            "Game Over: Player " +
+                                    board.getCurrentPlayer().toString() +
+                                    " is in checkmate!", "Game Over",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
+//                ends game if current player is in stalemate
                 if (board.getCurrentPlayer().isInStaleMate()) {
-                    Clock.terminate();
+                    if (ClockSetup.getMode() != 0) Clock.stop();
                     JOptionPane.showMessageDialog(guiBoard,
-                            "Game Over: Player " + board.getCurrentPlayer().toString() + " is in stalemate!", "Game Over",
+                            "Game Over: Player " +
+                                    board.getCurrentPlayer().toString() +
+                                    " is in stalemate!", "Game Over",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
             }
@@ -110,22 +121,15 @@ class GuiTile extends JPanel {
         validate();
     }
 
-    private void setEnPassantPawn() {
-        final Move lastMove = MainPanel.getMoveLog().getLastMove();
-        if(lastMove != null && lastMove.getMovedPiece().getPieceType().equals(PieceType.PAWN)
-                && lastMove.getSourceTile().getTileRow() == (lastMove.getDestinationTile().getTileRow() - 2*lastMove.getMovedPiece().getPieceColour().getDirection())) {
-            this.board.setEnPassantPawn((Pawn) lastMove.getMovedPiece());
-            board.recalculate(true);
-        }
-    }
-
     private Move handlePawnPromotionMove(final Tile sourceTile,
                                          final Tile destinationTile) {
         Move promotionMove = null;
         PieceType pieceType;
         String[] options = {"Queen" , "Rook", "Bishop", "Knight"};
-        String n = (String) JOptionPane.showInputDialog(null, "Choose which piece you want to promote to: ",
-                "Promotion Pieces", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        String n = (String) JOptionPane.showInputDialog(MainPanel.get().getGameFrame(), "Choose which piece you want to promote to: ",
+                "Promotion Pieces", JOptionPane.QUESTION_MESSAGE, null,
+                options, options[0]);
+//       saves piece type from input into pieceType
         if (n == null) {
             return null;
         } else if (n.equals("Rook")) {
@@ -137,6 +141,7 @@ class GuiTile extends JPanel {
         } else {
             pieceType = PieceType.QUEEN;
         }
+//        finds a promotion move, depending on user selected piece type, source and destination tile
         for (final Move pawnMove : board.getCurrentPlayer().getLegalMoves()) {
             if (destinationTile == pawnMove.getDestinationTile()
                     && sourceTile == pawnMove.getSourceTile()
@@ -146,10 +151,10 @@ class GuiTile extends JPanel {
         }
         return promotionMove;
     }
-    
+
 
     private Tile getAsTileObject() {
-        return this.board.getTile(row, column);
+        return Board.getTile(row, column);
     }
 
     private void clearState() {
@@ -165,11 +170,12 @@ class GuiTile extends JPanel {
             this.setBackground(new Color(209, 139, 71));
         }
     }
-
-    private void setTilePieceIcon(final Board board) {
-        Tile thisTile = board.getTile(this.row, this.column);
+//  sets tile piece icon on a tile depending on what type of piece is placed there
+    private void setTilePieceIcon() {
+        Tile thisTile = Board.getTile(this.row, this.column);
         if (thisTile.isOccupied()) {
             try {
+//                images are save in pattern- for instance white bishop = WB.png
                 String pieceIconPath = "images/pieces/";
                 final BufferedImage image
                         = ImageIO.read(new File(pieceIconPath
@@ -178,37 +184,41 @@ class GuiTile extends JPanel {
                         + ".png"));
                 add(new JLabel(new ImageIcon(image)));
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.log(Level.INFO, "Unexpected error while displaying " +
+                        "piece icon!");
             }
         }
     }
-
+//  redraws tile
     void drawTile(Board engineBoard) {
         this.removeAll();
         setTileColor();
-        setTilePieceIcon(engineBoard);
+        setTilePieceIcon();
         highlightLegalMoves(engineBoard);
         validate();
         repaint();
     }
-
+//    for all destination tiles of legal moves of selected piece, a picture is added on top of them
     private void highlightLegalMoves(final Board board) {
         for (final Move move : pieceLegalMoves(board)) {
             if (move.getDestinationTile() == this.getAsTileObject()) {
                 try {
-                    add(new JLabel(new ImageIcon(ImageIO.read(new File("images/other/green_square.png")))));
+                    add(new JLabel(new ImageIcon(ImageIO.read(
+                            new File("images/other/green_square.png")))));
                 } catch (final IOException e) {
-                    e.printStackTrace();
+                    LOGGER.log(Level.INFO, "Unexpected error while highlighting " +
+                            "legal moves!");
                 }
             }
         }
     }
-
+//  calculates current piece legal moves, used for highlighting them on board
     private Collection<Move> pieceLegalMoves(final Board board) {
         final Piece movedPiece = MainPanel.getMovedPiece();
         if (movedPiece != null &&
                 movedPiece.getPieceColour() == board.getCurrentPlayer().getColour()) {
-            final Collection<Move> playersMoves = board.getCurrentPlayer().getLegalMoves();
+            final Collection<Move> playersMoves
+                    = board.getCurrentPlayer().getLegalMoves();
             Collection<Move> pieceMoves = new ArrayList<>();
             for (final Move move : playersMoves) {
                 if(move.getMovedPiece() == movedPiece) {

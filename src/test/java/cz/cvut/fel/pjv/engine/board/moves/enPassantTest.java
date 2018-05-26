@@ -31,15 +31,15 @@ public class enPassantTest {
 
     @Test
     public void enPassant() {
-        MainPanel mainPanel = new MainPanel();
-        mainPanel.get().resetBoard();
+        MainPanel.get().resetBoard();
         final File file = new File("C:/Users/13dvz/OneDrive/Documents/enPassantTest.pgn");
-        mainPanel.loadPGNFile(file);
-        final Board board = mainPanel.get().getBoard();
-        final ArrayList<Move> moves = new ArrayList<>(board.getTile(4,2).getPiece().calculateMoves(board));
+        MainPanel.loadPGNFile(file);
+        final Board board = MainPanel.getBoard();
+        final ArrayList<Move> moves = new ArrayList<>(Board.getTile(4,2).getPiece().calculateMoves(board));
         final ArrayList<String> expected = new ArrayList<>();
-        expected.add("c3");
         expected.add("cxd3");
+        expected.add("c3");
+
         assertEquals(expected.toString(), moves.toString());
     }
 }

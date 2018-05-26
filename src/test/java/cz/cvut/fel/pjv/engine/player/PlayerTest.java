@@ -28,7 +28,6 @@ public class PlayerTest {
 // process test
     @Test
     public void isCastled() {
-        MainPanel mainPanel = new MainPanel();
         MainPanel.get().resetBoard();
         System.out.println("isCastled");
         final File file = new File(new File("src/test/java/cz/cvut/fel/pjv/engine/player/boardBeforeCastle.pgn").getAbsolutePath());
@@ -37,8 +36,8 @@ public class PlayerTest {
         assertTrue(!board.getCurrentPlayer().isCastled());
         for (final Move move : board.getCurrentPlayer().getLegalMoves()) {
             if (move.getMoveType().equals(MoveType.CASTLE)) {
-                board.getCurrentPlayer().initiateMove(move);
-                board.recalculate(true);
+                board.getCurrentPlayer().executeMove(move);
+                board.recalculate();
                 assertTrue(board.getCurrentPlayer().getOpponent().isCastled());
                 break;
             }
@@ -47,23 +46,21 @@ public class PlayerTest {
 // process test
     @Test
     public void isInCheckMate() {
-        MainPanel mainPanel = new MainPanel();
         System.out.println("isInCheckmate");
         MainPanel.get().resetBoard();
         final File file = new File(new File("src/test/java/cz/cvut/fel/pjv/engine/player/checkMateGame.pgn").getAbsolutePath());
         MainPanel.loadPGNFile(file);
-        MainPanel.getBoard().recalculate(true);
+        MainPanel.getBoard().recalculate();
         assertTrue(MainPanel.getBoard().getCurrentPlayer().isInCheckMate());
     }
 // process test
     @Test
     public void isInStaleMate() {
-        MainPanel mainPanel = new MainPanel();
         System.out.println("isInStaleMate");
         MainPanel.get().resetBoard();
         final File newfile = new File(new File("src/test/java/cz/cvut/fel/pjv/engine/player/staleMateGame.pgn").getAbsolutePath());
         MainPanel.loadPGNFile(newfile);
-        MainPanel.getBoard().recalculate(true);
+        MainPanel.getBoard().recalculate();
         assertTrue(MainPanel.getBoard().getCurrentPlayer().isInStaleMate());
     }
 }
