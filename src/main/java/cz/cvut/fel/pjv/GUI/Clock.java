@@ -79,11 +79,11 @@ public class Clock extends JPanel implements Runnable {
     static void start() {
         if (!started) {
             started = true;
+            stopped = false;
             if (thread.getState().equals(Thread.State.NEW)) {
                 thread.start();
             }
         }
-        LOGGER.log(Level.INFO, "Clock started.");
     }
 
     @SuppressWarnings("InfiniteLoopStatement")

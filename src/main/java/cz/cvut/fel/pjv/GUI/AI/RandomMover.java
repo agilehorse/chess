@@ -21,7 +21,7 @@ public class RandomMover {
             }
         }
 //        if the are any legal moves, random one is chosen and returned
-        if (legalMoves.size() > 1) {
+        if (legalMoves.size() > 0) {
             return legalMoves.get(new Random().nextInt(legalMoves.size()));
         }
         LOGGER.log(Level.INFO, board.getCurrentPlayer().toString()
